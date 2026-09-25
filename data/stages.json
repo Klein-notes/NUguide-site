@@ -1402,5 +1402,42 @@
     ],
     "rowBreak": false,
     "sortOrder": 9.4
+  },
+  {
+    "id": "stage_SP_4_2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "SP - 4",
+    "title": "帆潮小鎮之探（複製）",
+    "enemies": [
+      {
+        "name": "歛",
+        "note": "",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage_8_3_1_歛.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.5967107267461271,
+        "imageOffsetY": 0.5260222634495736
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3i8i35ilep?r=637612370204182\" rel=\"noopener noreferrer\" target=\"_blank\">魔法檢定所 第二十三季 檢定60</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>本關最多只能打21回合</p><p>必須帶補師並放在<span style=\"color: rgb(79, 200, 176);\">第3位</span></p><p><br></p><p>每經過1回合，華歛獲得減傷4%（最多20層）</p><p>我方1245位攻擊會導致攻擊力減少10%（可疊加），在一個循環最後可以消除40%攻擊力debuff</p><p>通常一個循環攻擊4次，然後防禦（純輔助可以保持攻擊）</p><p><br></p><p>推薦<span style=\"color: rgb(79, 200, 176);\">有緩補力的補師</span>，推薦帶<span style=\"color: rgb(79, 200, 176);\">會攻擊的輔助</span></p><p>建議帶至少3隻能攻擊的角色，確保後期護盾回合不會被打死</p><p>推薦<span style=\"color: rgb(79, 200, 176);\">3-5CD的必殺隊</span>，普攻隊、觸發隊的優先度較低</p><p>高額的輔助量可以減輕攻擊力減少的debuff，可以考慮會攻擊的雙輔助隊</p><p><br></p><p>注意越打到後期，華歛減傷越高越難打，20回合華歛就有減傷70+%了</p><p>建議至少帶一隻<span style=\"color: rgb(79, 200, 176);\">易傷角</span>，例如：偵布、劍副、槍啖、星副、舞布、泳啖等等</p><p>用毒隊帶蝶奧，就不需要考慮太多減傷/易傷的問題（蝶奧毒易傷高+持續傷害的公式略有不同）</p><p><br></p><p>由於我方每5回合開大，要有魔伊、星布那種減CD角才能帶大炮角</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "<span style=\"font-size: 14.4px;\">T3、8、13、18</span>",
+        "col2": "補師先防禦，再讓其他人普攻<br>（補師防禦可解除我方全體防禦狀態，華歛被攻擊會反擊我方全體來消護盾；<br>&nbsp; &nbsp; 我方護盾越厚，華歛的群攻大招越痛）"
+      },
+      {
+        "col1": "<span style=\"font-size: 14.4px;\">T5、10、15、20</span>",
+        "col2": "<span style=\"font-size: 14.4px;\">1245位開必殺，補師普攻（補師不能開必殺）</span>"
+      },
+      {
+        "col1": "<span style=\"font-size: 14.4px;\">T7、12、17</span>",
+        "col2": "<span style=\"font-size: 14.4px;\">1245位防禦（1245位消除40%攻擊力debuff）</span>"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 4
   }
 ]
