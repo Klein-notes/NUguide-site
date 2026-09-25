@@ -199,6 +199,61 @@
           "#c9a45c"
         ]
       }
+    },
+    "忘卻遺跡 第 23 季": {
+      "bgColor": "#1a3c34",
+      "bgOpacity": 33,
+      "borderColor": "#866f41",
+      "borderOpacity": 100,
+      "borderWidth": 1,
+      "bgGradientEnabled": true,
+      "bgGradientAngle": 17,
+      "bgGradientColors": [
+        "#627a70",
+        "#237059"
+      ],
+      "bgGradientPositions": [
+        0,
+        100
+      ],
+      "borderGradientEnabled": false,
+      "borderGradientAngle": 180,
+      "borderGradientColors": [
+        "#4e6b4c",
+        "#d2ee87",
+        "#4e6b4c"
+      ],
+      "borderGradientPositions": [
+        0,
+        50,
+        100
+      ],
+      "numberColor": "#e2d5bb",
+      "numberColorDisabled": "#416859",
+      "buttonStyle": {
+        "fontFamily": "display",
+        "fontSize": 15,
+        "paddingY": 3,
+        "paddingX": 6,
+        "borderRadius": 3,
+        "gradientEnabled": true,
+        "gradientAngle": 17,
+        "gradientColors": [
+          "#2b3536",
+          "#182f2e"
+        ],
+        "bgColor": "#211f30",
+        "borderColor": "#c9a45c",
+        "borderOpacity": 64,
+        "borderWidth": 1,
+        "textColor": "#d9b66c",
+        "dividerWidth": 1,
+        "dividerGradientEnabled": true,
+        "dividerColors": [
+          "#c9a45c",
+          "#514c29"
+        ]
+      }
     }
   },
   "pastSectionStyle": {
