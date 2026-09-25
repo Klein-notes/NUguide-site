@@ -1276,7 +1276,10 @@ hr.ql-divider {
    ========================================================= */
 .tp-slot-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* 每格最多 100px (2026-09-26)：原本 1fr 在桌機會把 5 格撐滿整個視窗
+     寬（一格將近 170px），上排比下面選卡的格子還大很多。minmax(0, …)
+     保留 09-12 的手機修正——窄螢幕時一樣可以縮小、5 格不會換行。 */
+  grid-template-columns: repeat(5, minmax(0, 100px));
   gap: 10px;
   /* Sticks to the top of .modal-body's own scroll area (not the whole
      page) while the filter panel below scrolls underneath it — same
@@ -1291,7 +1294,11 @@ hr.ql-divider {
      top of whatever scrolls up underneath it. */
   position: sticky;
   top: -20px;
-  z-index: 2;
+  /* z-index 10 (2026-09-26，原本 2)：下面選卡格子裡「已在隊伍中」的
+     變暗遮罩是 z-index:3、卡片資訊鈕是 4，有些瀏覽器（例如 Safari）
+     捲動時會把它們畫到這條固定列上面，變成上排卡片被蓋一塊暗色方塊。
+     拉到 10，確定蓋得過卡片內所有圖層。 */
+  z-index: 10;
   margin: -20px -22px 0;
   padding: 20px 22px 32px;
   background: var(--bg-elevated);
