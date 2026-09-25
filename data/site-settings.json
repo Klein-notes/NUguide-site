@@ -3,7 +3,7 @@
   "siteTagline": "轉貼關卡攻略、角色簡易資料庫、關卡隊伍紀錄，方便照抄過往隊伍用✌️",
   "myTeamsDescription": "僅存在你目前這台裝置、這個瀏覽器裡\n清除瀏覽紀錄、換裝置、換瀏覽器，或使用無痕視窗，都會遺失已記錄的隊伍內容。\n<span style=\"color: rgb(201, 164, 92);\">重要的隊伍建議用「匯出備份」存在你的裝置內。</span>",
   "teamNotesDescription": "此區為  <span style=\"color: rgb(226, 96, 79);\">過 往 關 卡</span>。\n\n所有隊伍與文字，僅存在你目前這台裝置、這個瀏覽器裡，清除瀏覽記錄就會消失。\n可回 [我的隊伍] 頁面按「匯出備份」，下次匯入後即可還原紀錄。",
-  "stagesDescription": "攻略流程紀錄、推薦隊伍。\n\n<span style=\"color: rgb(226, 96, 79);\">9/26  忘卻遺跡  </span>\n<span style=\"color: rgb(79, 200, 176);\">更改為第 23 季 / 新增關卡 SP-4 / 第八章待補\n</span><span style=\"color: rgb(201, 164, 92);\">※有匯出的檔案不影響匯入，會自動對應原關卡。</span>",
+  "stagesDescription": "攻略流程紀錄、推薦隊伍。\n\n<span style=\"color: rgb(226, 96, 79);\">9/26  忘卻遺跡  </span>\n<span style=\"color: rgb(79, 200, 176);\">更改為第 23 季 / 第八章待補\n</span><span style=\"color: rgb(201, 164, 92);\">※有匯出的檔案不影響匯入，會自動對應原關卡。</span>",
   "cardsDescription": "初次讀取因圖片量多會稍慢。",
   "stageButtonStyle": {
     "fontFamily": "display",
