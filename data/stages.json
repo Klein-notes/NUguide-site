@@ -1426,18 +1426,18 @@
     "roundTable": [
       {
         "col1": "<span style=\"font-size: 14.4px;\">T3、8、13、18</span>",
-        "col2": "補師先防禦，再讓其他人普攻<br>（補師防禦可解除我方全體防禦狀態，華歛被攻擊會反擊我方全體來消護盾；<br>&nbsp; &nbsp; 我方護盾越厚，華歛的群攻大招越痛）"
+        "col2": "<span style=\"color: rgb(79, 200, 176);\">補師先防禦，再讓其他人普攻</span><br>（補師防禦可解除我方全體防禦狀態，<br>&nbsp; &nbsp; 華歛被攻擊會反擊我方全體來消護盾；<br>&nbsp; &nbsp; 我方護盾越厚，華歛的群攻大招越痛）"
       },
       {
         "col1": "<span style=\"font-size: 14.4px;\">T5、10、15、20</span>",
-        "col2": "<span style=\"font-size: 14.4px;\">1245位開必殺，補師普攻（補師不能開必殺）</span>"
+        "col2": "<span style=\"font-size: 14.4px;\">1、2、4、5 開必殺，<span style=\"color: rgb(79, 200, 176);\">補師普攻（補師不能開必殺）</span></span>"
       },
       {
         "col1": "<span style=\"font-size: 14.4px;\">T7、12、17</span>",
-        "col2": "<span style=\"font-size: 14.4px;\">1245位防禦（1245位消除40%攻擊力debuff）</span>"
+        "col2": "<span style=\"font-size: 14.4px;\">1、2、4、5 防禦（1245位消除40%攻擊力debuff）</span>"
       }
     ],
     "rowBreak": false,
-    "sortOrder": 9.4
+    "sortOrder": 4
   }
 ]
