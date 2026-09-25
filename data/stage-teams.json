@@ -341,5 +341,21 @@
         ]
       }
     ]
+  },
+  {
+    "stageId": "stage_SP_4_2",
+    "teams": [
+      {
+        "name": "星布+偵布+遊布+魔伊+馬可",
+        "note": "https://youtu.be/kMMXjsbw0E0",
+        "members": [
+          "card_070",
+          "card_062",
+          "card_079",
+          "card_086",
+          "card_053"
+        ]
+      }
+    ]
   }
 ]
