@@ -1,8 +1,8 @@
 [
   {
     "id": "stage_8_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "8 - 1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "7 - 1",
     "title": "帆潮小鎮之探",
     "enemies": [
       {
@@ -38,13 +38,13 @@
     "hidden": false,
     "roundTable": [],
     "rowBreak": true,
-    "sortOrder": 8.1,
+    "sortOrder": 7.1,
     "archived": false
   },
   {
     "id": "stage_8_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "8 - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "7 - 3",
     "title": "帆潮小鎮之探",
     "enemies": [
       {
@@ -142,14 +142,14 @@
         "col2": "<span style=\"font-size: 14.4px;\">隨便行動</span>"
       }
     ],
-    "sortOrder": 8.3,
+    "sortOrder": 7.3,
     "rowBreak": false,
     "archived": false
   },
   {
     "id": "stage_8_2_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "8 - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "7 - 2",
     "title": "",
     "enemies": [
       {
@@ -185,7 +185,7 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 8.2,
+    "sortOrder": 7.2,
     "archived": false
   },
   {
@@ -231,8 +231,8 @@
   },
   {
     "id": "stage_7_1_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "7 - 1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "6 - 1",
     "title": "帆潮小鎮之探（複製）",
     "enemies": [
       {
@@ -255,7 +255,7 @@
       }
     ],
     "rowBreak": true,
-    "sortOrder": 7.1,
+    "sortOrder": 6.1,
     "archived": false
   },
   {
@@ -375,8 +375,8 @@
   },
   {
     "id": "stage_7_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "7 - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "6 - 2",
     "title": "帆潮小鎮之探（複製）（複製）",
     "enemies": [
       {
@@ -425,12 +425,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 7.2
+    "sortOrder": 6.2
   },
   {
     "id": "stage_7_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "7 - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "6 - 3",
     "title": "帆潮小鎮之探（複製）（複製）（複製）",
     "enemies": [
       {
@@ -484,7 +484,7 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 7.3
+    "sortOrder": 6.3
   },
   {
     "id": "stage_55_2",
@@ -596,7 +596,7 @@
     "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3j4bryds2o\" rel=\"noopener noreferrer\" target=\"_blank\">極速追風高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>全R卡可以過，單純跟著機制走13回合的 <span style=\"color: rgb(79, 200, 176);\">純機制關</span></p><p>我方不能對敵人造成傷害或補血</p><p>新手可以帶多輔助、坦角、高血量的角色，但<span style=\"color: rgb(226, 96, 79);\">補師只能帶1個</span></p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "T2、6、10",
@@ -650,7 +650,7 @@
     "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3j4bryds2o\" rel=\"noopener noreferrer\" target=\"_blank\">極速追風高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【組隊事項】</span></p><ul><li>本關要帶至少 <span style=\"color: rgb(226, 96, 79);\">2名 攻擊 或 妨礙</span> 角色，並且至少有一隻<span style=\"color: rgb(79, 200, 176);\">解除防御</span>（例如SR啖）</li><li>有些回合需要全防，推薦帶<span style=\"color: rgb(226, 96, 79);\">緩補</span></li></ul><hr class=\"ql-divider\"><p>全SR可以過</p><p>敵方兩位賽車手開場有75%減傷（5層15%減傷）</p><p>我方跟著機制走，就會慢慢削走敵方的減傷效果</p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "T2、8",
@@ -691,7 +691,7 @@
     "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3j4bryds2o\" rel=\"noopener noreferrer\" target=\"_blank\">極速追風高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【組隊事項】</span></p><ul><li>必須攜帶至少三名有攻擊能力的角色</li><li><span style=\"color: rgb(79, 200, 176);\">1、5 號站位成員，必殺技CD須小於等於 4。</span></li></ul><hr class=\"ql-divider\"><p><span style=\"color: rgb(79, 200, 176);\">必殺和防禦都會令我方受到治療量減少</span></p><p>除非打很快or有增療角/強補師，否則不適合星布、魔伊那些減CD角，<span style=\"color: rgb(226, 96, 79);\">甚至不特別推薦帶多個短CD角</span></p><p>本關較難對軸開大，所以<span style=\"color: rgb(226, 96, 79);\">不太推薦必殺隊</span></p><p>推薦帶<span style=\"color: rgb(79, 200, 176);\">普攻角、觸發角、分叉角，可以輕鬆打斷T4回合的蓄力</span></p><hr class=\"ql-divider\"><p>本關無法全SR通關，角色也需要一定強度</p><p><br></p><p>不愧是賽車競速關卡，<span style=\"color: rgb(226, 96, 79);\">超過20回合敵人贏了我們會全滅</span></p><p>屬性相剋無效</p><p><span style=\"color: rgb(79, 200, 176);\">建議補師放第3位</span></p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">開場我方全員的機制──</span></p><p>防禦：使我方全體「受到治療量減少 5%」增加 3 層（ 最多 16 層，共 80% ）</p><p>必殺：使我方全體「受到治療量減少 5%」增加 3 層（ 最多 16 層，共 80% ）</p><p>普攻：使我方全體「受到治療量減少 5%」減少 1 層</p><p><br></p><p><span style=\"color: rgb(226, 96, 79);\">留意敵人在60%、20%會鎖血並追加機制</span></p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "T2、8、14、20",
@@ -764,8 +764,8 @@
   },
   {
     "id": "stage_6_1",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "6 - 1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "5 - 1",
     "title": "",
     "enemies": [
       {
@@ -802,12 +802,12 @@
       }
     ],
     "rowBreak": true,
-    "sortOrder": 6.1
+    "sortOrder": 5.1
   },
   {
     "id": "stage_6_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "6 - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "5 - 2",
     "title": "（複製）",
     "enemies": [
       {
@@ -843,12 +843,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 6.2
+    "sortOrder": 5.2
   },
   {
     "id": "stage_6_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "6 - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "5 - 3",
     "title": "（複製）（複製）",
     "enemies": [
       {
@@ -876,12 +876,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 6.3
+    "sortOrder": 5.3
   },
   {
     "id": "stage_5_1",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "5 - 1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "4 - 1",
     "title": "（複製）",
     "enemies": [
       {
@@ -927,12 +927,12 @@
       }
     ],
     "rowBreak": true,
-    "sortOrder": 5.1
+    "sortOrder": 4.1
   },
   {
     "id": "stage_5_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "5 - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "4 - 2",
     "title": "（複製）（複製）",
     "enemies": [
       {
@@ -964,12 +964,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 5.2
+    "sortOrder": 4.2
   },
   {
     "id": "stage_5_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "5 - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "4 - 3",
     "title": "（複製）（複製）（複製）",
     "enemies": [
       {
@@ -1032,12 +1032,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 5.3
+    "sortOrder": 4.3
   },
   {
     "id": "stage_4_1",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "4 - 1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "3 - 1",
     "title": "（複製）（複製）",
     "enemies": [
       {
@@ -1073,12 +1073,12 @@
       }
     ],
     "rowBreak": true,
-    "sortOrder": 4.1
+    "sortOrder": 3.1
   },
   {
     "id": "stage_4_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "4 - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "3 - 2",
     "title": "（複製）（複製）（複製）",
     "enemies": [
       {
@@ -1133,12 +1133,12 @@
     "archived": false,
     "roundTable": [],
     "rowBreak": false,
-    "sortOrder": 4.2
+    "sortOrder": 3.2
   },
   {
     "id": "stage_4_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "4 - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "3 - 3",
     "title": "（複製）（複製）（複製）（複製）",
     "enemies": [
       {
@@ -1183,7 +1183,7 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 4.3
+    "sortOrder": 3.3
   },
   {
     "id": "stage_SP_1",
@@ -1204,7 +1204,7 @@
     "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3i3ho86b0w\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第十九季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>要帶坦，<span style=\"color: rgb(226, 96, 79);\">坦角不要放2、4位</span></p><p>對坦的要求極高，以3星SSR/5星SR來說</p><p>大約只有天天、刃崑和墨菲這些護盾坦才能坦住T6的第一擊</p><p><br></p><p>坦角優先選坦度最高的天天，不需要特殊組隊配置就可以單人撐到T14的第二擊</p><p>而刃崑、墨菲要坦住T14的第二擊通常要靠減傷角，如果無法坦住最好在T14以內解決遊玖</p><p>（可以的話最好在T12解決，因為遊玖群攻大招吸血能夠補血10%以上）</p><p><br></p><p>遊玖補血量超高，推薦帶<span style=\"color: rgb(79, 200, 176);\">強角速攻</span></p><p>補血方面，<span style=\"color: rgb(226, 96, 79);\">推薦只帶星布不帶補</span>，或者帶<span style=\"color: rgb(79, 200, 176);\">免麻痹補、減傷補</span>或者帶<span style=\"color: rgb(79, 200, 176);\">緩補的瞬補</span></p><p><br></p><p>補充：</p><p>．遊玖T4、12一下群攻大約可以補血10%</p><p>．如果不是帶偵布魔伊星布速攻組，T4遊玖群攻會恢復100%滿血狀態，無法速攻的話前3回合可以防禦並節省大招</p><p>．這關對坦角要求很高，請確認坦角能撐多少回合（例：有減傷或高護盾又能速攻，就可以帶3星兔伊）</p><p>．這關對輸出要求很高，可以按計算機測試，一般無減療/減傷的情況下，12回合打完大約要300+萬輸出，20回合內打完要更高輸出</p><p>．當初在檢定所是9CD機制，現時轉8CD機制，所以高輸出的4CD必殺隊（妨礙隊）&gt;3CD必殺隊（馬戲組）</p><p>．現時所見的3星隊伍，通常靠星布、舞可或鱗八/舞布/迷崑來達成高輸出</p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "T3、11、19",
@@ -1223,13 +1223,13 @@
         "col2": "【攻擊手開大會對我方全體造成傷害50%】<br>要攻擊遊玖3次打斷蓄力，但遊玖被普攻會減傷500%<br>所以要先必殺攻擊兩次，最後攻擊手/坦角攻擊打掉蓄力<br>（多段攻擊角/觸發角可以直接打幾次暈掉遊玖）"
       }
     ],
-    "rowBreak": true,
+    "rowBreak": false,
     "sortOrder": 9.1
   },
   {
     "id": "stage_SP_2",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "SP - 2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "SP - 1",
     "title": "帆潮小鎮之探（複製）（複製）",
     "enemies": [
       {
@@ -1310,13 +1310,13 @@
         "col2": "註：<br>如果好好控血，在T12打進5%鎖血線，<br>T13就不會吃到休伊的造傷減少15%，<br>第二階段會有較高輸出"
       }
     ],
-    "rowBreak": false,
+    "rowBreak": true,
     "sortOrder": 9.2
   },
   {
     "id": "stage_SP_3",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "SP - 3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "SP - 2",
     "title": "帆潮小鎮之探（複製）（複製）（複製）",
     "enemies": [
       {
@@ -1360,8 +1360,8 @@
   },
   {
     "id": "stage_SP_4",
-    "chapter": "忘卻遺跡 第 22 季",
-    "order": "SP - 4",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "SP - 3",
     "title": "帆潮小鎮之探（複製）（複製）（複製）（複製）",
     "enemies": [
       {
