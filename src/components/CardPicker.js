@@ -173,6 +173,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
   //     第一個空格。
   //   - 「已使用」區的卡防誤觸：第 1 下只標記「準備退回」，同一張再點
   //     一下才退回卡池；點其他任何地方就取消標記。上排維持點一下就退回。
+  //     退回後那一格自動發光（取代原本發光的格子），直接點卡池就補進去。
   //   - 改的是 usedGroups[].members 本身（呼叫端傳進來的草稿），鎖卡清單
   //     跟著即時重算——從別關退回的卡馬上可以選。
   // 後台不傳 editableGroups，行為跟以前完全一樣。
@@ -219,6 +220,8 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
         if (sameSlot(armed, g, i)) {
           usedGroups[g].members[i] = null;
           armed = null;
+          // 退回後空出來的格子自動發光：換一張卡只要「點兩下退回 → 點卡池」
+          target = { g, i };
           refreshAll();
         } else {
           armed = { g, i };
