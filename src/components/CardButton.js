@@ -70,6 +70,15 @@ export function renderCardButton(card, maps, opts = {}) {
     overlay.className = 'card-btn-disabled-overlay';
     btn.appendChild(overlay);
   }
+  // 小標籤 (2026-09-27)：卡片上緣正中間（屬性、定位兩個徽章之間），目前
+  // 用在同章鎖卡——例如「7-1」代表這張卡已經被 7-1 的隊伍用掉。只負責
+  // 顯示，能不能點照樣由 opts.disabled / opts.onClick 決定。
+  if (opts.tag) {
+    const tag = document.createElement('div');
+    tag.className = 'card-btn-tag';
+    tag.textContent = opts.tag;
+    btn.appendChild(tag);
+  }
 
   if (opts.onInfoClick) {
     // A <button> can't legally nest inside another <button>, so this is a

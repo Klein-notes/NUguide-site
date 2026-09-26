@@ -8,6 +8,38 @@ import { loadJSON, DataSources, toMap } from '../core/dataLoader.js';
 import { filterCards } from '../modules/cardFilter.js';
 import { sortCardsByOrder } from '../modules/cardSort.js';
 
+// 同章鎖卡 (2026-09-27)：忘卻遺跡同一章其他關卡的第 1 組隊伍用過的卡。
+//   lockedCards：Map，cardId → 關卡編號（例如「7-1」）——這些卡不放進卡池。
+//   usedGroups：同章其他每一關的第 1 組，[{ label, members:[5 格] }]——在
+//     「已使用」區照站位整隊顯示（沒放卡的位置畫空格），隨時看得到用過哪些卡。
+// 後台選版主/推薦隊伍時兩個都不傳，畫面跟以前一樣。
+function renderUsedStrip(usedGroups, cardMap, cardMaps) {
+  if (!usedGroups || !usedGroups.length) return null;
+  const strip = document.createElement('div');
+  strip.className = 'used-strip';
+  for (const g of usedGroups) {
+    const group = document.createElement('div');
+    group.className = 'used-strip-group';
+    const name = document.createElement('span');
+    name.className = 'used-strip-label';
+    name.textContent = g.label;
+    group.appendChild(name);
+    for (const cardId of g.members) {
+      const card = cardId ? cardMap.get(cardId) : null;
+      const cell = document.createElement('div');
+      cell.className = card ? 'used-strip-card' : 'used-strip-empty';
+      if (card) {
+        cell.title = card.name;
+        cell.appendChild(renderCardButton(card, cardMaps, { thumbnail: true }));
+      }
+      group.appendChild(cell);
+    }
+    strip.appendChild(group);
+  }
+  return strip;
+}
+const withoutLocked = (list, lockedCards) => (lockedCards && lockedCards.size ? list.filter((c) => !lockedCards.has(c.id)) : list);
+
 /**
  * Opens the card picker modal and resolves with the chosen card, or null
  * if the player closes it without picking one.
@@ -16,10 +48,14 @@ import { sortCardsByOrder } from '../modules/cardSort.js';
  *   unclickable — e.g. the OTHER cards already in the team being built,
  *   so the same card can't be picked twice into one team. Omit (or leave
  *   the slot currently being edited out of the list) to allow it.
+ * @param {Map<string,string>} [opts.lockedCards] - 同章鎖卡，見 renderUsedStrip
+ * @param {Array} [opts.usedGroups] - 同章鎖卡，見 renderUsedStrip
  * @returns {Promise<Object|null>}
  */
 export function openCardPicker(opts = {}) {
   const excludeIds = new Set(opts.excludeIds || []);
+  const lockedCards = opts.lockedCards || null;
+  const usedGroups = opts.usedGroups || null;
   return new Promise(async (resolve) => {
     const [cardsRaw, rarities, classes, elements, characters, tags] = await Promise.all([
       loadJSON(DataSources.cards),
@@ -45,6 +81,8 @@ export function openCardPicker(opts = {}) {
     filterHost.className = 'fg-sidebar';
     const gridCol = document.createElement('div');
     const gridHost = document.createElement('div');
+    const usedStrip = renderUsedStrip(usedGroups, toMap(cards), cardMaps);
+    if (usedStrip) gridCol.appendChild(usedStrip);
     gridCol.appendChild(gridHost);
     layout.append(filterHost, gridCol);
     body.appendChild(layout);
@@ -74,10 +112,10 @@ export function openCardPicker(opts = {}) {
 
     const panel = await mountFilterPanel(filterHost, (state) => {
       const filtered = filterCards(cards, state, panel.schema, panel.cdRanges);
-      renderCardGrid(gridHost, filtered, cardMaps, gridOpts);
+      renderCardGrid(gridHost, withoutLocked(filtered, lockedCards), cardMaps, gridOpts);
     });
 
-    renderCardGrid(gridHost, cards, cardMaps, gridOpts);
+    renderCardGrid(gridHost, withoutLocked(cards, lockedCards), cardMaps, gridOpts);
   });
 }
 
@@ -103,7 +141,9 @@ export function openCardPicker(opts = {}) {
  *   in the team (or already-empty slots) when the picker opens.
  * @returns {Promise<(string|null)[]>} always 5 entries, unfilled slots are null.
  */
-export function openTeamPicker(initialMembers = []) {
+export function openTeamPicker(initialMembers = [], opts = {}) {
+  const lockedCards = opts.lockedCards || null; // 同章鎖卡，見 renderUsedStrip
+  const usedGroups = opts.usedGroups || null;
   return new Promise(async (resolve) => {
     const [cardsRaw, rarities, classes, elements, characters, tags] = await Promise.all([
       loadJSON(DataSources.cards),
@@ -127,6 +167,8 @@ export function openTeamPicker(initialMembers = []) {
     const slotRow = document.createElement('div');
     slotRow.className = 'tp-slot-row';
     body.appendChild(slotRow);
+    // 「同章已使用」放在上面固定的那一條裡、5 個格子下方，捲動卡池時一直看得到
+    const usedStrip = renderUsedStrip(usedGroups, cardMap, cardMaps);
 
     const layout = document.createElement('div');
     layout.className = 'filter-grid-layout';
@@ -196,6 +238,7 @@ export function openTeamPicker(initialMembers = []) {
         }
         slotRow.appendChild(slot);
       });
+      if (usedStrip) slotRow.appendChild(usedStrip);
     }
 
     function pickCard(card) {
@@ -207,10 +250,10 @@ export function openTeamPicker(initialMembers = []) {
     }
 
     function currentFiltered(state) {
-      return filterCards(cards, state, panel.schema, panel.cdRanges);
+      return withoutLocked(filterCards(cards, state, panel.schema, panel.cdRanges), lockedCards);
     }
 
-    let lastFiltered = cards;
+    let lastFiltered = withoutLocked(cards, lockedCards);
     function renderGrid() {
       renderCardGrid(gridHost, lastFiltered, cardMaps, {
         onCardClick: pickCard,

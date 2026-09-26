@@ -547,6 +547,94 @@ hr.ql-divider {
 .card-btn.selected { border-color: var(--accent-teal); box-shadow: 0 0 0 2px rgba(79,200,176,0.35); }
 .card-btn.disabled { cursor: default; }
 .card-btn.disabled:hover { border-color: var(--border-soft); transform: none; }
+/* 卡片上緣正中間的小標籤 (2026-09-27, CardButton.js 的 opts.tag)：放在
+   屬性、定位兩個徽章之間，不擋到臉。字級、內距都用卡片寬度比例 (cqw)。 */
+.card-btn-tag {
+  position: absolute;
+  left: 50%; top: 4cqw;
+  transform: translateX(-50%);
+  z-index: 4;
+  padding: 1.5cqw 6cqw;
+  border-radius: 999px;
+  background: rgba(16, 15, 24, 0.88);
+  color: var(--text);
+  font-size: max(10px, 11cqw);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+}
+/* 選卡視窗的「同章已使用」(2026-09-27, CardPicker.js renderUsedStrip)：
+   同章其他每一關的第 1 組，照站位整隊顯示（沒放卡的位置畫虛線空格）。
+   電腦版放得下就一行兩隊，放不下（視窗較窄、手機）就自動一行一隊。在
+   「選擇隊伍」裡它是上方固定條的一部分（橫跨整列、排在格子下方），
+   margin-top 要讓開格子下方凸出來的「第 N 位」選單。 */
+.used-strip {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+.tp-slot-row .used-strip {
+  margin-bottom: -14px;
+  /* 100cqw ＝ 整條固定列的寬度（見 .tp-slot-row 的 container-type）。
+     只在「選擇隊伍」裡設；單張選卡視窗沒有這個容器，不能用 cqw，否則
+     會變成以整個瀏覽器視窗寬度計算、撐出畫面。 */
+  width: 100cqw;
+}
+/* 每一隊：固定像素寬高（不用 1fr 平分），卡片的位置和大小都落在整數
+   像素上，1.5～2px 的細邊框才不會因為落在半個像素上、被瀏覽器抗鋸齒
+   畫成有的粗有的細。空間不夠放兩隊時自動換成一行一隊。 */
+.used-strip-group {
+  display: grid;
+  grid-template-columns: 40px repeat(5, 64px);
+  grid-auto-rows: 83px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+}
+.used-strip-label {
+  text-align: center;
+  color: var(--accent-gold);
+  font-weight: 700; font-size: 0.85rem;
+  white-space: nowrap;
+}
+.used-strip-card, .used-strip-empty { width: 100%; height: 100%; }
+/* card-btn 是 <button>（行內元素），不設 display:block 的話下方會多出
+   一條文字基線的空隙，卡片就會偏上、跟左邊的關卡編號對不齊。 */
+.used-strip-card .card-btn { display: block; width: 100%; height: 100%; aspect-ratio: auto; cursor: default; }
+.used-strip-card .card-btn:hover { transform: none; }
+.used-strip-empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .used-strip { gap: 8px; margin-top: 30px; }
+  .used-strip-group { grid-template-columns: 34px repeat(5, 44px); grid-auto-rows: 57px; gap: 5px; padding: 6px; }
+  .used-strip-label { font-size: 0.8rem; }
+}
+@media (max-width: 370px) {
+  .used-strip-group { grid-template-columns: 30px repeat(5, 38px); grid-auto-rows: 49px; gap: 4px; padding: 5px; }
+}
+/* 卡片外框統一 (2026-09-27)：「選擇隊伍」上排 5 格和下面「同章已使用」
+   的小卡，用同一種外框——拿掉 .card-btn 自己的灰色外框，只留稀有度的
+   彩色邊框，粗細統一 2px。原本上排是「灰框 2px ＋ 彩框 3px」疊成的粗框，
+   小卡是 1.5px，大小卡看起來粗細不一。只影響這兩個地方，卡片資料庫等
+   其他頁面的卡片不變。 */
+.tp-slot .card-btn,
+.used-strip-card .card-btn { border: none; border-radius: var(--radius-sm); }
+/* 上排格子裡的卡也用 display:block，拿掉 <button> 下方那條文字基線空隙
+   （原本每格下面多 6px 左右空白，拿掉灰框後又會再多 2px）。 */
+.tp-slot .card-btn { display: block; }
+.tp-slot .card-face-border,
+.used-strip-card .card-face-border { padding: 2px; border-radius: var(--radius-sm); }
+.tp-slot .card-face, .used-strip-card .card-face { border-radius: var(--radius-sm); }
 .card-btn-disabled-overlay {
   position: absolute;
   /* Matches .card-face-badge-tl's own overflow amount (top:-4cqw;
@@ -1280,6 +1368,10 @@ hr.ql-divider {
      寬（一格將近 170px），上排比下面選卡的格子還大很多。minmax(0, …)
      保留 09-12 的手機修正——窄螢幕時一樣可以縮小、5 格不會換行。 */
   grid-template-columns: repeat(5, minmax(0, 100px));
+  /* 讓裡面的「同章已使用」(.used-strip) 可以用 100cqw 取得整條固定列的
+     寬度 (2026-09-27)，不會被擠在 5 個格子加起來的寬度裡。只是宣告成
+     「尺寸參考容器」，5 個格子本身的大小完全不變。 */
+  container-type: inline-size;
   gap: 10px;
   /* Sticks to the top of .modal-body's own scroll area (not the whole
      page) while the filter panel below scrolls underneath it — same
@@ -1333,7 +1425,10 @@ hr.ql-divider {
   transform: translateX(-50%);
   /* 比格子本身寬一點，並關掉瀏覽器原生下拉箭頭，「第 N 位」四個字才不會被擠斷
      (2026-09-09 修正)。 */
-  width: 80px;
+  /* 最寬 80px，但不能超過格子本身太多 (2026-09-27)：手機上一格只有
+     60px 左右，固定 80px 會跟隔壁格的選單黏在一起重疊。格子之間的間距
+     是 10px，這裡最多比格子寬 8px，兩個選單之間至少留 2px。 */
+  width: min(80px, calc(100% + 8px));
   appearance: none; -webkit-appearance: none; -moz-appearance: none;
   padding: 2px 4px;
   font-size: 0.72rem; text-align: center; text-align-last: center;

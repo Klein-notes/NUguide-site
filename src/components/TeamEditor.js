@@ -3,7 +3,8 @@ import { openModal, confirmDialog } from './Modal.js';
 import { openCardPicker, openTeamPicker } from './CardPicker.js';
 import { renderCardButton } from './CardButton.js';
 import { loadJSON, DataSources } from '../core/dataLoader.js';
-import { saveTeam, TEAM_MEMBER_SLOTS } from '../core/store.js';
+import { saveTeam, getAllTeamsGrouped, TEAM_MEMBER_SLOTS } from '../core/store.js';
+import { computeChapterLock } from '../modules/chapterLock.js';
 import { showToast } from '../core/toast.js';
 import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
 
@@ -21,12 +22,18 @@ const NOTE_COLOR_SWATCHES = ['#c9a45c', '#4fc8b0', '#e2604f'];
  */
 export function openTeamEditor(stageId, existingTeam = null) {
   return new Promise(async (resolve) => {
-    const [cards, rarities, elements, classes] = await Promise.all([
+    const [cards, rarities, elements, classes, stages, grouped] = await Promise.all([
       loadJSON(DataSources.cards),
       loadJSON(DataSources.rarities),
       loadJSON(DataSources.elements),
       loadJSON(DataSources.classes),
+      loadJSON(DataSources.stages),
+      getAllTeamsGrouped(),
     ]);
+    // 同章鎖卡 (2026-09-27, 見 chapterLock.js)：同一章其他關卡第 1 組用過
+    // 的卡。選卡時不放進卡池、另外縮小顯示；這一隊裡如果已經有這種卡
+    // （功能上線前記的），那一格標上關卡編號提醒，不自動拿掉。
+    const { lockedCards, groups: usedGroups } = computeChapterLock(stageId, stages, grouped);
     const cardMap = new Map(cards.map((c) => [c.id, c]));
     // Same maps CardButton/CardGrid use everywhere else, so a slot here
     // (屬性/定位/稀有度 badges, same proportions) looks identical to the
@@ -135,7 +142,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
     bulkPickBtn.style.marginBottom = '8px';
     bulkPickBtn.textContent = '選擇隊伍';
     bulkPickBtn.addEventListener('click', async () => {
-      const result = await openTeamPicker(members);
+      const result = await openTeamPicker(members, { lockedCards, usedGroups });
       members = result;
       renderSlots();
     });
@@ -163,8 +170,9 @@ export function openTeamEditor(stageId, existingTeam = null) {
         if (card) {
           const btn = renderCardButton(card, cardMaps, {
             thumbnail: true,
+            tag: lockedCards.get(card.id) || null,
             onClick: async () => {
-              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index) });
+              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index), lockedCards, usedGroups });
               if (chosen) {
                 members[index] = chosen.id;
                 renderSlots();
@@ -214,7 +222,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
           btn.setAttribute('aria-label', `選擇第 ${index + 1} 位隊員`);
           btn.textContent = '+';
           btn.addEventListener('click', async () => {
-            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean) });
+            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean), lockedCards, usedGroups });
             if (chosen) {
               members[index] = chosen.id;
               renderSlots();
