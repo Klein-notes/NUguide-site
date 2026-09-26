@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Neon gemstone emblem">
+  <path d="M256 66L430 210L256 446L82 210Z" fill="#32F5E2"/>
+  <path d="M256 88L406 215L256 424L106 215Z" fill="#9A28FF"/>
+  <path d="M256 88V424L406 215Z" fill="#E526D8"/>
+  <path d="M106 215H406L256 424Z" fill="#6A18CF"/>
+  <path d="M106 215L256 88L406 215L256 270Z" fill="#D25CFF"/>
+  <path d="M256 88L406 215L256 270Z" fill="#FF73E6"/>
+  <path d="M142 215L256 120L370 215L256 244Z" fill="#FFD2FA" opacity=".8"/>
+  <path d="M178 153L230 111L193 188Z" fill="#FFFFFF" opacity=".9"/>
+</svg>
