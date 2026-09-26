@@ -5,6 +5,7 @@ import { renderCardButton } from './CardButton.js';
 import { loadJSON, DataSources } from '../core/dataLoader.js';
 import { saveTeam, TEAM_MEMBER_SLOTS } from '../core/store.js';
 import { showToast } from '../core/toast.js';
+import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
 
 // Same three accent colors used site-wide (Quill's swatches in the admin
 // editors, badges, etc.) — kept to this fixed set rather than a full
@@ -72,7 +73,13 @@ export function openTeamEditor(stageId, existingTeam = null) {
     noteEditor.className = 'note-editor';
     noteEditor.contentEditable = 'true';
     noteEditor.setAttribute('data-placeholder', '例如：第三回合保留大招。');
-    noteEditor.innerHTML = existingTeam ? existingTeam.note || '' : '';
+    // 載入舊備註時一樣先過濾（sanitizeNote.js）——放進可編輯區域時，
+    // 匯入檔案裡被塞的程式碼一樣會執行。
+    noteEditor.innerHTML = existingTeam ? sanitizeNoteHtml(existingTeam.note || '') : '';
+    // 「有沒有改過」要跟放進編輯區之後的內容比，不是跟原始字串比——
+    // 過濾（以及瀏覽器本身）可能會把寫法整理過，例如顏色格式，內容其實
+    // 沒變，直接比原始字串會誤判成有修改、關閉時多跳一次確認。
+    const initialNoteRendered = noteEditor.innerHTML;
     // Paste as plain text only — see admin-src/modules/richTextEditor.js's
     // Quill matcher for the fuller explanation; same fix, contenteditable
     // version (2026-09-06 request, applies to every one of these color
@@ -232,7 +239,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
     // that's just as easy to hit by mistake as the other three.
     function isDirty() {
       return nameInput.value !== initialName
-        || noteEditor.innerHTML !== initialNote
+        || noteEditor.innerHTML !== initialNoteRendered
         || JSON.stringify(members) !== JSON.stringify(initialMembers);
     }
     function confirmDiscard() {

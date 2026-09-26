@@ -1,6 +1,7 @@
 // src/components/TeamCard.js
 import { resolveCardThumb } from '../core/dataLoader.js';
 import { renderCardFace, BORDER_CLASS_BY_RARITY } from './CardFace.js';
+import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
 
 // Reference size CardFace is measured against before being scaled down —
 // matches the 200/260 aspect ratio used everywhere else (.card-btn,
@@ -58,10 +59,10 @@ export function renderTeamCard(team, cardMap, opts = {}) {
     const note = document.createElement('div');
     note.className = 'team-card-note';
     // team.note is HTML (the 備註 editor supports selecting text and
-    // applying one of the site's accent colors to it) — not user input
-    // shared between people, it only ever round-trips through the
-    // player's own browser storage, so rendering it directly is safe.
-    note.innerHTML = team.note;
+    // applying one of the site's accent colors to it). 2026-09-26：原本
+    // 認為只會經過玩家自己的瀏覽器所以直接顯示，但「匯入備份」可以匯入
+    // 別人給的檔案，所以一律先過濾（見 sanitizeNote.js），外觀不變。
+    note.innerHTML = sanitizeNoteHtml(team.note);
     el.appendChild(note);
   }
 

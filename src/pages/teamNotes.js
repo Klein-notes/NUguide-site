@@ -10,6 +10,7 @@ import { loadJSON, DataSources, toMap } from '../core/dataLoader.js';
 import { mountNavbar, mountFooter } from '../components/Navbar.js';
 import { getAllTeamsGrouped, deleteTeam } from '../core/store.js';
 import { renderTeamCard } from '../components/TeamCard.js';
+import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
 import { renderEnemyChip } from '../components/EnemyPortrait.js';
 import { openTeamEditor } from '../components/TeamEditor.js';
 import { confirmDialog } from '../components/Modal.js';
@@ -276,7 +277,7 @@ async function init() {
             if (team.note) {
               const note = document.createElement('div');
               note.className = 'team-card-note';
-              note.innerHTML = team.note;
+              note.innerHTML = sanitizeNoteHtml(team.note); // 過濾見 sanitizeNote.js
               detail.appendChild(note);
             }
 
