@@ -138,6 +138,26 @@
   padding: 20px;
 }
 .chapter-group { margin-bottom: 24px; }
+/* 系列說明 (2026-09-27, stagesList.js renderChapterGroup)：關卡攻略頁、
+   現役區每個系列方框的最底下。黑色 20% 底、#727272 字，字級跟頁面上方
+   說明文（.page-header p，0.8rem）一樣。寬度跟著文字、最寬是按鈕區的
+   寬度（max-width:100%），左右置中；pre-wrap 跟上方說明文一樣保留後台
+   編輯時打的換行。 */
+.chapter-series-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 16px auto 0;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  color: #727272;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  text-align: center;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 .chapter-title {
   font-family: var(--font-display);
   color: var(--accent-gold);

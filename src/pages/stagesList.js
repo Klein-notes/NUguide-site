@@ -154,7 +154,10 @@ function sortBySeriesOrder(items, seriesOrder, chapterOf) {
 //   per-系列 title color from 網站設定 → 過往關卡外觀 → 系列標題顏色,
 //   set directly as inline style since it overrides whatever the
 //   section-wide --past-chapter-title-color otherwise applies.
-function renderChapterGroup(group, titleColorOverride) {
+// @param {string} [seriesNoteHtml] - 系列說明 (2026-09-27)：後台「章節外觀」
+//   → 系列說明，依「系列」存（不是依章節），換季不用重寫。只有現役區會傳，
+//   過往關卡區不顯示。內容是空的（或只有空白）就整塊不出現。
+function renderChapterGroup(group, titleColorOverride, seriesNoteHtml) {
   const groupEl = document.createElement('div');
   groupEl.className = 'chapter-group';
   const title = document.createElement('div');
@@ -191,6 +194,15 @@ function renderChapterGroup(group, titleColorOverride) {
   }
 
   groupEl.appendChild(gridEl);
+
+  // 系列說明：固定在方框最底下（所有按鈕排之後），左右置中；底色框寬度
+  // 跟著文字長度，最寬到按鈕區左右兩端為止，字多了自動換行。
+  if (seriesNoteHtml && seriesNoteHtml.replace(/<[^>]*>|&nbsp;|\s/g, '')) {
+    const note = document.createElement('div');
+    note.className = 'chapter-series-note';
+    note.innerHTML = seriesNoteHtml;
+    groupEl.appendChild(note);
+  }
   return groupEl;
 }
 
@@ -268,7 +280,8 @@ async function init() {
     const chapterStyles = (siteSettings && siteSettings.chapterStyles) || {};
     const seriesOrder = (siteSettings && siteSettings.seriesOrder) || [];
     for (const group of sortBySeriesOrder(groupByChapter(activeStages), seriesOrder, (g) => g.chapter)) {
-      const groupEl = renderChapterGroup(group);
+      const seriesNotes = (siteSettings && siteSettings.seriesNotes) || {};
+      const groupEl = renderChapterGroup(group, null, seriesNotes[seriesOf(group.chapter)]);
       const cs = chapterStyles[group.chapter];
       if (cs) applyChapterStyle(groupEl, cs);
       applyButtonStyle(groupEl, (cs && cs.buttonStyle) || DEFAULT_BUTTON_STYLE);
