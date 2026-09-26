@@ -471,5 +471,10 @@
   ],
   "myTeamsTabPaddingY": 3,
   "teamNotesTabPaddingY": 3,
-  "modTeamsDescription": "這不是什麼隱藏關卡😳\n是站長自己的隊伍紀錄"
+  "modTeamsDescription": "這不是什麼隱藏關卡😳\n是站長自己的隊伍紀錄",
+  "seriesNotes": {
+    "忘卻遺跡": "※ <span style=\"font-size: 0.9rem;\">同一章節無法選取重複卡片 ※</span>",
+    "魔法檢定所": "",
+    "極速追風": ""
+  }
 }
