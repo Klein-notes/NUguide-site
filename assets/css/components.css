@@ -655,6 +655,69 @@ hr.ql-divider {
 .tp-slot .card-face-border,
 .used-strip-card .card-face-border { padding: 2px; border-radius: var(--radius-sm); }
 .tp-slot .card-face, .used-strip-card .card-face { border-radius: var(--radius-sm); }
+/* 「選擇隊伍」裡可以直接改同章其他關卡 (2026-09-27, CardPicker.js 的
+   editableGroups)。三種狀態各用不同樣子：
+   - 發光（.is-target）：點了空格，下一張從卡池點的卡會放進這格。上排
+     5 格和「已使用」區的空格都可以。
+   - 準備退回（.is-armed）：「已使用」區的卡第 1 下只標記，紅色細框＋
+     下半部暗色小字，同一張再點一下才退回卡池。不擋臉。
+   - 動過（.is-changed）：跟原本存的不一樣的卡，蓋 20% 金色＋右下角紅點。 */
+.used-strip-card { position: relative; }
+.used-strip.is-editable .used-strip-card .card-btn { cursor: pointer; }
+.used-strip-empty.is-clickable,
+.tp-slot-empty.is-clickable { cursor: pointer; }
+.used-strip-empty.is-clickable:hover,
+.tp-slot-empty.is-clickable:hover { border-color: var(--text-faint); }
+.used-strip-empty.is-target,
+.tp-slot-empty.is-target {
+  border: 1px solid var(--accent-gold);
+  background: rgba(201, 164, 92, 0.10);
+  box-shadow: 0 0 0 1px var(--accent-gold), 0 0 12px rgba(201, 164, 92, 0.65);
+  animation: slot-target-pulse 1.4s ease-in-out infinite;
+}
+@keyframes slot-target-pulse {
+  50% { box-shadow: 0 0 0 1px var(--accent-gold), 0 0 4px rgba(201, 164, 92, 0.35); }
+}
+.used-strip-card.is-changed::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 5;
+  border-radius: var(--radius-sm);
+  background: rgba(201, 164, 92, 0.20);
+  pointer-events: none;
+}
+/* 紅點用純色圓形畫，不用 emoji（emoji 在各系統會有漸層立體感） */
+.used-strip-dot {
+  position: absolute;
+  right: 4px; bottom: 4px;
+  z-index: 6;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #e2604f;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+}
+.used-strip-card.is-armed { box-shadow: 0 0 0 2px #e2604f; border-radius: var(--radius-sm); }
+.used-strip-armed-hint {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40%;
+  z-index: 7;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: rgba(16, 15, 24, 0.78);
+  color: #fff;
+  font-size: 11px; font-weight: 700; line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .used-strip-dot { width: 8px; height: 8px; right: 3px; bottom: 3px; }
+  .used-strip-armed-hint { font-size: 9px; letter-spacing: -0.5px; }
+}
+@media (max-width: 370px) {
+  .used-strip-armed-hint { font-size: 8px; }
+}
 .card-btn-disabled-overlay {
   position: absolute;
   /* Matches .card-face-badge-tl's own overflow amount (top:-4cqw;

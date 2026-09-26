@@ -3,7 +3,7 @@ import { openModal, confirmDialog } from './Modal.js';
 import { openCardPicker, openTeamPicker } from './CardPicker.js';
 import { renderCardButton } from './CardButton.js';
 import { loadJSON, DataSources } from '../core/dataLoader.js';
-import { saveTeam, getAllTeamsGrouped, TEAM_MEMBER_SLOTS } from '../core/store.js';
+import { saveTeam, getTeams, getAllTeamsGrouped, TEAM_MEMBER_SLOTS } from '../core/store.js';
 import { computeChapterLock } from '../modules/chapterLock.js';
 import { showToast } from '../core/toast.js';
 import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
@@ -33,7 +33,24 @@ export function openTeamEditor(stageId, existingTeam = null) {
     // 同章鎖卡 (2026-09-27, 見 chapterLock.js)：同一章其他關卡第 1 組用過
     // 的卡。選卡時不放進卡池、另外縮小顯示；這一隊裡如果已經有這種卡
     // （功能上線前記的），那一格標上關卡編號提醒，不自動拿掉。
-    const { lockedCards, groups: usedGroups } = computeChapterLock(stageId, stages, grouped);
+    //
+    // 可在「選擇隊伍」裡直接改同章其他關卡的第 1 組 (2026-09-27)：改的是
+    // 這份草稿（draftGroups），按「儲存」時才跟這一組一起寫進去，「取消」
+    // 就全部不算。鎖卡清單每次都從草稿重算，從別關拿下來的卡馬上能選。
+    const { groups: usedGroups } = computeChapterLock(stageId, stages, grouped);
+    const draftGroups = usedGroups.map((g) => ({ ...g, members: [...g.members], origMembers: [...g.members] }));
+    function lockedNow() {
+      const m = new Map();
+      for (const g of draftGroups) for (const id of g.members) if (id && !m.has(id)) m.set(id, g.label);
+      return m;
+    }
+    const changedGroups = () => draftGroups.filter((g) => JSON.stringify(g.members) !== JSON.stringify(g.origMembers));
+
+    // 隊伍名稱選填 (2026-09-27)：沒填就用「隊伍A」「隊伍B」——這一關的
+    // 第 1 組叫 A、第 2 組叫 B。
+    const stageTeams = (grouped.find((g) => g.stageId === stageId) || {}).teams || [];
+    const myIndex = existingTeam ? Math.max(0, stageTeams.findIndex((t) => t.localId === existingTeam.localId)) : stageTeams.length;
+    const defaultName = '隊伍' + String.fromCharCode(65 + Math.min(myIndex, 25));
     const cardMap = new Map(cards.map((c) => [c.id, c]));
     // Same maps CardButton/CardGrid use everywhere else, so a slot here
     // (屬性/定位/稀有度 badges, same proportions) looks identical to the
@@ -67,7 +84,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
     nameInput.id = 'team-name-input';
     nameInput.maxLength = 30;
     nameInput.value = existingTeam ? existingTeam.name : '';
-    nameInput.placeholder = '例如：高分隊';
+    nameInput.placeholder = `未填寫時為「${defaultName}」`;
     nameField.appendChild(nameInput);
 
     const noteField = document.createElement('div');
@@ -142,7 +159,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
     bulkPickBtn.style.marginBottom = '8px';
     bulkPickBtn.textContent = '選擇隊伍';
     bulkPickBtn.addEventListener('click', async () => {
-      const result = await openTeamPicker(members, { lockedCards, usedGroups });
+      const result = await openTeamPicker(members, { usedGroups: draftGroups, editableGroups: true });
       members = result;
       renderSlots();
     });
@@ -170,9 +187,9 @@ export function openTeamEditor(stageId, existingTeam = null) {
         if (card) {
           const btn = renderCardButton(card, cardMaps, {
             thumbnail: true,
-            tag: lockedCards.get(card.id) || null,
+            tag: lockedNow().get(card.id) || null,
             onClick: async () => {
-              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index), lockedCards, usedGroups });
+              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index), lockedCards: lockedNow(), usedGroups: draftGroups });
               if (chosen) {
                 members[index] = chosen.id;
                 renderSlots();
@@ -222,7 +239,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
           btn.setAttribute('aria-label', `選擇第 ${index + 1} 位隊員`);
           btn.textContent = '+';
           btn.addEventListener('click', async () => {
-            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean), lockedCards, usedGroups });
+            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean), lockedCards: lockedNow(), usedGroups: draftGroups });
             if (chosen) {
               members[index] = chosen.id;
               renderSlots();
@@ -248,7 +265,8 @@ export function openTeamEditor(stageId, existingTeam = null) {
     function isDirty() {
       return nameInput.value !== initialName
         || noteEditor.innerHTML !== initialNoteRendered
-        || JSON.stringify(members) !== JSON.stringify(initialMembers);
+        || JSON.stringify(members) !== JSON.stringify(initialMembers)
+        || changedGroups().length > 0;
     }
     function confirmDiscard() {
       return !isDirty() || confirmDialog('放棄這次修改嗎？尚未儲存的內容會遺失。');
@@ -282,18 +300,21 @@ export function openTeamEditor(stageId, existingTeam = null) {
     });
 
     saveBtn.addEventListener('click', async () => {
-      if (!nameInput.value.trim()) {
-        showToast('請輸入隊伍名稱', { type: 'error' });
-        nameInput.focus();
-        return;
-      }
       try {
         const saved = await saveTeam(stageId, {
           localId: existingTeam ? existingTeam.localId : undefined,
-          name: nameInput.value,
+          name: nameInput.value.trim() || defaultName,
           note: noteEditor.innerHTML,
           members,
         });
+        // 同章其他關卡有改到的，一起存：改那一關的第 1 組（名稱、備註不動）；
+        // 那一關還沒有隊伍就新建一組「隊伍A」。
+        for (const g of changedGroups()) {
+          const first = (await getTeams(g.stageId))[0];
+          await saveTeam(g.stageId, first
+            ? { ...first, members: g.members }
+            : { name: '隊伍A', note: '', members: g.members });
+        }
         settled = true;
         close();
         showToast('隊伍已儲存');

@@ -10,32 +10,56 @@ import { sortCardsByOrder } from '../modules/cardSort.js';
 
 // 同章鎖卡 (2026-09-27)：忘卻遺跡同一章其他關卡的第 1 組隊伍用過的卡。
 //   lockedCards：Map，cardId → 關卡編號（例如「7-1」）——這些卡不放進卡池。
-//   usedGroups：同章其他每一關的第 1 組，[{ label, members:[5 格] }]——在
-//     「已使用」區照站位整隊顯示（沒放卡的位置畫空格），隨時看得到用過哪些卡。
+//   usedGroups：同章其他每一關的第 1 組，[{ label, members:[5 格], origMembers? }]
+//     ——在「已使用」區照站位整隊顯示（沒放卡的位置畫空格），隨時看得到用過
+//     哪些卡。有 origMembers（原本存的 5 格）時，跟原本不一樣的卡會在右下角標紅點。
 // 後台選版主/推薦隊伍時兩個都不傳，畫面跟以前一樣。
-function renderUsedStrip(usedGroups, cardMap, cardMaps) {
+// ui（只有「選擇隊伍」可編輯時才傳）：{ armed:{g,i}|null, target:{g,i}|null,
+//   onCard(g,i), onEmpty(g,i) }——g 是 usedGroups 的索引。
+function renderUsedStrip(usedGroups, cardMap, cardMaps, ui = null) {
   if (!usedGroups || !usedGroups.length) return null;
   const strip = document.createElement('div');
-  strip.className = 'used-strip';
-  for (const g of usedGroups) {
+  strip.className = 'used-strip' + (ui ? ' is-editable' : '');
+  usedGroups.forEach((g, gi) => {
     const group = document.createElement('div');
     group.className = 'used-strip-group';
     const name = document.createElement('span');
     name.className = 'used-strip-label';
     name.textContent = g.label;
     group.appendChild(name);
-    for (const cardId of g.members) {
+    g.members.forEach((cardId, i) => {
       const card = cardId ? cardMap.get(cardId) : null;
       const cell = document.createElement('div');
       cell.className = card ? 'used-strip-card' : 'used-strip-empty';
       if (card) {
         cell.title = card.name;
-        cell.appendChild(renderCardButton(card, cardMaps, { thumbnail: true }));
+        const changed = g.origMembers && cardId !== g.origMembers[i];
+        const btnOpts = { thumbnail: true };
+        if (ui) btnOpts.onClick = () => ui.onCard(gi, i);
+        cell.appendChild(renderCardButton(card, cardMaps, btnOpts));
+        if (changed) {
+          cell.classList.add('is-changed');
+          const dot = document.createElement('span');
+          dot.className = 'used-strip-dot';
+          cell.appendChild(dot);
+        }
+        if (ui && ui.armed && ui.armed.g === gi && ui.armed.i === i) {
+          cell.classList.add('is-armed');
+          const hint = document.createElement('span');
+          hint.className = 'used-strip-armed-hint';
+          hint.textContent = '點擊退回';
+          cell.appendChild(hint);
+        }
+      } else if (ui) {
+        cell.classList.add('is-clickable');
+        if (ui.target && ui.target.g === gi && ui.target.i === i) cell.classList.add('is-target');
+        cell.addEventListener('click', () => ui.onEmpty(gi, i));
       }
+      if (ui) cell.dataset.slot = `${gi}:${i}`;
       group.appendChild(cell);
-    }
+    });
     strip.appendChild(group);
-  }
+  });
   return strip;
 }
 const withoutLocked = (list, lockedCards) => (lockedCards && lockedCards.size ? list.filter((c) => !lockedCards.has(c.id)) : list);
@@ -142,8 +166,24 @@ export function openCardPicker(opts = {}) {
  * @returns {Promise<(string|null)[]>} always 5 entries, unfilled slots are null.
  */
 export function openTeamPicker(initialMembers = [], opts = {}) {
-  const lockedCards = opts.lockedCards || null; // 同章鎖卡，見 renderUsedStrip
-  const usedGroups = opts.usedGroups || null;
+  const usedGroups = opts.usedGroups || null; // 同章鎖卡，見 renderUsedStrip
+  // 可編輯模式 (2026-09-27, 前台 TeamEditor 才開)：
+  //   - 空格（上排或「已使用」區）點一下發光＝指定下一張放這格，再點取消；
+  //     發光時點卡池的卡就放進那一格，放完發光結束。沒發光就照舊放上排
+  //     第一個空格。
+  //   - 「已使用」區的卡防誤觸：第 1 下只標記「準備退回」，同一張再點
+  //     一下才退回卡池；點其他任何地方就取消標記。上排維持點一下就退回。
+  //   - 改的是 usedGroups[].members 本身（呼叫端傳進來的草稿），鎖卡清單
+  //     跟著即時重算——從別關退回的卡馬上可以選。
+  // 後台不傳 editableGroups，行為跟以前完全一樣。
+  const editable = !!(opts.editableGroups && usedGroups);
+  const fixedLocked = opts.lockedCards || null;
+  function currentLocked() {
+    if (!editable) return fixedLocked;
+    const m = new Map();
+    for (const g of usedGroups) for (const id of g.members) if (id && !m.has(id)) m.set(id, g.label);
+    return m;
+  }
   return new Promise(async (resolve) => {
     const [cardsRaw, rarities, classes, elements, characters, tags] = await Promise.all([
       loadJSON(DataSources.cards),
@@ -168,7 +208,29 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     slotRow.className = 'tp-slot-row';
     body.appendChild(slotRow);
     // 「同章已使用」放在上面固定的那一條裡、5 個格子下方，捲動卡池時一直看得到
-    const usedStrip = renderUsedStrip(usedGroups, cardMap, cardMaps);
+    // 可編輯時每次重畫；g = -1 代表上排目前這一組
+    let armed = null;
+    let target = null;
+    const sameSlot = (a, g, i) => a && a.g === g && a.i === i;
+    const ui = editable ? {
+      get armed() { return armed; },
+      get target() { return target; },
+      onCard(g, i) {
+        if (sameSlot(armed, g, i)) {
+          usedGroups[g].members[i] = null;
+          armed = null;
+          refreshAll();
+        } else {
+          armed = { g, i };
+          renderSlots();
+        }
+      },
+      onEmpty(g, i) {
+        armed = null;
+        target = sameSlot(target, g, i) ? null : { g, i };
+        renderSlots();
+      },
+    } : null;
 
     const layout = document.createElement('div');
     layout.className = 'filter-grid-layout';
@@ -187,7 +249,22 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
       onClose: () => resolve(members),
     });
 
+    // 「準備退回」的標記：點到標記那張以外的任何地方就取消。用 capture
+    // 在各個按鈕自己的處理之前先清掉，同一張的第 2 下則保留給它處理。
+    if (editable) {
+      body.addEventListener('click', (e) => {
+        if (!armed) return;
+        const cell = e.target.closest('[data-slot]');
+        if (cell && cell.dataset.slot === `${armed.g}:${armed.i}`) return;
+        armed = null;
+        renderSlots();
+      }, true);
+    }
+
     function renderSlots() {
+      // 發光的格子如果已經被別的方式放了卡（例如用「第 N 位」選單重排），
+      // 就不再指定它，避免下一張卡蓋掉原本的卡
+      if (target && (target.g === -1 ? members[target.i] : usedGroups[target.g].members[target.i])) target = null;
       slotRow.innerHTML = '';
       members.forEach((cardId, idx) => {
         const slot = document.createElement('div');
@@ -201,7 +278,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
           // 點卡片本身 = 直接把這張移除，空出這一格（不用另外找刪除按鈕）。
           const cardBtn = renderCardButton(card, cardMaps, {
             thumbnail: true,
-            onClick: () => { members[idx] = null; renderSlots(); renderGrid(); },
+            onClick: () => { members[idx] = null; refreshAll(); },
           });
           cardBtn.title = '點一下移除這張卡';
           slot.appendChild(cardBtn);
@@ -230,6 +307,11 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
         } else {
           const empty = document.createElement('div');
           empty.className = 'tp-slot-empty';
+          if (editable) {
+            empty.classList.add('is-clickable');
+            if (sameSlot(target, -1, idx)) empty.classList.add('is-target');
+            empty.addEventListener('click', () => ui.onEmpty(-1, idx));
+          }
           const num = document.createElement('span');
           num.className = 'tp-slot-num';
           num.textContent = idx + 1;
@@ -238,24 +320,30 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
         }
         slotRow.appendChild(slot);
       });
+      const usedStrip = renderUsedStrip(usedGroups, cardMap, cardMaps, ui);
       if (usedStrip) slotRow.appendChild(usedStrip);
     }
 
+    function refreshAll() { renderSlots(); renderGrid(); }
+
     function pickCard(card) {
+      if (target) {
+        // 發光的格子：放進那一格，發光結束
+        if (target.g === -1) members[target.i] = card.id;
+        else usedGroups[target.g].members[target.i] = card.id;
+        target = null;
+        refreshAll();
+        return;
+      }
       const emptyIdx = members.findIndex((m) => !m);
       if (emptyIdx === -1) return; // 五格都滿了，點下去不會有反應
       members[emptyIdx] = card.id;
-      renderSlots();
-      renderGrid();
+      refreshAll();
     }
 
-    function currentFiltered(state) {
-      return withoutLocked(filterCards(cards, state, panel.schema, panel.cdRanges), lockedCards);
-    }
-
-    let lastFiltered = withoutLocked(cards, lockedCards);
+    let lastFiltered = cards;
     function renderGrid() {
-      renderCardGrid(gridHost, lastFiltered, cardMaps, {
+      renderCardGrid(gridHost, withoutLocked(lastFiltered, currentLocked()), cardMaps, {
         onCardClick: pickCard,
         onInfoClick: (card) => showCardInfoModal(card, infoMaps),
         isDisabled: (card) => members.includes(card.id),
@@ -266,7 +354,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     }
 
     const panel = await mountFilterPanel(filterHost, (state) => {
-      lastFiltered = currentFiltered(state);
+      lastFiltered = filterCards(cards, state, panel.schema, panel.cdRanges);
       renderGrid();
     });
 

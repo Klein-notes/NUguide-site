@@ -32,7 +32,7 @@ export function shortOrder(order) {
  * @param {string} stageId - 正在記錄隊伍的這一關
  * @param {Array} stages - stages.json
  * @param {Array<{stageId:string, teams:Array}>} grouped - store.js getAllTeamsGrouped() 的結果
- * @returns {{ lockedCards: Map<string,string>, groups: Array<{label:string, members:(string|null)[]}> }}
+ * @returns {{ lockedCards: Map<string,string>, groups: Array<{stageId:string, label:string, members:(string|null)[]}> }}
  *   lockedCards：cardId → 用掉它的關卡編號（例如「7-1」）。
  *   groups：同章其他每一關（照關卡順序），各自第 1 組的 5 個站位，沒放卡
  *   的位置是 null；那一關還沒記隊伍的話 5 格都是 null。
@@ -53,7 +53,7 @@ export function computeChapterLock(stageId, stages, grouped) {
   for (const s of siblings) {
     const first = (teamsByStage.get(s.id) || [])[0];
     const members = [0, 1, 2, 3, 4].map((i) => (first && first.members && first.members[i]) || null);
-    groups.push({ label: shortOrder(s.order), members });
+    groups.push({ stageId: s.id, label: shortOrder(s.order), members });
     for (const cardId of members) {
       if (cardId && !locked.has(cardId)) locked.set(cardId, shortOrder(s.order));
     }
