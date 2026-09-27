@@ -188,8 +188,26 @@ export async function mountFilterPanel(container, onChange) {
 
   renderAll();
 
+  // 目前選了哪些條件的文字（例如「SSR、普攻、CD 3」），給觸控裝置收合
+  // 篩選時的摘要列用 (2026-09-27, FilterBar.js)。CD 只有數字，前面補上
+  // 「CD」才看得懂。
+  function getActiveLabels() {
+    const out = [];
+    for (const group of schema) {
+      for (const id of state[group.field] || []) {
+        const o = (sourcesCache[group.field] || []).find((x) => x.id === id);
+        if (!o) continue;
+        const text = o.label || o.name || '';
+        out.push(/^\d+$/.test(text) ? `${group.label} ${text}` : text);
+      }
+    }
+    return out;
+  }
+
   return {
     getState: () => state,
+    getActiveLabels,
+    getActiveCount: () => countActiveFilters(state),
     reset: () => { state = createEmptyFilterState(schema); renderAll(); onChange(state); },
     schema,
     cdRanges: sourcesCache.cd,

@@ -586,13 +586,17 @@ hr.ql-divider {
 }
 /* 選卡視窗的「同章已使用」(2026-09-27, CardPicker.js renderUsedStrip)：
    同章其他每一關的第 1 組，照站位整隊顯示（沒放卡的位置畫虛線空格）。
-   電腦版放得下就一行兩隊，放不下（視窗較窄、手機）就自動一行一隊。在
-   「選擇隊伍」裡它是上方固定條的一部分（橫跨整列、排在格子下方），
-   margin-top 要讓開格子下方凸出來的「第 N 位」選單。 */
+   關卡編號（7-1）放在每隊上方置中。放得下就一行兩隊平分整列，放不下
+   （手機）就一行一隊——幾欄、每張小卡多大由 CardPicker.js 的
+   sizeUsedStrip() 依實際寬度算好整數像素，設成 --us-cols / --us-cell /
+   --us-cell-h（卡片落在整數像素上，細邊框才不會有的粗有的細）。
+   在「選擇隊伍」裡它是上方固定條的一部分，margin-top 要讓開格子下方
+   凸出來的「第 N 位」選單。 */
 .used-strip {
   grid-column: 1 / -1;
-  display: flex; flex-wrap: wrap;
-  gap: 10px 24px;
+  display: grid;
+  grid-template-columns: repeat(var(--us-cols, 2), minmax(0, 1fr));
+  gap: 10px 16px;
   margin-top: 32px;
   margin-bottom: 12px;
 }
@@ -602,30 +606,32 @@ hr.ql-divider {
      只在「選擇隊伍」裡設；單張選卡視窗沒有這個容器，不能用 cqw，否則
      會變成以整個瀏覽器視窗寬度計算、撐出畫面。 */
   width: 100cqw;
+  /* 上排 5 格置中後，這一條所在的格線範圍也跟著縮到中間；用
+     justify-self:center 讓 100cqw 寬的它以中線對齊，才會剛好貼滿整列 */
+  justify-self: center;
 }
-/* 每一隊：固定像素寬高（不用 1fr 平分），卡片的位置和大小都落在整數
-   像素上，1.5～2px 的細邊框才不會因為落在半個像素上、被瀏覽器抗鋸齒
-   畫成有的粗有的細。空間不夠放兩隊時自動換成一行一隊。 */
 .used-strip-group {
   display: grid;
-  grid-template-columns: 40px repeat(5, 64px);
-  grid-auto-rows: 83px;
+  grid-template-columns: repeat(5, var(--us-cell, 64px));
+  grid-template-rows: auto var(--us-cell-h, 83px);
+  justify-content: center;
   align-items: center;
-  gap: 6px;
-  padding: 7px;
+  gap: 4px 6px;
+  padding: 5px 7px 8px;
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
 }
 .used-strip-label {
+  grid-column: 1 / -1;
   text-align: center;
   color: var(--accent-gold);
-  font-weight: 700; font-size: 0.85rem;
+  font-weight: 700; font-size: 0.8rem; line-height: 1.2;
   white-space: nowrap;
 }
 .used-strip-card, .used-strip-empty { width: 100%; height: 100%; }
 /* card-btn 是 <button>（行內元素），不設 display:block 的話下方會多出
-   一條文字基線的空隙，卡片就會偏上、跟左邊的關卡編號對不齊。 */
+   一條文字基線的空隙，卡片就會偏上。 */
 .used-strip-card .card-btn { display: block; width: 100%; height: 100%; aspect-ratio: auto; cursor: default; }
 .used-strip-card .card-btn:hover { transform: none; }
 .used-strip-empty {
@@ -634,13 +640,15 @@ hr.ql-divider {
   background: rgba(255, 255, 255, 0.02);
   box-sizing: border-box;
 }
+/* 手機（600px 以下）：一行一隊，關卡編號放回左邊一欄，比較省高度 */
 @media (max-width: 600px) {
-  .used-strip { gap: 8px; margin-top: 30px; }
-  .used-strip-group { grid-template-columns: 34px repeat(5, 44px); grid-auto-rows: 57px; gap: 5px; padding: 6px; }
-  .used-strip-label { font-size: 0.8rem; }
-}
-@media (max-width: 370px) {
-  .used-strip-group { grid-template-columns: 30px repeat(5, 38px); grid-auto-rows: 49px; gap: 4px; padding: 5px; }
+  .used-strip { gap: 6px; margin-top: 18px; }
+  .used-strip-group {
+    grid-template-columns: 34px repeat(5, var(--us-cell, 44px));
+    grid-template-rows: var(--us-cell-h, 57px);
+    gap: 5px; padding: 6px;
+  }
+  .used-strip-label { grid-column: auto; }
 }
 /* 卡片外框統一 (2026-09-27)：「選擇隊伍」上排 5 格和下面「同章已使用」
    的小卡，用同一種外框——拿掉 .card-btn 自己的灰色外框，只留稀有度的
@@ -1451,6 +1459,8 @@ hr.ql-divider {
      寬（一格將近 170px），上排比下面選卡的格子還大很多。minmax(0, …)
      保留 09-12 的手機修正——窄螢幕時一樣可以縮小、5 格不會換行。 */
   grid-template-columns: repeat(5, minmax(0, 100px));
+  /* 目前編輯的這一組放在正中間 (2026-09-27) */
+  justify-content: center;
   /* 讓裡面的「同章已使用」(.used-strip) 可以用 100cqw 取得整條固定列的
      寬度 (2026-09-27)，不會被擠在 5 個格子加起來的寬度裡。只是宣告成
      「尺寸參考容器」，5 個格子本身的大小完全不變。 */
@@ -1517,4 +1527,135 @@ hr.ql-divider {
   font-size: 0.72rem; text-align: center; text-align-last: center;
   background: var(--bg-elevated); color: var(--text-dim);
   border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
+}
+
+/* =========================================================
+   選卡視窗標題縮小 (2026-09-27, CardPicker.js 的 .modal-picker)
+   「選擇隊伍（點卡片依序加入…）」「選擇卡片」只當提示用：字縮到最小、
+   上下留白縮到最少，電腦、手機都套用。× 保留足夠的可點範圍。
+   ========================================================= */
+.modal-picker .modal-header { padding: 2px 6px 2px 16px; }
+.modal-picker .modal-header h2 {
+  font-size: 0.72rem; font-weight: 400;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+.modal-picker .modal-close { min-width: 36px; min-height: 32px; }
+/* 選卡視窗固定高度：篩選後卡片變少時，視窗不會縮小、跑到畫面中間，
+   一直停在同一個位置。 */
+.modal-picker { height: 88vh; }
+.modal-picker .modal-body { flex: 1; }
+/* 「選擇隊伍」電腦版左側篩選欄：固定在上方固定條的下緣，不要滑進固定
+   條底下被蓋住。--tp-row-h / --tp-side-max 由 CardPicker.js 量出實際
+   高度後設定。（-8px ＝ 固定條往上凸出的 20px 減掉 12px 間距） */
+.tp-layout .fg-sidebar {
+  top: calc(var(--tp-row-h, 0px) - 8px);
+  max-height: var(--tp-side-max, 70vh);
+}
+
+/* =========================================================
+   觸控裝置（手機、平板）專用 (2026-09-27)
+   判斷條件是「沒有滑鼠游標、用手指點」，不看螢幕寬度——電腦把視窗
+   拉窄也不會套用。
+   - 導覽列：上下留白縮小，選單改短名稱（Navbar.js 的 short）
+   - 卡片資料庫：大標題不顯示，改成固定在導覽列下方的篩選列
+   - 篩選收成一顆「篩選」按鈕（FilterBar.js），點了往下展開、再點收回
+   ========================================================= */
+.nav-label-short { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .navbar-inner { padding: 6px 12px; row-gap: 0; column-gap: 16px; }
+  .nav-label-full { display: none; }
+  .nav-label-short { display: inline; }
+
+  .cards-page-header { display: none; }
+  .filter-grid-layout { grid-template-columns: 1fr; }
+
+  .fbar { display: block; position: relative; z-index: 20; }
+  .fbar-row { display: flex; align-items: center; justify-content: flex-end; gap: 8px; min-height: 36px; }
+  .fbar-note {
+    flex: 1; min-width: 0;
+    font-size: 0.75rem; color: var(--text-faint);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .fbar-note p { display: inline; margin: 0; }
+  .fbar-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-dim);
+    font-size: 0.85rem; line-height: 1.2;
+    white-space: nowrap;
+  }
+  .fbar-btn[hidden] { display: none; }
+  .fbar-toggle.is-active { color: var(--accent-gold); border-color: var(--accent-gold-dim); }
+  .fbar-toggle::after { content: '▾'; margin-left: 4px; font-size: 0.75em; }
+  .fbar.is-open .fbar-toggle::after { content: '▴'; }
+  .fbar.is-open .fbar-toggle { background: var(--bg-card-hover); }
+  /* 平板寬度才顯示選了什麼（最多兩行，超過用…）；手機寬度只看按鈕 */
+  .fbar-summary {
+    margin-top: 4px;
+    font-size: 0.82rem; line-height: 1.5;
+    color: var(--accent-gold);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .fbar-summary[hidden] { display: none; }
+  .fbar-drop {
+    display: none;
+    position: absolute; left: 0; right: 0; top: 100%;
+    margin-top: 6px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  }
+  .fbar.is-open .fbar-drop { display: block; }
+  /* 搬進下拉區的篩選欄：外框、固定、捲動都交給下拉區 */
+  .fbar-drop .fg-sidebar,
+  .filter-grid-layout .fbar-drop .fg-sidebar {
+    position: static; max-height: none; overflow: visible;
+    border: none; border-radius: 0; background: none;
+  }
+  .fbar-drop .filter-panel-header { display: none; }
+
+  /* 卡片資料庫：固定在導覽列正下方 */
+  .fbar--page {
+    position: sticky; top: var(--navbar-h, 0px);
+    margin: 0 -20px 12px; padding: 8px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  /* 單張選卡視窗：固定在視窗內容最上方 */
+  .fbar--modal-top {
+    position: sticky; top: -20px;
+    margin: -20px -22px 12px; padding: 8px 22px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  /* 選擇隊伍：接在上方固定條最下面，上方一條分隔線；沒有說明文字，
+     條件摘要直接放在按鈕左邊同一行（FilterBar.js） */
+  .fbar--in-row {
+    grid-column: 1 / -1;
+    width: 100cqw; justify-self: center;
+    margin-top: 30px; margin-bottom: -24px;
+    padding-top: 8px;
+    border-top: 1px solid var(--text-dim);
+  }
+  .tp-slot-row .used-strip + .fbar--in-row { margin-top: 12px; }
+  .fbar-row .fbar-summary { flex: 1; min-width: 0; margin-top: 0; }
+  /* 單張選卡：「已使用」區緊接在篩選列下面，不用再留大空白 */
+  .fbar--modal-top + .filter-grid-layout .used-strip { margin-top: 0; }
+}
+@media (hover: none) and (pointer: coarse) and (max-width: 600px) {
+  .fbar-summary { display: none !important; }
+  .tp-slot-row .used-strip + .fbar--in-row { margin-top: 8px; padding-top: 6px; }
+}
+/* 卡片資料庫手機寬度一列 4 張（跟選卡視窗一樣） */
+@media (hover: none) and (pointer: coarse) and (max-width: 480px) {
+  .fg-page .card-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
 }

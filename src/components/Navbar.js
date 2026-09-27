@@ -1,12 +1,14 @@
 // src/components/Navbar.js
 import { loadJSON, DataSources } from '../core/dataLoader.js';
 
+// short：觸控裝置（手機、平板）顯示的短名稱 (2026-09-27)，讓五個選單
+// 排得進一行；電腦照舊顯示完整名稱。切換由 components.css 決定。
 const LINKS = [
   { href: 'index.html', label: '首頁' },
-  { href: 'stages.html', label: '關卡攻略' },
-  { href: 'cards.html', label: '卡片資料庫' },
+  { href: 'stages.html', label: '關卡攻略', short: '攻略' },
+  { href: 'cards.html', label: '卡片資料庫', short: '卡片' },
   { href: 'my-teams.html', label: '我的隊伍' },
-  { href: 'team-notes.html', label: '隊伍筆記' },
+  { href: 'team-notes.html', label: '隊伍筆記', short: '筆記' },
 ];
 
 const DEFAULT_SITE_TITLE = '新世界狂歡 | 關卡攻略筆記';
@@ -53,7 +55,18 @@ export function renderNavbar(current) {
   for (const link of LINKS) {
     const a = document.createElement('a');
     a.href = link.href;
-    a.textContent = link.label;
+    if (link.short) {
+      const full = document.createElement('span');
+      full.className = 'nav-label-full';
+      full.textContent = link.label;
+      const short = document.createElement('span');
+      short.className = 'nav-label-short';
+      short.textContent = link.short;
+      a.append(full, short);
+      a.setAttribute('aria-label', link.label);
+    } else {
+      a.textContent = link.label;
+    }
     if (link.href === current) a.classList.add('active');
     links.appendChild(a);
   }
@@ -93,8 +106,14 @@ function mountStaticStarfield() {
 export function mountNavbar(current) {
   const host = document.getElementById('navbar-host');
   if (!host) return;
-  host.replaceWith(renderNavbar(current));
+  const nav = renderNavbar(current);
+  host.replaceWith(nav);
   mountStaticStarfield();
+  // 導覽列的實際高度 → CSS 變數 --navbar-h，讓卡片資料庫的篩選列能
+  // 剛好固定在導覽列正下方（導覽列高度會隨螢幕寬度、換行而變）。
+  const setNavH = () => document.documentElement.style.setProperty('--navbar-h', nav.offsetHeight + 'px');
+  setNavH();
+  if (window.ResizeObserver) new ResizeObserver(setNavH).observe(nav);
 
   // Same siteTitle field the homepage's <h1> uses (edited from the
   // admin's 網站設定 page) — applied here too so the navbar brand, the

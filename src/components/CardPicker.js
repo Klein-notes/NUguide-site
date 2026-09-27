@@ -1,6 +1,7 @@
 // src/components/CardPicker.js
 import { openModal } from './Modal.js';
 import { mountFilterPanel } from './FilterPanel.js';
+import { createFilterBar } from './FilterBar.js';
 import { renderCardGrid } from './CardGrid.js';
 import { renderCardButton } from './CardButton.js';
 import { showCardInfoModal } from './CardInfoModal.js';
@@ -62,6 +63,40 @@ function renderUsedStrip(usedGroups, cardMap, cardMaps, ui = null) {
   });
   return strip;
 }
+// 「已使用」區的排法 (2026-09-27)：依可用寬度決定一行放兩隊還是一隊，
+// 每張小卡的大小算成整數像素（細邊框才不會有的粗有的細），最大是上排
+// 格子的 72%；手機（600px 以下）改成一行一隊、編號在左邊。結果寫成 CSS
+// 變數，見 components.css 的 .used-strip。
+const US_GAP = 16;      // 兩隊之間
+const US_CELL_GAP = 6;  // 同一隊卡片之間（手機 5）
+const US_PAD = 7;       // 每隊左右內距（手機 6）
+const US_LABEL_W_NARROW = 34; // 手機：左邊關卡編號那一欄
+function sizeUsedStrip(strip) {
+  if (!strip) return;
+  const W = strip.clientWidth;
+  if (!W) return;
+  const narrow = window.innerWidth <= 600;
+  const cellGap = narrow ? 5 : US_CELL_GAP;
+  const pad = (narrow ? 6 : US_PAD) + 1; // + 邊框
+  const mainSlot = Math.min(100, (W - 40) / 5);
+  if (narrow) {
+    // 手機：一行一隊、關卡編號在左邊，小卡撐滿剩下的寬度（最大到上排格子的 90%）
+    const cell = Math.max(24, Math.min(Math.floor(mainSlot * 0.9), Math.floor((W - pad * 2 - US_LABEL_W_NARROW - cellGap * 5) / 5)));
+    strip.style.setProperty('--us-cols', 1);
+    strip.style.setProperty('--us-cell', cell + 'px');
+    strip.style.setProperty('--us-cell-h', Math.round(cell * 1.3) + 'px');
+    return;
+  }
+  const maxCell = Math.floor(mainSlot * 0.72);
+  const cellFor = (cols) => Math.floor(((W - US_GAP * (cols - 1)) / cols - pad * 2 - cellGap * 4) / 5);
+  const groups = strip.querySelectorAll('.used-strip-group').length;
+  const cols = groups > 1 && cellFor(2) >= Math.min(maxCell, 48) ? 2 : 1;
+  const cell = Math.max(24, Math.min(maxCell, cellFor(cols)));
+  strip.style.setProperty('--us-cols', cols);
+  strip.style.setProperty('--us-cell', cell + 'px');
+  strip.style.setProperty('--us-cell-h', Math.round(cell * 1.3) + 'px');
+}
+
 const withoutLocked = (list, lockedCards) => (lockedCards && lockedCards.size ? list.filter((c) => !lockedCards.has(c.id)) : list);
 
 /**
@@ -106,18 +141,26 @@ export function openCardPicker(opts = {}) {
     const gridCol = document.createElement('div');
     const gridHost = document.createElement('div');
     const usedStrip = renderUsedStrip(usedGroups, toMap(cards), cardMaps);
-    if (usedStrip) gridCol.appendChild(usedStrip);
+    if (usedStrip) {
+      gridCol.appendChild(usedStrip);
+      if (window.ResizeObserver) new ResizeObserver(() => sizeUsedStrip(usedStrip)).observe(gridCol);
+    }
     gridCol.appendChild(gridHost);
     layout.append(filterHost, gridCol);
-    body.appendChild(layout);
+    // 觸控裝置的收合式篩選列 (FilterBar.js)，固定在視窗內容最上方；
+    // 電腦上不顯示
+    const bar = createFilterBar(filterHost);
+    bar.el.classList.add('fbar--modal-top');
+    body.append(bar.el, layout);
 
     let settled = false;
-    const { close } = openModal({
+    const { close, box } = openModal({
       title: '選擇卡片',
       body,
       wide: true,
       onClose: () => { if (!settled) resolve(null); },
     });
+    box.classList.add('modal-picker');
 
     function pickCard(card) {
       settled = true;
@@ -137,9 +180,11 @@ export function openCardPicker(opts = {}) {
     const panel = await mountFilterPanel(filterHost, (state) => {
       const filtered = filterCards(cards, state, panel.schema, panel.cdRanges);
       renderCardGrid(gridHost, withoutLocked(filtered, lockedCards), cardMaps, gridOpts);
+      bar.update(panel);
     });
 
     renderCardGrid(gridHost, withoutLocked(cards, lockedCards), cardMaps, gridOpts);
+    bar.update(panel);
   });
 }
 
@@ -243,14 +288,36 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     const gridHost = document.createElement('div');
     gridCol.appendChild(gridHost);
     layout.append(filterHost, gridCol);
+    layout.classList.add('tp-layout');
     body.appendChild(layout);
+    // 觸控裝置的收合式篩選列 (FilterBar.js)：放在上方固定條的最下面
+    // （renderSlots 每次重畫都會重新接上）；電腦上不顯示
+    const bar = createFilterBar(filterHost);
+    bar.el.classList.add('fbar--in-row');
 
-    const { close } = openModal({
+    const { close, box } = openModal({
       title: '選擇隊伍（點卡片依序加入，關閉視窗即完成）',
       body,
       wide: true,
       onClose: () => resolve(members),
     });
+    box.classList.add('modal-picker');
+
+    // 電腦版左側篩選欄固定的位置要讓開上方固定條 (2026-09-27 修正)：原本
+    // 固定在視窗內容最上方，捲動卡片時會整個滑進固定條底下被蓋住。
+    // 固定條高度會變（有沒有「已使用」區、換行），所以用實際量到的高度。
+    const modalBody = body.parentNode;
+    function syncStickyOffsets() {
+      sizeUsedStrip(slotRow.querySelector('.used-strip'));
+      const rowH = slotRow.offsetHeight;
+      layout.style.setProperty('--tp-row-h', rowH + 'px');
+      layout.style.setProperty('--tp-side-max', Math.max(200, modalBody.clientHeight - rowH - 16) + 'px');
+    }
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(syncStickyOffsets);
+      ro.observe(slotRow);
+      ro.observe(modalBody);
+    }
 
     // 「準備退回」的標記：點到標記那張以外的任何地方就取消。用 capture
     // 在各個按鈕自己的處理之前先清掉，同一張的第 2 下則保留給它處理。
@@ -325,6 +392,8 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
       });
       const usedStrip = renderUsedStrip(usedGroups, cardMap, cardMaps, ui);
       if (usedStrip) slotRow.appendChild(usedStrip);
+      slotRow.appendChild(bar.el);
+      sizeUsedStrip(usedStrip);
     }
 
     function refreshAll() { renderSlots(); renderGrid(); }
@@ -359,9 +428,11 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     const panel = await mountFilterPanel(filterHost, (state) => {
       lastFiltered = filterCards(cards, state, panel.schema, panel.cdRanges);
       renderGrid();
+      bar.update(panel);
     });
 
     renderSlots();
     renderGrid();
+    bar.update(panel);
   });
 }

@@ -2,6 +2,7 @@
 import { loadJSON, DataSources, toMap } from '../core/dataLoader.js';
 import { mountNavbar, mountFooter } from '../components/Navbar.js';
 import { mountFilterPanel } from '../components/FilterPanel.js';
+import { createFilterBar } from '../components/FilterBar.js';
 import { renderCardGrid } from '../components/CardGrid.js';
 import { showCardInfoModal } from '../components/CardInfoModal.js';
 import { filterCards } from '../modules/cardFilter.js';
@@ -20,9 +21,9 @@ async function init() {
     loadJSON(DataSources.tags),
     loadJSON(DataSources.siteSettings).catch(() => null),
   ]);
-  if (siteSettings && siteSettings.cardsDescription) {
-    const descEl = document.getElementById('cards-description');
-    if (descEl) descEl.innerHTML = siteSettings.cardsDescription;
+  const descEl = document.getElementById('cards-description');
+  if (siteSettings && siteSettings.cardsDescription && descEl) {
+    descEl.innerHTML = siteSettings.cardsDescription;
   }
   const cards = sortCardsByOrder(cardsRaw);
   const rarityMap = toMap(rarities);
@@ -47,10 +48,18 @@ async function init() {
     renderCardGrid(gridHost, filtered, cardMaps, { onCardClick: showDetail });
   }
 
+  // 觸控裝置的收合式篩選列（FilterBar.js）；左邊的小字沿用頁首說明。
+  // 電腦上這條列不顯示，頁首照舊。
+  const bar = createFilterBar(filterHost, { noteHtml: descEl ? descEl.innerHTML : '' });
+  bar.el.classList.add('fbar--page');
+  document.getElementById('filter-bar-host').replaceWith(bar.el);
+
   const panel = await mountFilterPanel(filterHost, (state) => {
     applyAndRender(state, panel.schema, panel.cdRanges);
+    bar.update(panel);
   });
   applyAndRender(panel.getState(), panel.schema, panel.cdRanges);
+  bar.update(panel);
 }
 
 init();
