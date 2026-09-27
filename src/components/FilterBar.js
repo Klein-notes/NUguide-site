@@ -2,7 +2,7 @@
 //
 // 觸控裝置（手機、平板）的收合式篩選 (2026-09-27)。
 // 電腦（有滑鼠游標）完全不受影響：這條列預設帶 hidden 屬性，只有
-// components.css 裡「沒有滑鼠、用手指點」的 media query 才會把它顯示
+// components.css 裡「主要用手指操作」(pointer: coarse) 的 media query 才會把它顯示
 // 出來；後台沒有那段 CSS，所以後台一律看不到、也不會搬動篩選欄。
 //
 // 顯示時：
@@ -11,7 +11,7 @@
 //   - 「篩選」點一下往下展開（蓋在卡片上、自己可以捲動），再點一下收回。
 //   - 有選條件時：按鈕變成「篩選（N）」金色字，左邊多一顆「清空」；
 //     平板寬度（>600px）另外多一行小字列出選了什麼，最多兩行。
-const TOUCH_QUERY = '(hover: none) and (pointer: coarse)';
+const TOUCH_QUERY = '(pointer: coarse)';
 
 /**
  * @param {HTMLElement} sidebar - mountFilterPanel 掛上去的那個 .fg-sidebar

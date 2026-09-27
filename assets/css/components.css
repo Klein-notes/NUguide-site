@@ -1555,14 +1555,15 @@ hr.ql-divider {
 
 /* =========================================================
    觸控裝置（手機、平板）專用 (2026-09-27)
-   判斷條件是「沒有滑鼠游標、用手指點」，不看螢幕寬度——電腦把視窗
-   拉窄也不會套用。
+   判斷條件是「主要操作方式是手指」(pointer: coarse)，不看螢幕寬度——電腦把視窗
+   拉窄也不會套用。2026-09-27：原本另外要求「沒有滑鼠游標」(hover: none)，
+   但噗浪等 App 的內建瀏覽器（Android）會誤報成有滑鼠，所以拿掉這個條件。
    - 導覽列：上下留白縮小，選單改短名稱（Navbar.js 的 short）
    - 卡片資料庫：大標題不顯示，改成固定在導覽列下方的篩選列
    - 篩選收成一顆「篩選」按鈕（FilterBar.js），點了往下展開、再點收回
    ========================================================= */
 .nav-label-short { display: none; }
-@media (hover: none) and (pointer: coarse) {
+@media (pointer: coarse) {
   .navbar-inner { padding: 6px 12px; row-gap: 0; column-gap: 16px; }
   .nav-label-full { display: none; }
   .nav-label-short { display: inline; }
@@ -1651,11 +1652,11 @@ hr.ql-divider {
   /* 單張選卡：「已使用」區緊接在篩選列下面，不用再留大空白 */
   .fbar--modal-top + .filter-grid-layout .used-strip { margin-top: 0; }
 }
-@media (hover: none) and (pointer: coarse) and (max-width: 600px) {
+@media (pointer: coarse) and (max-width: 600px) {
   .fbar-summary { display: none !important; }
   .tp-slot-row .used-strip + .fbar--in-row { margin-top: 8px; padding-top: 6px; }
 }
 /* 卡片資料庫手機寬度一列 4 張（跟選卡視窗一樣） */
-@media (hover: none) and (pointer: coarse) and (max-width: 480px) {
+@media (pointer: coarse) and (max-width: 480px) {
   .fg-page .card-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
 }
