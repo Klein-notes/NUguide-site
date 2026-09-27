@@ -2,26 +2,26 @@
   {
     "id": "atk",
     "label": "攻擊",
-    "icon": "assets/img/classes/atk.png"
+    "icon": "assets/img/classes/atk.webp"
   },
   {
     "id": "buf",
     "label": "輔助",
-    "icon": "assets/img/classes/buf.png"
+    "icon": "assets/img/classes/buf.webp"
   },
   {
     "id": "heal",
     "label": "治癒",
-    "icon": "assets/img/classes/heal.png"
+    "icon": "assets/img/classes/heal.webp"
   },
   {
     "id": "tank",
     "label": "守護",
-    "icon": "assets/img/classes/tank.png"
+    "icon": "assets/img/classes/tank.webp"
   },
   {
     "id": "debuf",
     "label": "妨礙",
-    "icon": "assets/img/classes/debuf.png"
+    "icon": "assets/img/classes/debuf.webp"
   }
 ]

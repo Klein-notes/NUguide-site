@@ -4,7 +4,13 @@ import { mountNavbar, mountFooter } from '../components/Navbar.js';
 import { getAllTeamsGrouped, deleteTeam } from '../core/store.js';
 import { renderTeamCard } from '../components/TeamCard.js';
 import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
-import { openTeamEditor } from '../components/TeamEditor.js';
+// 編輯隊伍的程式（編輯視窗、選卡、篩選…一整串）改成用到時才載入
+// (2026-09-27)：原本頁面一打開就要先把這一串全部下載完，攻略內容的
+// 資料才開始下載，手機上明顯變慢。頁面顯示完、瀏覽器閒下來時先在
+// 背景預先載入，第一次按「新增／修改」時通常已經載好了。
+const loadTeamEditor = () => import('../components/TeamEditor.js');
+const openTeamEditor = (...args) => loadTeamEditor().then((m) => m.openTeamEditor(...args));
+(window.requestIdleCallback || ((fn) => setTimeout(fn, 1500)))(() => { loadTeamEditor().catch(() => {}); });
 import { confirmDialog } from '../components/Modal.js';
 import { showToast } from '../core/toast.js';
 import { downloadTeamsBackup, promptImportTeamsBackup } from '../modules/teamBackup.js';

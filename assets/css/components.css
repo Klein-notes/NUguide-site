@@ -1264,15 +1264,15 @@ hr.ql-divider {
    team it's paired with. Only icon+name per the "敵人圖示＋名稱" spec;
    the chip's own note text (enemy.note — a different field from the
    team's own 筆記/note) is hidden here, not deleted from the data. */
-.tn-enemy-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
-.tn-enemy-row .enemy-chip { width: 64px; gap: 4px; }
+.tn-enemy-row { display: flex; flex-wrap: nowrap; gap: 10px; margin-bottom: 12px; }
+/* 一樣永遠一列、放不下時等比例縮小（最大 64px），見 enemy-portrait.css */
+.tn-enemy-row .enemy-chip { flex: 0 1 64px; width: 64px; gap: 4px; }
 .tn-enemy-row .enemy-portrait,
-.tn-enemy-row .enemy-portrait-clip,
-.tn-enemy-row .enemy-portrait-empty { width: 64px; height: 64px; }
+.tn-enemy-row .enemy-portrait-empty { max-width: 64px; }
 /* Badge is a fixed 38px normally (see enemy-portrait.css) — scaled
    down to match the smaller 64px portrait here (same ~43% ratio),
    otherwise it reads oversized relative to its own portrait. */
-.tn-enemy-row .enemy-portrait-badge { width: 28px; height: 28px; top: -6px; left: -6px; }
+.tn-enemy-row .enemy-portrait-badge { width: 44%; top: -9%; left: -9%; }
 .tn-enemy-row .enemy-chip-name { font-size: 0.75rem; text-align: center; }
 .tn-enemy-row .enemy-chip-note { display: none; }
 /* Separates the enemy row from the team card below it — without this

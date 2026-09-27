@@ -3,37 +3,37 @@
     "id": "wood",
     "label": "木",
     "sortOrder": 1,
-    "icon": "assets/img/elements/wood.png"
+    "icon": "assets/img/elements/wood.webp"
   },
   {
     "id": "fire",
     "label": "火",
     "sortOrder": 2,
-    "icon": "assets/img/elements/fire.png"
+    "icon": "assets/img/elements/fire.webp"
   },
   {
     "id": "water",
     "label": "水",
     "sortOrder": 3,
-    "icon": "assets/img/elements/water.png"
+    "icon": "assets/img/elements/water.webp"
   },
   {
     "id": "light",
     "label": "光",
     "sortOrder": 4,
-    "icon": "assets/img/elements/light.png"
+    "icon": "assets/img/elements/light.webp"
   },
   {
     "id": "dark",
     "label": "闇",
     "sortOrder": 5,
-    "icon": "assets/img/elements/dark.png"
+    "icon": "assets/img/elements/dark.webp"
   },
   {
     "id": "none",
     "label": "無屬性",
     "sortOrder": 99,
-    "icon": "assets/img/elements/none.png",
+    "icon": "assets/img/elements/none.webp",
     "enemyOnly": true
   }
 ]
