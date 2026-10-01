@@ -295,15 +295,15 @@
   "stage_5_1": {
     "members": [
       "card_137",
+      "card_124",
       "card_132",
       "card_005",
-      "card_034",
       "card_037"
     ],
     "roundTable": [
       {
         "col1": "T3、8",
-        "col2": "&nbsp;全員防禦"
+        "col2": "全員防禦"
       },
       {
         "col1": "T5、10",
