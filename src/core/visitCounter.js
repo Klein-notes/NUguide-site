@@ -14,6 +14,8 @@
 //   page/<頁面>     每台裝置每天每種頁面 1 次 → 各頁人數
 //   stage/<關卡id>  每台裝置每天每一關 1 次 → 各關人數
 //   src/<來源>      每台裝置每天 1 次，記當天第一次進站的來源
+//   region/<地區>   每台裝置每天 1 次，用瀏覽器的「時區設定」判斷地區
+//                   （不用 IP、不送出任何位置資料）
 //
 // 不記的情況：
 //   - 不是正式網站（github.io）——本機測試、後台預覽都不算
@@ -60,6 +62,29 @@ function detectSource() {
   return 'other';
 }
 
+// 地區：用瀏覽器的時區設定判斷（例如 Asia/Taipei → 台灣），不需要 IP。
+// 手動改過時區、或人在國外沒換時區的會被歸錯，只能當大概的參考。
+const REGION_BY_TZ = {
+  'Asia/Taipei': 'tw',
+  'Asia/Hong_Kong': 'hk',
+  'Asia/Macau': 'mo',
+  'Asia/Shanghai': 'cn', 'Asia/Chongqing': 'cn', 'Asia/Chungking': 'cn', 'Asia/Harbin': 'cn', 'Asia/Urumqi': 'cn', 'PRC': 'cn',
+  'Asia/Tokyo': 'jp', 'Japan': 'jp',
+  'Asia/Seoul': 'kr',
+  'Asia/Singapore': 'sg',
+  'Asia/Kuala_Lumpur': 'my', 'Asia/Kuching': 'my',
+};
+function detectRegion() {
+  let tz = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch { tz = ''; }
+  if (REGION_BY_TZ[tz]) return REGION_BY_TZ[tz];
+  if (tz.startsWith('America/')) return 'americas';
+  if (tz.startsWith('Europe/')) return 'europe';
+  if (tz.startsWith('Australia/') || tz.startsWith('Pacific/Auckland')) return 'oceania';
+  if (tz.startsWith('Asia/')) return 'asia-other';
+  return 'other';
+}
+
 function hit(key) {
   const url = `${HIT_API}?url=${encodeURIComponent(COUNTER_NS + key)}&tz=${encodeURIComponent(TZ)}&output=json`;
   return fetch(url, { mode: 'cors', credentials: 'omit', keepalive: true }).then((r) => r.ok);
@@ -93,8 +118,8 @@ export function trackVisit(current) {
 
     // 每個項目在「今天記過的清單」裡用的名字；來源不管是哪一種，一天只記
     // 一次（當天第一次進站的來源），所以共用 'src'
-    const markOf = (key) => (key.startsWith('src/') ? 'src' : key);
-    const keys = ['site/day', `src/${detectSource()}`, `page/${page}`];
+    const markOf = (key) => (key.startsWith('src/') ? 'src' : key.startsWith('region/') ? 'region' : key);
+    const keys = ['site/day', `src/${detectSource()}`, `region/${detectRegion()}`, `page/${page}`];
     if (page === 'stage-detail') {
       const id = params.get('id');
       if (id) keys.push(`stage/${id}`);
