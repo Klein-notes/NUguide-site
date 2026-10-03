@@ -1,5 +1,6 @@
 // src/components/Navbar.js
 import { loadJSON, DataSources } from '../core/dataLoader.js';
+import { trackVisit } from '../core/visitCounter.js';
 
 // short：觸控裝置（手機、平板）顯示的短名稱 (2026-09-27)，讓五個選單
 // 排得進一行；電腦照舊顯示完整名稱。切換由 components.css 決定。
@@ -108,6 +109,8 @@ export function mountNavbar(current) {
   if (!host) return;
   const nav = renderNavbar(current);
   host.replaceWith(nav);
+  // 瀏覽統計（visitCounter.js）：每一頁都會呼叫 mountNavbar，所以放這裡
+  trackVisit(current);
   mountStaticStarfield();
   // 導覽列的實際高度 → CSS 變數 --navbar-h，讓卡片資料庫的篩選列能
   // 剛好固定在導覽列正下方（導覽列高度會隨螢幕寬度、換行而變）。
