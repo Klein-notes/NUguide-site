@@ -309,55 +309,57 @@
       }
     },
     "虛擬性悖論 高難": {
-      "bgColor": "#211f30",
-      "bgOpacity": 0,
-      "borderColor": "#3a3650",
+      "bgColor": "#2c220c",
+      "bgOpacity": 54,
+      "borderColor": "#95815b",
       "borderOpacity": 100,
       "borderWidth": 1,
-      "bgGradientEnabled": false,
-      "bgGradientAngle": 135,
+      "bgGradientEnabled": true,
+      "bgGradientAngle": 17,
       "bgGradientColors": [
-        "#4a4a3a",
-        "#1a1a14"
+        "#565348",
+        "#684a18"
       ],
       "bgGradientPositions": [
         0,
         100
       ],
       "borderGradientEnabled": false,
-      "borderGradientAngle": 135,
+      "borderGradientAngle": 180,
       "borderGradientColors": [
+        "#817046",
         "#e8d9a0",
-        "#8a7140"
+        "#807046"
       ],
       "borderGradientPositions": [
         0,
+        50,
         100
       ],
-      "numberColor": "#887242",
-      "numberColorDisabled": "#5c5c5c",
+      "numberColor": "#e2d5bb",
+      "numberColorDisabled": "#866e3c",
       "buttonStyle": {
         "fontFamily": "display",
         "fontSize": 15,
-        "paddingY": 12,
+        "paddingY": 3,
         "paddingX": 6,
-        "borderRadius": 8,
+        "borderRadius": 4,
         "gradientEnabled": true,
-        "gradientAngle": 180,
+        "gradientAngle": 17,
         "gradientColors": [
-          "#211f30",
-          "#2a2740"
+          "#37332e",
+          "#3f2f1c"
         ],
         "bgColor": "#211f30",
-        "borderColor": "#3a3650",
-        "borderOpacity": 100,
+        "borderColor": "#c9a45c",
+        "borderOpacity": 62,
         "borderWidth": 1,
-        "textColor": "#ece9f7",
+        "textColor": "#d9b76d",
         "dividerWidth": 1,
-        "dividerGradientEnabled": false,
+        "dividerGradientEnabled": true,
         "dividerColors": [
           "#c9a45c",
-          "#c9a45c"
+          "#94703d"
         ]
       }
     }
