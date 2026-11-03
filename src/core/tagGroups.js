@@ -37,6 +37,31 @@ export const SELF_TEAM_SPLIT_GROUP = 'self_dmg_up';
 // to be narrow enough.
 export const CD_SPLIT_GROUP = 'survival';
 
+// Character-count "weight" used to cluster same-length labels together
+// within a group (2026-09-12) — purely cosmetic tidiness for the fixed
+// 2-column grid: a run of 2-character labels pairs up two-per-row, and
+// a run of longer labels that need the full row sit together instead of
+// alternating unpredictably with short ones. An ASCII character counts
+// as half a unit, matching TagPicker.js's own visualLength() (kept as a
+// separate copy here rather than imported, since TagPicker.js already
+// imports *from* this file — importing back the other way would create
+// a circular import).
+function visualLength(label) {
+  let len = 0;
+  for (const ch of label) len += /[\x00-\xFF]/.test(ch) ? 0.5 : 1;
+  return len;
+}
+
+// Stable sort by visual length, ascending — same-length labels keep
+// their original relative sortOrder, so this only ever clusters, never
+// reshuffles within a length.
+function sortByLength(items) {
+  return items
+    .map((item, index) => ({ item, index }))
+    .sort((a, b) => visualLength(a.item.label) - visualLength(b.item.label) || a.index - b.index)
+    .map((entry) => entry.item);
+}
+
 /**
  * @param {Array<{label:string}>} items - already sorted (by sortOrder)
  * @returns {{ mainRow: Array<Object>, cdRow: Array<Object> }}
@@ -95,11 +120,19 @@ export function groupTags(items) {
   const result = [];
   for (const groupId of TAG_GROUP_ORDER) {
     if (byGroup.has(groupId)) {
-      result.push({ groupId, label: TAG_GROUP_LABELS[groupId], items: byGroup.get(groupId) });
+      // self_dmg_up/survival have their own row-pairing logic further
+      // downstream (splitTeamOwnRows/splitCdRow in TagPicker.js) that
+      // depends on this array's incoming order to decide column
+      // alignment — clustering by length here would scramble that, so
+      // only the plain groups get the cosmetic length-based reorder.
+      const groupItems = groupId === SELF_TEAM_SPLIT_GROUP || groupId === CD_SPLIT_GROUP
+        ? byGroup.get(groupId)
+        : sortByLength(byGroup.get(groupId));
+      result.push({ groupId, label: TAG_GROUP_LABELS[groupId], items: groupItems });
     }
   }
   if (byGroup.has('__other__')) {
-    result.push({ groupId: '__other__', label: '其他', items: byGroup.get('__other__') });
+    result.push({ groupId: '__other__', label: '其他', items: sortByLength(byGroup.get('__other__')) });
   }
   return result;
 }
