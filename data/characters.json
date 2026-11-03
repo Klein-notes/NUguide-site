@@ -18,15 +18,16 @@
     "sortOrder": 3
   },
   {
+    "id": "char_04",
+    "name": "八雲",
+    "icon": "assets/img/characters/char_04.png",
+    "sortOrder": 4
+  },
+  {
     "id": "char_15",
     "name": "連動",
     "sortOrder": 8,
     "icon": "assets/img/characters/char_15.png"
-  },
-  {
-    "id": "char_04",
-    "name": "八雲",
-    "icon": "assets/img/characters/char_04.png"
   },
   {
     "id": "char_05",
