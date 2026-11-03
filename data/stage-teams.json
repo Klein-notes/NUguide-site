@@ -405,5 +405,21 @@
         ]
       }
     ]
+  },
+  {
+    "stageId": "stage__01_3",
+    "teams": [
+      {
+        "name": "全R卡",
+        "note": "https://youtube.com/shorts/H9KgITxfUE0",
+        "members": [
+          "card_148",
+          "card_146",
+          "card_145",
+          "card_153",
+          "card_144"
+        ]
+      }
+    ]
   }
 ]
