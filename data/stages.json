@@ -1566,5 +1566,70 @@
     ],
     "rowBreak": false,
     "sortOrder": 2
+  },
+  {
+    "id": "stage__03_2",
+    "chapter": "舞動☆心願 高難",
+    "order": "鬥舞-03",
+    "title": "（複製）（複製）",
+    "enemies": [
+      {
+        "name": "霍斯",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__03_2_0_霍斯.webp",
+        "imageZoom": 1.21,
+        "imageOffsetX": 0.5557538693544096,
+        "imageOffsetY": 0.571586487347541
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3hsmu1cwac\" rel=\"noopener noreferrer\" target=\"_blank\">舞動心願高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>霍斯不會攻擊，但會瘋狂下毒</p><p>我方角色HP高於65%時，受到毒傷增加75%</p><p>我方角色普攻會令攻擊力永久減少3%，<span style=\"color: rgb(79, 200, 176);\">所以平時儘量避免普攻</span></p><p><br></p><p>由於T9、17等回合我方要由右至左攻擊</p><p><span style=\"color: rgb(201, 164, 92);\">隊伍建議排序大概是：補攻攻攻輔／補攻攻輔輔</span></p><p>如果有練免疫睡眠角，可以由免疫睡眠角左邊的角色先行動</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T1",
+        "col2": "全防"
+      },
+      {
+        "col1": "T2",
+        "col2": "補師補血，攻擊手防禦"
+      },
+      {
+        "col1": "T3、11、19",
+        "col2": "全防（霍斯下毒）<br><span style=\"color: rgb(201, 164, 92);\">（T11 如果輔助沒有防禦，霍斯會令輔助CD+1）</span>"
+      },
+      {
+        "col1": "T4、12、20",
+        "col2": "先普攻讓霍斯進入睡眠，霍斯睡眠後，補師可以開大<br>其他人全員普攻，<span style=\"color: rgb(226, 96, 79);\">不能防禦</span><br><span style=\"color: rgb(79, 200, 176);\">（普攻令霍斯睡眠，防禦會導致全體吃傷害全滅）</span>"
+      },
+      {
+        "col1": "T5、13、21",
+        "col2": "全員攻擊<span style=\"color: rgb(79, 200, 176);\">（防禦會導致全體吃傷害全滅）</span>"
+      },
+      {
+        "col1": "T6、14、22",
+        "col2": "全防<br><span style=\"color: rgb(201, 164, 92);\">（T6 如果輔助沒有防禦，霍斯會令輔助CD+1）</span>"
+      },
+      {
+        "col1": "T7、15、23",
+        "col2": "先普攻讓霍斯進入睡眠，霍斯睡眠後，補師可以開大<br>其他人全員普攻，<span style=\"color: rgb(226, 96, 79);\">不能防禦</span>"
+      },
+      {
+        "col1": "T8、16、24",
+        "col2": "全員攻擊<span style=\"color: rgb(201, 164, 92);\"><br>（T16 必須全員攻擊，但霍斯會令輔助CD+1）</span>"
+      },
+      {
+        "col1": "T9、17、25",
+        "col2": "我方行動會令右方角色睡眠<br><span style=\"color: rgb(226, 96, 79);\">攻擊順序需要從右至左（例：3 &gt; 2 &gt; 1 &gt; 5 &gt; 4）</span><br>靠&nbsp;<span style=\"color: rgb(226, 96, 79);\">全員開必殺技</span>&nbsp; 打掉霍斯10%血<br><span style=\"color: rgb(79, 200, 176);\">（普攻會令我方全體造成傷害減少33%）</span>"
+      },
+      {
+        "col1": "T10、18、26",
+        "col2": "全防（霍斯下毒"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 3
   }
 ]
