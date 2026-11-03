@@ -1631,5 +1631,47 @@
     ],
     "rowBreak": false,
     "sortOrder": 3
+  },
+  {
+    "id": "stage__01_3",
+    "chapter": "虛擬性悖論 高難",
+    "order": "異常-01",
+    "title": "（複製）",
+    "enemies": [
+      {
+        "name": "伊得",
+        "note": "無視屬性相剋",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__01_3_0_伊得.webp",
+        "imageZoom": 1.21,
+        "imageOffsetX": 0.527927599455181,
+        "imageOffsetY": 0.47714617499674605
+      },
+      {
+        "name": "蒼葉",
+        "note": "無視屬性相剋",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__01_3_1_蒼葉.webp",
+        "imageZoom": 1.24,
+        "imageOffsetX": 0.5118003951178657,
+        "imageOffsetY": 0.48986461864810404
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3ja475zhps\" rel=\"noopener noreferrer\" target=\"_blank\">虛擬性悖論高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>全R卡可以輕鬆過</p><p>蒼葉減傷500%，<span style=\"color: rgb(201, 164, 92);\">我們的敵人是伊得</span></p><p><span style=\"color: rgb(226, 96, 79);\">伊得10%會鎖血，下回合必須打掉伊得</span></p><p><br></p><p>本關不需要坦角，新手撐不住才需要放隻坦在第3位</p><p>新手注意一下定期防禦，不要被瘋狂降攻就好</p><p><br></p><p>我方行動──</p><p>普攻：自身攻擊力減少5%增加1層（最多10層）</p><p>必殺：自身攻擊力減少5%增加2層（最多10層）</p><p>防禦：自身攻擊力減少5%減少2層（最多10層）</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T3、7",
+        "col2": "第3位 防禦（伊得蒼葉單擊打第3位）"
+      },
+      {
+        "col1": "T6、10",
+        "col2": "對 蒼葉 必殺攻擊1次（解除嘲諷+清除伊得減傷）<br>"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 1
   }
 ]
