@@ -2,7 +2,7 @@
   {
     "id": "char_14",
     "name": "伊得",
-    "sortOrder": 0,
+    "sortOrder": 1,
     "icon": "assets/img/characters/char_14.png"
   },
   {
@@ -24,49 +24,57 @@
     "sortOrder": 4
   },
   {
-    "id": "char_15",
-    "name": "連動",
-    "sortOrder": 8,
-    "icon": "assets/img/characters/char_15.png"
-  },
-  {
     "id": "char_05",
     "name": "艾德蒙特",
-    "icon": "assets/img/characters/char_05.png"
+    "icon": "assets/img/characters/char_05.png",
+    "sortOrder": 5
   },
   {
     "id": "char_06",
     "name": "奧利文",
-    "icon": "assets/img/characters/char_06.png"
+    "icon": "assets/img/characters/char_06.png",
+    "sortOrder": 6
   },
   {
     "id": "char_07",
     "name": "崑西",
-    "icon": "assets/img/characters/char_07.png"
+    "icon": "assets/img/characters/char_07.png",
+    "sortOrder": 7
   },
   {
     "id": "char_08",
     "name": "玖夜",
-    "icon": "assets/img/characters/char_08.png"
+    "icon": "assets/img/characters/char_08.png",
+    "sortOrder": 8
   },
   {
     "id": "char_09",
     "name": "可爾",
-    "icon": "assets/img/characters/char_09.png"
+    "icon": "assets/img/characters/char_09.png",
+    "sortOrder": 9
   },
   {
     "id": "char_10",
     "name": "布儡",
-    "icon": "assets/img/characters/char_10.png"
+    "icon": "assets/img/characters/char_10.png",
+    "sortOrder": 10
   },
   {
     "id": "char_11",
     "name": "啖天",
-    "icon": "assets/img/characters/char_11.png"
+    "icon": "assets/img/characters/char_11.png",
+    "sortOrder": 11
   },
   {
     "id": "char_12",
     "name": "歛",
-    "icon": "assets/img/characters/char_12.png"
+    "icon": "assets/img/characters/char_12.png",
+    "sortOrder": 12
+  },
+  {
+    "id": "char_15",
+    "name": "連動",
+    "sortOrder": 13,
+    "icon": "assets/img/characters/char_15.png"
   }
 ]
