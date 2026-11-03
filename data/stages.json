@@ -1710,5 +1710,42 @@
     ],
     "rowBreak": false,
     "sortOrder": 2
+  },
+  {
+    "id": "stage__03_3",
+    "chapter": "虛擬性悖論 高難",
+    "order": "異常-03",
+    "title": "（複製）（複製）（複製）",
+    "enemies": [
+      {
+        "name": "橢圓巨塔",
+        "note": "大量減傷",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage__03_3_0_橢圓巨塔.webp",
+        "imageZoom": 1.16,
+        "imageOffsetX": 0.5413397162198571,
+        "imageOffsetY": 0.5172932942708334
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3ja475zhps\" rel=\"noopener noreferrer\" target=\"_blank\">虛擬性悖論高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>敵人橢圓巨塔有150%減傷，平常是打不痛的</p><p>我方要成功潛入6層，才能令巨塔增傷+100%（1回合）</p><p>1回合攻擊之後潛入掉回1又要重新潛入，<span style=\"color: rgb(79, 200, 176);\">通常是3-5回合才能打巨塔一次</span></p><p><br></p><p><span style=\"color: rgb(79, 200, 176);\">「潛入」：第3位防禦 + 至少另外兩人攻擊</span>（潛入+1。如果第3位滿血，潛入+2）</p><p>我方 1、2、4、5 防禦：全員獲得護盾</p><p><br></p><p>因為巨塔會下毒，即使補師行動時把第3位補滿血了毒素還會燒，要達成+2潛力就要靠防禦拿護盾</p><hr class=\"ql-divider\"><p>本關不需要帶坦角，但如果第3位在T6/16那些回合容易死掉，放隻坦角就很簡單，巨塔痛擊第3位時也不需要全員防禦</p><p><span style=\"color: rgb(79, 200, 176);\">本關推薦帶3CD必殺角</span></p><p><br></p><p><span style=\"color: rgb(201, 164, 92);\">★ 另外，本關帶聯動 伊得、蒼葉 放第3位有特殊增益</span></p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "一般回合",
+        "col2": "第3位防禦，2-3人攻擊+1-2人防禦（潛入層數增加）"
+      },
+      {
+        "col1": "巨塔現身",
+        "col2": "抓緊機會打巨塔 （全必殺就對了）"
+      },
+      {
+        "col1": "T6、16、26",
+        "col2": "如果第3位還沒滿血就先補血<br>儘量全員防禦（第3位被痛擊）<br>（帶護盾坦就不用擔心血量問題）<br>"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 3
   }
 ]
