@@ -3195,5 +3195,27 @@
     "imageOffsetX": 0.5807827089089407,
     "imageOffsetY": 0.2040506845266148,
     "sortOrder": 125
+  },
+  {
+    "id": "card_156",
+    "name": "解譯虛實之聲",
+    "characterId": "char_15",
+    "rarityId": "ssr",
+    "classId": "atk",
+    "elementId": "wood",
+    "cd": 3,
+    "tags": [
+      "burst",
+      "own_burst_dmg_up",
+      "enemy_elem_dmg_up",
+      "own_dmg_up",
+      "immune_silence"
+    ],
+    "ultimateSkill": "<p>使自身 必殺技 傷害增加 30%（最多2層）</p><p>使目標受到 <span style=\"color: rgb(79, 200, 176);\">木屬性</span> 傷害增加 15%（最多1層）</p><p>使自身造成傷害增加 25%（最多1層）</p><p>再以攻擊力 360% 對目標造成傷害</p><p><br></p><p>［冷卻時間：3 回合］</p>",
+    "image": "assets/img/cards/card_156.webp",
+    "imageZoom": 1.2,
+    "imageOffsetX": 0.4296933117270166,
+    "imageOffsetY": 0.06140910877900984,
+    "sortOrder": 126
   }
 ]
