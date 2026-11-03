@@ -83,7 +83,8 @@ export function showCardInfoModal(card, maps) {
 
   infoCol.append(titleRow, h2, metaRow, ultimateWrap, tagRow);
 
-  // 作品標註 (2026-11-04) — 有填才顯示，接在卡片圖片正下方、置中、可換行，
+  // 作品標註 (2026-11-04) — 有填才顯示，接在卡片圖片正下方、置中；後台輸入
+  // 的換行照樣顯示（white-space:pre-line），一行太長也會自動折行，
   // 寬度跟圖片一樣（160px）。沒填的卡片完全不經過這段，排版跟原本一模一樣。
   // 有填時圖片和標註包成一欄：這欄才是 wrap（flex）的直接子層，所以置中
   // 用的 margin:0 auto 要設在這欄上——寬度夠時（電腦）右邊的資訊欄
@@ -95,7 +96,7 @@ export function showCardInfoModal(card, maps) {
     thumbCol.style.cssText = 'display:flex; flex-direction:column; align-items:center; flex:0 0 auto; width:160px; margin:0 auto;';
     const note = document.createElement('div');
     note.className = 'card-info-work-note';
-    note.style.cssText = 'width:100%; box-sizing:border-box; padding:5px 8px; border-radius:var(--radius-sm); background:#2a2740; color:#b9b2d8; font-size:0.78rem; line-height:1.45; text-align:center; overflow-wrap:anywhere;';
+    note.style.cssText = 'width:100%; box-sizing:border-box; padding:5px 8px; border-radius:var(--radius-sm); background:#2a2740; color:#b9b2d8; font-size:0.78rem; line-height:1.45; text-align:center; overflow-wrap:anywhere; white-space:pre-line;';
     note.textContent = workNote;
     thumbCol.append(thumbBox, note);
     wrap.append(thumbCol, infoCol);
