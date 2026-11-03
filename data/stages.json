@@ -1439,5 +1439,55 @@
     ],
     "rowBreak": false,
     "sortOrder": 9.4
+  },
+  {
+    "id": "stage__01_2",
+    "chapter": "舞動☆心願 高難",
+    "order": "鬥舞-01",
+    "title": "（複製）",
+    "enemies": [
+      {
+        "name": "凱爾",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__01_2_0_凱爾.webp",
+        "imageZoom": 1.2,
+        "imageOffsetX": 0.5408249577199381,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "布儡",
+        "note": "",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage__01_2_1_布儡.webp",
+        "imageZoom": 1.21,
+        "imageOffsetX": 0.5871158781505765,
+        "imageOffsetY": 0.5714751238494106
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3hsmu1cwac\" rel=\"noopener noreferrer\" target=\"_blank\">舞動心願高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>補血關，全R卡可以過</p><p>要在同回合內把布儡和凱爾二人同時補血至25%、50%、75%，否則我方全體受到傷害增加一層（可不斷疊加）</p><p><br></p><p>如果不是新手，可以無視機制直接補血</p><p><br></p><p>T3：12位防禦</p><p>T5：3人對凱爾開大</p><p>T7：45位防</p><p>T9：3人對布儡開大</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T3",
+        "col2": "1、2位防禦"
+      },
+      {
+        "col1": "T5",
+        "col2": "3人對凱爾開大"
+      },
+      {
+        "col1": "T7",
+        "col2": "4、5位防"
+      },
+      {
+        "col1": "T9",
+        "col2": "3人對凱爾開大"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 1
   }
 ]
