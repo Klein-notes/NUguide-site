@@ -12,6 +12,12 @@
     "icon": "assets/img/characters/char_02.png"
   },
   {
+    "id": "char_15",
+    "name": "連動",
+    "sortOrder": 4,
+    "icon": "assets/img/characters/char_15.png"
+  },
+  {
     "id": "char_03",
     "name": "墨菲",
     "icon": "assets/img/characters/char_03.png"
