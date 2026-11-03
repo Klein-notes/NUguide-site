@@ -254,6 +254,112 @@
           "#514c29"
         ]
       }
+    },
+    "舞動☆心願 高難": {
+      "bgColor": "#9669c3",
+      "bgOpacity": 42,
+      "borderColor": "#95815b",
+      "borderOpacity": 100,
+      "borderWidth": 1,
+      "bgGradientEnabled": true,
+      "bgGradientAngle": 41,
+      "bgGradientColors": [
+        "#924aa5",
+        "#de9c3f"
+      ],
+      "bgGradientPositions": [
+        0,
+        100
+      ],
+      "borderGradientEnabled": false,
+      "borderGradientAngle": 135,
+      "borderGradientColors": [
+        "#e8d9a0",
+        "#8a7140"
+      ],
+      "borderGradientPositions": [
+        0,
+        100
+      ],
+      "numberColor": "#e2d5bb",
+      "numberColorDisabled": "#866e3c",
+      "buttonStyle": {
+        "fontFamily": "display",
+        "fontSize": 15,
+        "paddingY": 3,
+        "paddingX": 6,
+        "borderRadius": 8,
+        "gradientEnabled": true,
+        "gradientAngle": 203,
+        "gradientColors": [
+          "#6d4a3c",
+          "#573659"
+        ],
+        "bgColor": "#211f30",
+        "borderColor": "#c9a45d",
+        "borderOpacity": 63,
+        "borderWidth": 1,
+        "textColor": "#d9b76d",
+        "dividerWidth": 1,
+        "dividerGradientEnabled": true,
+        "dividerColors": [
+          "#c9a45d",
+          "#93703d"
+        ]
+      }
+    },
+    "虛擬性悖論 高難": {
+      "bgColor": "#211f30",
+      "bgOpacity": 0,
+      "borderColor": "#3a3650",
+      "borderOpacity": 100,
+      "borderWidth": 1,
+      "bgGradientEnabled": false,
+      "bgGradientAngle": 135,
+      "bgGradientColors": [
+        "#4a4a3a",
+        "#1a1a14"
+      ],
+      "bgGradientPositions": [
+        0,
+        100
+      ],
+      "borderGradientEnabled": false,
+      "borderGradientAngle": 135,
+      "borderGradientColors": [
+        "#e8d9a0",
+        "#8a7140"
+      ],
+      "borderGradientPositions": [
+        0,
+        100
+      ],
+      "numberColor": "#887242",
+      "numberColorDisabled": "#5c5c5c",
+      "buttonStyle": {
+        "fontFamily": "display",
+        "fontSize": 15,
+        "paddingY": 12,
+        "paddingX": 6,
+        "borderRadius": 8,
+        "gradientEnabled": true,
+        "gradientAngle": 180,
+        "gradientColors": [
+          "#211f30",
+          "#2a2740"
+        ],
+        "bgColor": "#211f30",
+        "borderColor": "#3a3650",
+        "borderOpacity": 100,
+        "borderWidth": 1,
+        "textColor": "#ece9f7",
+        "dividerWidth": 1,
+        "dividerGradientEnabled": false,
+        "dividerColors": [
+          "#c9a45c",
+          "#c9a45c"
+        ]
+      }
     }
   },
   "pastSectionStyle": {
@@ -465,8 +571,10 @@
     ]
   },
   "seriesOrder": [
-    "忘卻遺跡",
     "魔法檢定所",
+    "忘卻遺跡",
+    "虛擬性悖論",
+    "舞動☆心願",
     "極速追風"
   ],
   "myTeamsTabPaddingY": 3,
@@ -475,6 +583,8 @@
   "seriesNotes": {
     "忘卻遺跡": "<span style=\"font-size: 0.9rem;\">同一章節無法選取重複卡片</span>",
     "魔法檢定所": "",
-    "極速追風": ""
+    "極速追風": "",
+    "舞動☆心願": "",
+    "虛擬性悖論": ""
   }
 }
