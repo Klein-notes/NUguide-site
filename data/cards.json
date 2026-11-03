@@ -3194,7 +3194,8 @@
     "imageZoom": 1.24,
     "imageOffsetX": 0.5537779162369043,
     "imageOffsetY": 0.41346425552647226,
-    "sortOrder": 125
+    "sortOrder": 125,
+    "workNote": "｜ 聯動作品 ｜\nDRAMAtical Murder\n戲劇性謀殺"
   },
   {
     "id": "card_156",
@@ -3211,11 +3212,12 @@
       "own_dmg_up",
       "immune_silence"
     ],
-    "ultimateSkill": "<p>使自身 必殺技 傷害增加 30%（最多2層）</p><p>使目標受到 <span style=\"color: rgb(79, 200, 176);\">木屬性</span> 傷害增加 15%（最多1層）</p><p>使自身造成傷害增加 25%（最多1層）</p><p>再以攻擊力 360% 對目標造成傷害</p><p><br></p><p>［冷卻時間：3 回合］</p><p><br></p><p><span style=\"color: rgb(201, 164, 92);\">➤ 聯動作品 / DRAMAtical Murder 戲劇性謀殺</span></p>",
+    "ultimateSkill": "<p>使自身 必殺技 傷害增加 30%（最多2層）</p><p>使目標受到 <span style=\"color: rgb(79, 200, 176);\">木屬性</span> 傷害增加 15%（最多1層）</p><p>使自身造成傷害增加 25%（最多1層）</p><p>再以攻擊力 360% 對目標造成傷害</p><p><br></p><p>［冷卻時間：3 回合］</p>",
     "image": "assets/img/cards/card_156.webp",
     "imageZoom": 1.3,
     "imageOffsetX": 0.4072888701608642,
     "imageOffsetY": 0.22190435749698653,
-    "sortOrder": 126
+    "sortOrder": 126,
+    "workNote": "｜ 聯動作品 ｜\n\nDRAMAtical Murder\n戲劇性謀殺"
   }
 ]
