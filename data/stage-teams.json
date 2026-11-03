@@ -437,5 +437,21 @@
         ]
       }
     ]
+  },
+  {
+    "stageId": "stage__03_3",
+    "teams": [
+      {
+        "name": "學奧+SR/R",
+        "note": "https://youtu.be/Oh1KfKmr5OM",
+        "members": [
+          "card_036",
+          "card_127",
+          "card_145",
+          "card_134",
+          "card_130"
+        ]
+      }
+    ]
   }
 ]
