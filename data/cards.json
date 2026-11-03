@@ -3172,5 +3172,28 @@
     "imageOffsetX": 0.7487644310702021,
     "imageOffsetY": 0.38342487119149793,
     "sortOrder": 0.092
+  },
+  {
+    "id": "card_155",
+    "name": "霓輝匯聚之鑰",
+    "characterId": "char_14",
+    "rarityId": "ssr",
+    "classId": "buf",
+    "elementId": "wood",
+    "cd": 3,
+    "tags": [
+      "atk_buff_enemy",
+      "enemy_elem_dmg_up",
+      "atk_buff_self",
+      "atk_support",
+      "self_burst_dmg_up",
+      "immune_silence"
+    ],
+    "ultimateSkill": "<p>使目標受到傷害增加 17 %（2回合）</p><p>使目標受到 <span style=\"color: rgb(79, 200, 176);\">五屬性</span> 傷害增加 15 %（2回合）</p><p>以自身基礎攻擊力 79 % 使我方全體攻擊力增加（2回合）</p><p>再以攻擊力 100% 對目標造成傷害</p><p><br></p><p>［冷卻時間：3 回合］</p><p><br></p><p><span style=\"color: rgb(201, 164, 92);\">★潛6：我方全體必殺技傷害增加5%</span></p>",
+    "image": "assets/img/cards/card_155.webp",
+    "imageZoom": 1.13,
+    "imageOffsetX": 0.5807827089089407,
+    "imageOffsetY": 0.2040506845266148,
+    "sortOrder": 125
   }
 ]
