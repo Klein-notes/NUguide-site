@@ -310,15 +310,15 @@
     },
     "虛擬性悖論 高難": {
       "bgColor": "#2c220c",
-      "bgOpacity": 54,
-      "borderColor": "#95815b",
+      "bgOpacity": 50,
+      "borderColor": "#8af7ff",
       "borderOpacity": 100,
       "borderWidth": 1,
       "bgGradientEnabled": true,
-      "bgGradientAngle": 17,
+      "bgGradientAngle": 143,
       "bgGradientColors": [
-        "#565348",
-        "#684a18"
+        "#9d65c3",
+        "#75c3ff"
       ],
       "bgGradientPositions": [
         0,
@@ -336,8 +336,8 @@
         50,
         100
       ],
-      "numberColor": "#e2d5bb",
-      "numberColorDisabled": "#866e3c",
+      "numberColor": "#66e5e3",
+      "numberColorDisabled": "#6e8aaf",
       "buttonStyle": {
         "fontFamily": "display",
         "fontSize": 15,
@@ -345,21 +345,21 @@
         "paddingX": 6,
         "borderRadius": 4,
         "gradientEnabled": true,
-        "gradientAngle": 17,
+        "gradientAngle": 75,
         "gradientColors": [
-          "#37332e",
-          "#3f2f1c"
+          "#64558b",
+          "#576b98"
         ],
         "bgColor": "#211f30",
-        "borderColor": "#c9a45c",
+        "borderColor": "#78f5f7",
         "borderOpacity": 62,
         "borderWidth": 1,
-        "textColor": "#d9b76d",
+        "textColor": "#81ecee",
         "dividerWidth": 1,
         "dividerGradientEnabled": true,
         "dividerColors": [
-          "#c9a45c",
-          "#94703d"
+          "#81eced",
+          "#5f88bf"
         ]
       }
     }
