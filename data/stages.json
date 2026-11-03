@@ -1673,5 +1673,42 @@
     ],
     "rowBreak": false,
     "sortOrder": 1
+  },
+  {
+    "id": "stage__02_3",
+    "chapter": "虛擬性悖論 高難",
+    "order": "異常-02",
+    "title": "（複製）（複製）",
+    "enemies": [
+      {
+        "name": "伊得？",
+        "note": "無視屬性相剋",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage__02_3_0_伊得_.webp",
+        "imageZoom": 1.16,
+        "imageOffsetX": 0.47178890086986397,
+        "imageOffsetY": 0.590874124456335
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3ja475zhps\" rel=\"noopener noreferrer\" target=\"_blank\">虛擬性悖論高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>本關最大重點：伊得贖罪層數不同</p><p>（6回合內／12回合內／超過12回合完成關卡），結尾有不同對話！</p><p>有能力的人都努力打3次吧！</p><p><br></p><p>必須把<span style=\"color: rgb(79, 200, 176);\">一隻3CD角放在第3位</span>（T4要開大）</p><p>本關推薦3CD必殺角，4CD也可以</p><p>因為T6要開3次必殺+打掉10%血，對6CD必殺角、普攻角、毒隊都不友善</p><p>當然強度夠了也可以無視機制直接闖</p><p><br></p><p>如果只帶SR前4回合挺痛的，如果補血量不足請把補師放第3位</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、8、14",
+        "col2": "&nbsp;1、5 <span style=\"color: rgb(79, 200, 176);\">普攻</span>， 2、4 <span style=\"color: rgb(201, 164, 92);\">防禦</span>， 3 <span style=\"color: rgb(79, 200, 176);\">普攻</span>（行動順序不要錯）"
+      },
+      {
+        "col1": "T4、10、16",
+        "col2": "&nbsp;1、5 <span style=\"color: rgb(201, 164, 92);\">防禦</span>， 2、4 <span style=\"color: rgb(79, 200, 176);\">普攻</span>， 3 <span style=\"color: rgb(226, 96, 79);\">必殺</span>（行動順序不要錯）<br>"
+      },
+      {
+        "col1": "T6、12、18",
+        "col2": "3人 開必殺（清除敵人的毒傷增益）<br>這回合要打掉伊得10%血，否則我方治療量被減少33%（永久，可疊加）"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 2
   }
 ]
