@@ -373,5 +373,21 @@
         ]
       }
     ]
+  },
+  {
+    "stageId": "stage__02_2",
+    "teams": [
+      {
+        "name": "SR+R",
+        "note": "https://youtu.be/TqxIHlPhiY4",
+        "members": [
+          "card_129",
+          "card_133",
+          "card_127",
+          "card_152",
+          "card_125"
+        ]
+      }
+    ]
   }
 ]
