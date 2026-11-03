@@ -1489,5 +1489,82 @@
     ],
     "rowBreak": false,
     "sortOrder": 1
+  },
+  {
+    "id": "stage__02_2",
+    "chapter": "舞動☆心願 高難",
+    "order": "鬥舞-02",
+    "title": "（複製）（複製）",
+    "enemies": [
+      {
+        "name": "高亢",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage__02_2_0_高亢.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.5025309276285556,
+        "imageOffsetY": 0.5553379609980943
+      },
+      {
+        "name": "冷靜",
+        "note": "",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__02_2_1_冷靜.webp",
+        "imageZoom": 1.11,
+        "imageOffsetX": 0.5,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "沉穩",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__02_2_2_沉穩.webp",
+        "imageZoom": 1.16,
+        "imageOffsetX": 0.5347912311553955,
+        "imageOffsetY": 0.4852844920714863
+      },
+      {
+        "name": "瀟灑",
+        "note": "",
+        "elementId": "light",
+        "image": "assets/img/enemies/stage__02_2_3_瀟灑.webp",
+        "imageZoom": 1.12,
+        "imageOffsetX": 0.5798436605299905,
+        "imageOffsetY": 0.4221678539152904
+      },
+      {
+        "name": "驕傲",
+        "note": "",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage__02_2_4_驕傲.webp",
+        "imageZoom": 1.11,
+        "imageOffsetX": 0.7816136026792627,
+        "imageOffsetY": 0.6654950055209072
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3hsmu1cwac\" rel=\"noopener noreferrer\" target=\"_blank\">舞動心願高難01-03</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p>要把五位閃耀男子都打到1%</p><p>閃耀男子剩1%血不會離場，反而會永久加攻；當五位閃耀男子都只剩1%血才會一起退場</p><p><span style=\"color: rgb(79, 200, 176);\">所以建議在同回合／相近回合把他們打到1%</span></p><p><br></p><p>我方普攻會以基礎攻擊力25%打傷旁邊的兩位隊友</p><p>我方必殺會以攻擊力25%為旁邊的兩位隊友開護盾</p><p><br></p><p>主要是吃機制，一般不會因為普攻而打死隊友</p><p>如果會在閃耀男子5次群攻下被打死</p><p>可以在血少易死的角色旁邊放必殺角／攻擊高的角色，或者帶雙輔助來提升攻擊力，讓弱角有較高的護盾量撐過群攻</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、11",
+        "col2": "全員普攻（這回合護盾量越高，受到傷害越多）"
+      },
+      {
+        "col1": "T5、14",
+        "col2": "全員開大（這回合靠護盾擋住美麗男子的群攻）"
+      },
+      {
+        "col1": "T7、16",
+        "col2": "全員普攻（這回合護盾量越高，受到傷害越多）"
+      },
+      {
+        "col1": "T9、18",
+        "col2": "2、4位先開大，再讓1、3、5位普攻<br>（這回合護盾量越高，受到傷害越多）"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 2
   }
 ]
