@@ -82,7 +82,26 @@ export function showCardInfoModal(card, maps) {
   tagRow.innerHTML = cardTags.map((t) => `<span class="tag-pill"><img src="${resolveAsset(t.icon)}" alt="">${t.label}</span>`).join('') || '<span class="guide-preview">尚未設定技能標籤</span>';
 
   infoCol.append(titleRow, h2, metaRow, ultimateWrap, tagRow);
-  wrap.append(thumbBox, infoCol);
+
+  // 作品標註 (2026-11-04) — 有填才顯示，接在卡片圖片正下方、置中、可換行，
+  // 寬度跟圖片一樣（160px）。沒填的卡片完全不經過這段，排版跟原本一模一樣。
+  // 有填時圖片和標註包成一欄：這欄才是 wrap（flex）的直接子層，所以置中
+  // 用的 margin:0 auto 要設在這欄上——寬度夠時（電腦）右邊的資訊欄
+  // flex:1 會先吃掉多的空間，這欄照舊靠左；窄到換行時（手機）這欄自己
+  // 一行、置中，跟原本圖片單獨置中的位置一樣。
+  const workNote = (card.workNote || '').trim();
+  if (workNote) {
+    const thumbCol = document.createElement('div');
+    thumbCol.style.cssText = 'display:flex; flex-direction:column; align-items:center; flex:0 0 auto; width:160px; margin:0 auto;';
+    const note = document.createElement('div');
+    note.className = 'card-info-work-note';
+    note.style.cssText = 'width:100%; box-sizing:border-box; padding:5px 8px; border-radius:var(--radius-sm); background:#2a2740; color:#b9b2d8; font-size:0.78rem; line-height:1.45; text-align:center; overflow-wrap:anywhere;';
+    note.textContent = workNote;
+    thumbCol.append(thumbBox, note);
+    wrap.append(thumbCol, infoCol);
+  } else {
+    wrap.append(thumbBox, infoCol);
+  }
   body.appendChild(wrap);
 
   openModal({ title: '卡片資訊', body });
