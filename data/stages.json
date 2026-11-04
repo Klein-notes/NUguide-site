@@ -1835,11 +1835,11 @@
         "col2": "<br>"
       },
       {
-        "col1": "T6、10<br>",
-        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺&nbsp;</span>姿態：<span style=\"color: rgb(226, 96, 79);\">坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻</span> 姿態：&nbsp;<span style=\"color: rgb(79, 200, 176);\">1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招</span> 姿態：<span style=\"color: rgb(201, 164, 92);\">全體必殺，打掉自己身上的護盾</span>"
+        "col1": "T6、10、14、18<br>(三種姿態隨機出現）",
+        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺&nbsp;</span>姿態：<span style=\"color: rgb(226, 96, 79);\">坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻</span> 姿態：&nbsp;<span style=\"color: rgb(79, 200, 176);\">1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招</span> 姿態：<span style=\"color: rgb(201, 164, 92);\">至少三個有傷害的必殺</span>"
       },
       {
-        "col1": "T7、11",
+        "col1": "T7、11、15、19",
         "col2": "全防"
       }
     ],
