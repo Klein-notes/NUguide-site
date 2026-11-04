@@ -471,6 +471,29 @@
     ],
     "roundTable": []
   },
+  "stage_60": {
+    "members": [
+      "card_087",
+      "card_059",
+      "card_073",
+      "card_034",
+      "card_111"
+    ],
+    "roundTable": [
+      {
+        "col1": "<span style=\"color: rgb(79, 200, 176);\">「父親 或 聖堂 的書」</span>",
+        "col2": "<span style=\"color: rgb(79, 200, 176);\">不要攻擊（不買書）</span>"
+      },
+      {
+        "col1": "<span style=\"color: rgb(201, 164, 92);\">「卡萊因 的書」</span>",
+        "col2": "<span style=\"color: rgb(201, 164, 92);\">打破奧利文的護盾並造成傷害（買書）x 5次</span><br>"
+      },
+      {
+        "col1": "T6、11、16",
+        "col2": "坦角 嘲諷，其他人 防禦"
+      }
+    ]
+  },
   "stage_55": {
     "members": [
       "card_070",
@@ -502,7 +525,7 @@
       },
       {
         "col1": "T6",
-        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：全體必殺，打掉自己身上的護盾</span>"
+        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：至少三個有傷害的必殺</span>"
       },
       {
         "col1": "T7",
@@ -518,7 +541,7 @@
       },
       {
         "col1": "T10",
-        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：全體必殺，打掉自己身上的護盾</span>"
+        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：至少三個有傷害的必殺</span>"
       },
       {
         "col1": "T11",
@@ -534,7 +557,7 @@
       },
       {
         "col1": "T14",
-        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：全體必殺，打掉自己身上的護盾</span>"
+        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺 姿態：坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻 姿態： 1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招 姿態：至少三個有傷害的必殺</span>"
       },
       {
         "col1": "T15",
@@ -547,6 +570,10 @@
       {
         "col1": "",
         "col2": "進攻姿態 會說 「找到機會進攻！」<br>接招姿態 會說 「接招的同時，別忘了看準時機，進行反擊⋯⋯」"
+      },
+      {
+        "col1": "",
+        "col2": "<span style=\"color: rgb(201, 164, 92);\">兩次接招姿態會在第二次打完（很吃運氣）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻姿態很容易進入無傷害狀態</span>"
       }
     ]
   },
