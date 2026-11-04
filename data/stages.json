@@ -2016,5 +2016,42 @@
     ],
     "rowBreak": false,
     "sortOrder": 8.2
+  },
+  {
+    "id": "stage_8_3_2",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "8 - 3",
+    "title": "忘卻遺跡 第 23 季 8 - 3",
+    "enemies": [
+      {
+        "name": "布魯恩",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_8_3_2_0_布魯恩.webp",
+        "imageZoom": 1.16,
+        "imageOffsetX": 0.5803629557291666,
+        "imageOffsetY": 0.5121149425798037
+      }
+    ],
+    "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3j74074l0u\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第二十三季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>開場直接扣到紅血</p><p>我方血量少於50%時，攻擊力減少50%，平常都是先補血再攻擊</p><p>敵方一般回合都會優先攻擊血量最少的角色（傷害較低），再普攻其他角色</p><p><br></p><p>這關要<span style=\"color: rgb(79, 200, 176);\">帶坦</span></p><p>留意 每 8 回合 要全員開大打護盾，但 <span style=\"color: rgb(79, 200, 176);\">只有最後必殺的人才能造成有效傷害</span></p><p>推薦 <span style=\"color: rgb(79, 200, 176);\">雙輔助 </span>或者 <span style=\"color: rgb(79, 200, 176);\">單輔助+普攻角/易傷角+強4CD攻擊手/大炮角 </span>的混合組合</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T5、13",
+        "col2": "坦角嘲諷"
+      },
+      {
+        "col1": "T8、16",
+        "col2": "確保全體補滿八成血，補不滿血就在綠血下防禦<br>（敵方按血量百分比來群攻）"
+      },
+      {
+        "col1": "T9、17",
+        "col2": "全體開必殺打護盾，先讓輔助+補師開大<br>（每人開大可以令全體造成傷害增加100%），<span style=\"color: rgb(201, 164, 92);\">主要攻擊 最後開大</span>"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 8.3
   }
 ]
