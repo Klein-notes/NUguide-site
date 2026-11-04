@@ -1747,5 +1747,50 @@
     ],
     "rowBreak": false,
     "sortOrder": 3
+  },
+  {
+    "id": "stage_50",
+    "chapter": "魔法檢定所 第 27 季",
+    "order": "50",
+    "title": "（複製）（複製）（複製）",
+    "enemies": [
+      {
+        "name": "幼年啖天",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_50_0_幼年啖天.webp",
+        "imageZoom": 1.23,
+        "imageOffsetX": 0.5660418449564183,
+        "imageOffsetY": 0.47509638468424475
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3jc7grk06j\" rel=\"noopener noreferrer\" target=\"_blank\">魔法檢定所 第二十七季 爬塔記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【組隊事項】</span></p><p>推薦帶3CD角</p><p><span style=\"color: rgb(79, 200, 176);\">第3位必須放3CD角，建議放 不會攻擊的角色 例如 輔助或補師</span></p><p>少於3CD放必殺會導致小啖治療量上升，本關不適合減CD角色</p><p><br></p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2",
+        "col2": "全體普攻"
+      },
+      {
+        "col1": "T3",
+        "col2": "1、2、4、5 普攻，第 3 位 開大"
+      },
+      {
+        "col1": "T5、12",
+        "col2": "（棉被從&nbsp;<span style=\"color: rgb(79, 200, 176);\">左側&nbsp;</span>滑落）<span style=\"color: rgb(79, 200, 176);\">1、2 防禦，3、4、5 攻擊</span><br>（棉被從 <span style=\"color: rgb(201, 164, 92);\">右側</span> 滑落）<span style=\"color: rgb(201, 164, 92);\">1、2、3 攻擊，4、5 防禦</span>"
+      },
+      {
+        "col1": "T7、14",
+        "col2": "全體必殺<br><span style=\"color: rgb(226, 96, 79);\">前面四人的必殺會被減傷，要靠 </span><span style=\"color: rgb(201, 164, 92);\">最後一位攻擊手</span><span style=\"color: rgb(226, 96, 79);\"> 必殺 打破護盾</span>"
+      },
+      {
+        "col1": "T10、17",
+        "col2": "1、2、4、5 防禦，第 3 位 開大"
+      }
+    ],
+    "rowBreak": true,
+    "sortOrder": 50
   }
 ]
