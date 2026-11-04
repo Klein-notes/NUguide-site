@@ -3,7 +3,7 @@
     "id": "stage_8_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "7 - 1",
-    "title": "帆潮小鎮之探",
+    "title": "忘卻遺跡 第 23 季 7 - 1",
     "enemies": [
       {
         "name": "自信的居民",
@@ -45,7 +45,7 @@
     "id": "stage_8_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "7 - 3",
-    "title": "帆潮小鎮之探",
+    "title": "忘卻遺跡 第 23 季 7 - 3",
     "enemies": [
       {
         "name": "霞羽？",
@@ -150,7 +150,7 @@
     "id": "stage_8_2_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "7 - 2",
-    "title": "",
+    "title": "忘卻遺跡 第 23 季 7 - 2",
     "enemies": [
       {
         "name": "天真的小偷",
@@ -192,7 +192,7 @@
     "id": "stage_7_1",
     "chapter": "魔法檢定所 第 26 季",
     "order": "40",
-    "title": "",
+    "title": "魔法檢定所 第 26 季 40",
     "enemies": [
       {
         "name": "窺探內心 玖夜",
@@ -233,7 +233,7 @@
     "id": "stage_7_1_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "6 - 1",
-    "title": "帆潮小鎮之探（複製）",
+    "title": "忘卻遺跡 第 23 季 6 - 1",
     "enemies": [
       {
         "name": "在走廊徘徊的幽",
@@ -262,7 +262,7 @@
     "id": "stage_45",
     "chapter": "魔法檢定所 第 26 季",
     "order": "45",
-    "title": "（複製）",
+    "title": "魔法檢定所 第 26 季 45",
     "enemies": [
       {
         "name": "環",
@@ -340,7 +340,7 @@
     "id": "stage_50_2",
     "chapter": "魔法檢定所 第 27 季",
     "order": "35",
-    "title": "",
+    "title": "魔法檢定所 第 27 季 35",
     "enemies": [
       {
         "name": "享樂時光 小墨菲",
@@ -377,7 +377,7 @@
     "id": "stage_7_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "6 - 2",
-    "title": "帆潮小鎮之探（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 6 - 2",
     "enemies": [
       {
         "name": "回憶重現 驅魔師",
@@ -431,7 +431,7 @@
     "id": "stage_7_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "6 - 3",
-    "title": "帆潮小鎮之探（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 6 - 3",
     "enemies": [
       {
         "name": "八雲",
@@ -490,7 +490,7 @@
     "id": "stage_55_2",
     "chapter": "魔法檢定所 第 27 季",
     "order": "40",
-    "title": "（複製）",
+    "title": "魔法檢定所 第 27 季 40",
     "enemies": [
       {
         "name": "初試琴音  歛",
@@ -527,7 +527,7 @@
     "id": "stage_55_3",
     "chapter": "魔法檢定所 第 27 季",
     "order": "45",
-    "title": "（複製）（複製）",
+    "title": "魔法檢定所 第 27 季 45",
     "enemies": [
       {
         "name": "半信半疑  玖夜",
@@ -572,7 +572,7 @@
     "id": "stage__01",
     "chapter": "極速追風 高難",
     "order": "巔峰-01",
-    "title": "",
+    "title": "極速追風 高難 巔峰-01",
     "enemies": [
       {
         "name": "崑西",
@@ -626,7 +626,7 @@
     "id": "stage__02",
     "chapter": "極速追風 高難",
     "order": "巔峰-02",
-    "title": "（複製）",
+    "title": "極速追風 高難 巔峰-02",
     "enemies": [
       {
         "name": "車隊選手(火)",
@@ -676,7 +676,7 @@
     "id": "stage__03",
     "chapter": "極速追風 高難",
     "order": "巔峰-03",
-    "title": "（複製）（複製）",
+    "title": "極速追風 高難 巔峰-03",
     "enemies": [
       {
         "name": "逐日之速 瑞特",
@@ -729,7 +729,7 @@
     "id": "stage_35",
     "chapter": "魔法檢定所 第 26 季",
     "order": "35",
-    "title": "（複製）",
+    "title": "魔法檢定所 第 26 季 35",
     "enemies": [
       {
         "name": "星界探勘 布儡",
@@ -766,7 +766,7 @@
     "id": "stage_6_1",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "5 - 1",
-    "title": "",
+    "title": "忘卻遺跡 第 23 季 5 - 1",
     "enemies": [
       {
         "name": "辛辣蛋包飯",
@@ -808,7 +808,7 @@
     "id": "stage_6_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "5 - 2",
-    "title": "（複製）",
+    "title": "忘卻遺跡 第 23 季 5 - 2",
     "enemies": [
       {
         "name": "難相處的鹿妖",
@@ -849,7 +849,7 @@
     "id": "stage_6_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "5 - 3",
-    "title": "（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 5 - 3",
     "enemies": [
       {
         "name": "無敵女僕 可可",
@@ -882,7 +882,7 @@
     "id": "stage_5_1",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "4 - 1",
-    "title": "（複製）",
+    "title": "忘卻遺跡 第 23 季 4 - 1",
     "enemies": [
       {
         "name": "湖裡的小可愛",
@@ -933,7 +933,7 @@
     "id": "stage_5_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "4 - 2",
-    "title": "（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 4 - 2",
     "enemies": [
       {
         "name": "兇猛的雪怪",
@@ -970,7 +970,7 @@
     "id": "stage_5_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "4 - 3",
-    "title": "（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 4 - 3",
     "enemies": [
       {
         "name": "可爾",
@@ -1038,7 +1038,7 @@
     "id": "stage_4_1",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "3 - 1",
-    "title": "（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 3 - 1",
     "enemies": [
       {
         "name": "獄卒",
@@ -1079,7 +1079,7 @@
     "id": "stage_4_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "3 - 2",
-    "title": "（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 3 - 2",
     "enemies": [
       {
         "name": "囚犯 40 號",
@@ -1139,7 +1139,7 @@
     "id": "stage_4_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "3 - 3",
-    "title": "（複製）（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 3 - 3",
     "enemies": [
       {
         "name": "艾德蒙特",
@@ -1189,7 +1189,7 @@
     "id": "stage_SP_1",
     "chapter": "忘卻遺跡 第 22 季",
     "order": "SP - 1",
-    "title": "帆潮小鎮之探（複製）",
+    "title": "忘卻遺跡 第 22 季 SP - 1",
     "enemies": [
       {
         "name": "冬日裡的溫暖 玖夜",
@@ -1230,7 +1230,7 @@
     "id": "stage_SP_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "SP - 1",
-    "title": "帆潮小鎮之探（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 SP - 1",
     "enemies": [
       {
         "name": "艾斯特",
@@ -1317,7 +1317,7 @@
     "id": "stage_SP_3",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "SP - 2",
-    "title": "帆潮小鎮之探（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 SP - 2",
     "enemies": [
       {
         "name": "愛與正義 布儡",
@@ -1362,7 +1362,7 @@
     "id": "stage_SP_4",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "SP - 3",
-    "title": "帆潮小鎮之探（複製）（複製）（複製）（複製）",
+    "title": "忘卻遺跡 第 23 季 SP - 3",
     "enemies": [
       {
         "name": "衝鋒隊長 可爾",
@@ -1407,7 +1407,7 @@
     "id": "stage_SP_4_2",
     "chapter": "忘卻遺跡 第 23 季",
     "order": "SP - 4",
-    "title": "帆潮小鎮之探（複製）",
+    "title": "忘卻遺跡 第 23 季 SP - 4",
     "enemies": [
       {
         "name": "歛",
@@ -1444,7 +1444,7 @@
     "id": "stage__01_2",
     "chapter": "舞動☆心願 高難",
     "order": "鬥舞-01",
-    "title": "（複製）",
+    "title": "舞動☆心願 高難 鬥舞-01",
     "enemies": [
       {
         "name": "凱爾",
@@ -1494,7 +1494,7 @@
     "id": "stage__02_2",
     "chapter": "舞動☆心願 高難",
     "order": "鬥舞-02",
-    "title": "（複製）（複製）",
+    "title": "舞動☆心願 高難 鬥舞-02",
     "enemies": [
       {
         "name": "高亢",
@@ -1571,7 +1571,7 @@
     "id": "stage__03_2",
     "chapter": "舞動☆心願 高難",
     "order": "鬥舞-03",
-    "title": "（複製）（複製）",
+    "title": "舞動☆心願 高難 鬥舞-03",
     "enemies": [
       {
         "name": "霍斯",
@@ -1636,7 +1636,7 @@
     "id": "stage__01_3",
     "chapter": "虛擬性悖論 高難",
     "order": "異常-01",
-    "title": "（複製）",
+    "title": "虛擬性悖論 高難 異常-01",
     "enemies": [
       {
         "name": "伊得",
@@ -1678,7 +1678,7 @@
     "id": "stage__02_3",
     "chapter": "虛擬性悖論 高難",
     "order": "異常-02",
-    "title": "（複製）（複製）",
+    "title": "虛擬性悖論 高難 異常-02",
     "enemies": [
       {
         "name": "伊得？",
@@ -1715,7 +1715,7 @@
     "id": "stage__03_3",
     "chapter": "虛擬性悖論 高難",
     "order": "異常-03",
-    "title": "（複製）（複製）（複製）",
+    "title": "虛擬性悖論 高難 異常-03",
     "enemies": [
       {
         "name": "橢圓巨塔",
@@ -1752,7 +1752,7 @@
     "id": "stage_50",
     "chapter": "魔法檢定所 第 27 季",
     "order": "50",
-    "title": "（複製）（複製）（複製）",
+    "title": "魔法檢定所 第 27 季 50",
     "enemies": [
       {
         "name": "幼年啖天",
@@ -1797,7 +1797,7 @@
     "id": "stage_55",
     "chapter": "魔法檢定所 第 27 季",
     "order": "55",
-    "title": "（複製）（複製）（複製）（複製）",
+    "title": "魔法檢定所 第 27 季 55",
     "enemies": [
       {
         "name": "幼年艾德",
@@ -1850,7 +1850,7 @@
     "id": "stage_60",
     "chapter": "魔法檢定所 第 27 季",
     "order": "60",
-    "title": "（複製）（複製）（複製）（複製）（複製）",
+    "title": "魔法檢定所 第 27 季 60",
     "enemies": [
       {
         "name": "幼年奧利文",
@@ -1890,5 +1890,131 @@
     ],
     "rowBreak": false,
     "sortOrder": 60
+  },
+  {
+    "id": "stage_8_1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "8 - 1",
+    "title": "忘卻遺跡 第 23 季 8 - 1",
+    "enemies": [
+      {
+        "name": "雜技師",
+        "note": "",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage_8_1_0_雜技師.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.6507675438596493,
+        "imageOffsetY": 0.47466398276698407
+      },
+      {
+        "name": "魔術師",
+        "note": "",
+        "elementId": "light",
+        "image": "assets/img/enemies/stage_8_1_1_魔術師.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.6304550129070616,
+        "imageOffsetY": 0.5477505179494548
+      },
+      {
+        "name": "操偶師",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_8_1_2_操偶師.webp",
+        "imageZoom": 1.13,
+        "imageOffsetX": 0.480469239063752,
+        "imageOffsetY": 0.5705345928809317
+      },
+      {
+        "name": "馴獸師",
+        "note": "",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage_8_1_3_馴獸師.webp",
+        "imageZoom": 1.14,
+        "imageOffsetX": 0.5326709522680246,
+        "imageOffsetY": 0.5018573942638579
+      }
+    ],
+    "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3j74074l0u\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第二十三季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>全SR可以過</p><p>這關必須帶<span style=\"color: rgb(79, 200, 176);\">補師</span>，要帶<span style=\"color: rgb(79, 200, 176);\">破防角</span>（例如SR啖）且<span style=\"color: rgb(226, 96, 79);\">不能放在第3位</span></p><p>敵人1%鎖血（不會退場），但鎖血後會追加觸發傷害，打人更痛</p><p><span style=\"color: rgb(79, 200, 176);\">建議平均削血</span>，在同一回合或差不多的回合打到1%</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、10、18",
+        "col2": "（攻擊手A被上負面狀態）補師防禦，攻擊手A開大"
+      },
+      {
+        "col1": "T4、12、20",
+        "col2": "全防"
+      },
+      {
+        "col1": "T6、14、22",
+        "col2": "首先瞄準&nbsp;<span style=\"color: rgb(226, 96, 79);\">紅色操偶師</span>，第3位防禦，其他人普攻，最後由破防角破防攻擊"
+      },
+      {
+        "col1": "T8、16、24",
+        "col2": "3人必殺（必殺可以消掉33%護盾）"
+      }
+    ],
+    "rowBreak": true,
+    "sortOrder": 8.1
+  },
+  {
+    "id": "stage_8_2_3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "8 - 2",
+    "title": "忘卻遺跡 第 23 季 8 - 2",
+    "enemies": [
+      {
+        "name": "驚嚇的猛獸",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_8_2_3_0_驚嚇的猛獸.webp",
+        "imageZoom": 1.15,
+        "imageOffsetX": 0.5514327155219184,
+        "imageOffsetY": 0.6054426107683408
+      },
+      {
+        "name": "兇暴的猛獸",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage_8_2_3_1_兇暴的猛獸.webp",
+        "imageZoom": 1.2,
+        "imageOffsetX": 0.48793450925632614,
+        "imageOffsetY": 0.5385761260986328
+      }
+    ],
+    "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3j74074l0u\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第二十三季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>全SR可以過</p><p>這關必須<span style=\"color: rgb(79, 200, 176);\">帶守護，守護要放在 1 / 2 / 3 位</span></p><p><span style=\"color: rgb(79, 200, 176);\">補師放 1 / 2 / 3 位</span>，否則難以應付 T2、T3 的群攻</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、8、14",
+        "col2": "1、2、3 攻擊，4、5 防禦 【紅獸嘲諷中】"
+      },
+      {
+        "col1": "T3、9、15",
+        "col2": "1、2、3 攻擊，坦角嘲諷，4、5 防禦 【綠獸嘲諷中】"
+      },
+      {
+        "col1": "T4、10、16",
+        "col2": "瞄準&nbsp;<span style=\"color: rgb(226, 96, 79);\">紅獸</span>，建議儘量普攻<br>（紅獸攻擊力+500%，綠獸攻擊力+250%，普攻可以對目標降攻100%）"
+      },
+      {
+        "col1": "T5、11、17",
+        "col2": "瞄準 <span style=\"color: rgb(79, 200, 176);\">綠獸</span>，全體普攻"
+      },
+      {
+        "col1": "T6、12、18",
+        "col2": "打破 <span style=\"color: rgb(226, 96, 79);\">紅獸</span> 的護盾"
+      },
+      {
+        "col1": "T7、13、19",
+        "col2": "打破 <span style=\"color: rgb(79, 200, 176);\">綠獸</span> 的護盾"
+      }
+    ],
+    "rowBreak": true,
+    "sortOrder": 8.2
   }
 ]
