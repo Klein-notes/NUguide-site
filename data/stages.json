@@ -1890,5 +1890,73 @@
     ],
     "rowBreak": false,
     "sortOrder": 60
+  },
+  {
+    "id": "stage_8_1",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "8 - 1",
+    "title": "帆潮小鎮之探（複製）",
+    "enemies": [
+      {
+        "name": "雜技師",
+        "note": "",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage_8_1_0_雜技師.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.6507675438596493,
+        "imageOffsetY": 0.47466398276698407
+      },
+      {
+        "name": "魔術師",
+        "note": "",
+        "elementId": "light",
+        "image": "assets/img/enemies/stage_8_1_1_魔術師.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.6304550129070616,
+        "imageOffsetY": 0.5477505179494548
+      },
+      {
+        "name": "操偶師",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_8_1_2_操偶師.webp",
+        "imageZoom": 1.13,
+        "imageOffsetX": 0.480469239063752,
+        "imageOffsetY": 0.5705345928809317
+      },
+      {
+        "name": "馴獸師",
+        "note": "",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage_8_1_3_馴獸師.webp",
+        "imageZoom": 1.14,
+        "imageOffsetX": 0.5326709522680246,
+        "imageOffsetY": 0.5018573942638579
+      }
+    ],
+    "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3j74074l0u\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第二十三季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>全SR可以過</p><p>這關必須帶<span style=\"color: rgb(79, 200, 176);\">補師</span>，要帶<span style=\"color: rgb(79, 200, 176);\">破防角</span>（例如SR啖）且<span style=\"color: rgb(226, 96, 79);\">不能放在第3位</span></p><p>敵人1%鎖血（不會退場），但鎖血後會追加觸發傷害，打人更痛</p><p><span style=\"color: rgb(79, 200, 176);\">建議平均削血</span>，在同一回合或差不多的回合打到1%</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、10、18",
+        "col2": "（攻擊手A被上負面狀態）補師防禦，攻擊手A開大"
+      },
+      {
+        "col1": "T4、12、20",
+        "col2": "全防"
+      },
+      {
+        "col1": "T6、14、22",
+        "col2": "首先瞄準&nbsp;<span style=\"color: rgb(226, 96, 79);\">紅色操偶師</span>，第3位防禦，其他人普攻，最後由破防角破防攻擊"
+      },
+      {
+        "col1": "T8、16、24",
+        "col2": "3人必殺（必殺可以消掉33%護盾）"
+      }
+    ],
+    "rowBreak": true,
+    "sortOrder": 8.1
   }
 ]
