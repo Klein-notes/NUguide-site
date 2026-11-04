@@ -2014,7 +2014,7 @@
         "col2": "打破 <span style=\"color: rgb(79, 200, 176);\">綠獸</span> 的護盾"
       }
     ],
-    "rowBreak": true,
+    "rowBreak": false,
     "sortOrder": 8.2
   }
 ]
