@@ -1958,5 +1958,63 @@
     ],
     "rowBreak": true,
     "sortOrder": 8.1
+  },
+  {
+    "id": "stage_8_2_3",
+    "chapter": "忘卻遺跡 第 23 季",
+    "order": "8 - 2",
+    "title": "帆潮小鎮之探（複製）（複製）",
+    "enemies": [
+      {
+        "name": "驚嚇的猛獸",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage_8_2_3_0_驚嚇的猛獸.webp",
+        "imageZoom": 1.15,
+        "imageOffsetX": 0.5514327155219184,
+        "imageOffsetY": 0.6054426107683408
+      },
+      {
+        "name": "兇暴的猛獸",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage_8_2_3_1_兇暴的猛獸.webp",
+        "imageZoom": 1.2,
+        "imageOffsetX": 0.48793450925632614,
+        "imageOffsetY": 0.5385761260986328
+      }
+    ],
+    "guide": "<p>本篇攻略內容，全文轉載自噗浪『小爛．日常』&nbsp;的攻略噗</p><p><a href=\"https://www.plurk.com/p/3j74074l0u\" rel=\"noopener noreferrer\" target=\"_blank\">忘卻遺跡 第二十三季 記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>全SR可以過</p><p>這關必須<span style=\"color: rgb(79, 200, 176);\">帶守護，守護要放在 1 / 2 / 3 位</span></p><p><span style=\"color: rgb(79, 200, 176);\">補師放 1 / 2 / 3 位</span>，否則難以應付 T2、T3 的群攻</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、8、14",
+        "col2": "1、2、3 攻擊，4、5 防禦 【紅獸嘲諷中】"
+      },
+      {
+        "col1": "T3、9、15",
+        "col2": "1、2、3 攻擊，坦角嘲諷，4、5 防禦 【綠獸嘲諷中】"
+      },
+      {
+        "col1": "T4、10、16",
+        "col2": "瞄準&nbsp;<span style=\"color: rgb(226, 96, 79);\">紅獸</span>，建議儘量普攻<br>（紅獸攻擊力+500%，綠獸攻擊力+250%，普攻可以對目標降攻100%）"
+      },
+      {
+        "col1": "T5、11、17",
+        "col2": "瞄準 <span style=\"color: rgb(79, 200, 176);\">綠獸</span>，全體普攻"
+      },
+      {
+        "col1": "T6、12、18",
+        "col2": "打破 <span style=\"color: rgb(226, 96, 79);\">紅獸</span> 的護盾"
+      },
+      {
+        "col1": "T7、13、19",
+        "col2": "打破 <span style=\"color: rgb(79, 200, 176);\">綠獸</span> 的護盾"
+      }
+    ],
+    "rowBreak": true,
+    "sortOrder": 8.2
   }
 ]
