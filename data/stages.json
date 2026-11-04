@@ -1792,5 +1792,58 @@
     ],
     "rowBreak": true,
     "sortOrder": 50
+  },
+  {
+    "id": "stage_55",
+    "chapter": "魔法檢定所 第 27 季",
+    "order": "55",
+    "title": "（複製）（複製）（複製）（複製）",
+    "enemies": [
+      {
+        "name": "幼年艾德",
+        "note": "無視屬性相剋",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage_55_0_幼年艾德.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.5387274256186689,
+        "imageOffsetY": 0.5428605962682653
+      }
+    ],
+    "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3jc7grk06j\" rel=\"noopener noreferrer\" target=\"_blank\">魔法檢定所 第二十七季 爬塔記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【組隊事項】</span></p><p><br></p><p><span style=\"color: rgb(79, 200, 176);\">坦角放第3位</span></p><p>本關要跟隨副團的行動而行動</p><p>T6、10 有時候要必殺，有時候要防禦</p><p>所以帶3CD角靈活性較高，也可以靠星布隨時讓第5位的必殺</p><p><br></p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "<span style=\"color: rgb(201, 164, 92);\">前期熱身──</span>",
+        "col2": "<br>"
+      },
+      {
+        "col1": "T1",
+        "col2": "&nbsp;1、2、4、5 防禦，3 攻擊"
+      },
+      {
+        "col1": "T2",
+        "col2": "全體必殺，打掉自己身上的護盾"
+      },
+      {
+        "col1": "T3",
+        "col2": "坦角嘲諷（幫補師擋單擊）"
+      },
+      {
+        "col1": "<span style=\"color: rgb(201, 164, 92);\">4CD機制──</span>",
+        "col2": "<br>"
+      },
+      {
+        "col1": "T6、10<br>",
+        "col2": "<span style=\"color: rgb(226, 96, 79);\">突刺&nbsp;</span>姿態：<span style=\"color: rgb(226, 96, 79);\">坦角嘲諷（幫補師擋單擊）</span><br><span style=\"color: rgb(79, 200, 176);\">進攻</span> 姿態：&nbsp;<span style=\"color: rgb(79, 200, 176);\">1、2、4、5 防禦，3 攻擊</span><br><span style=\"color: rgb(201, 164, 92);\">接招</span> 姿態：<span style=\"color: rgb(201, 164, 92);\">全體必殺，打掉自己身上的護盾</span>"
+      },
+      {
+        "col1": "T7、11",
+        "col2": "全防"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 55
   }
 ]
