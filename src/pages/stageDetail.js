@@ -22,13 +22,14 @@ async function init() {
     return;
   }
 
-  const [stages, stageTeams, cards, elements, rarities, classes] = await Promise.all([
+  const [stages, stageTeams, cards, elements, rarities, classes, siteSettings] = await Promise.all([
     loadJSON(DataSources.stages),
     loadJSON(DataSources.stageTeams),
     loadJSON(DataSources.cards),
     loadJSON(DataSources.elements),
     loadJSON(DataSources.rarities),
     loadJSON(DataSources.classes),
+    loadJSON(DataSources.siteSettings).catch(() => null),
   ]);
 
   const stage = stages.find((s) => s.id === stageId);
@@ -56,21 +57,47 @@ async function init() {
   // doubles as a quick way to jump straight to another stage without
   // going back to 關卡攻略's own button grid. Grouped by chapter via
   // <optgroup> so a long list still reads in sections.
-  const visibleStages = stages.filter((s) => !s.hidden);
-  const chapterOrder = [];
-  const byChapter = new Map();
-  for (const s of visibleStages) {
-    if (!byChapter.has(s.chapter)) { byChapter.set(s.chapter, []); chapterOrder.push(s.chapter); }
-    byChapter.get(s.chapter).push(s);
+  //
+  // 2026-11-04：只列當季（非隱藏、非過往）關卡，順序跟「關卡攻略」頁一樣
+  // ——章節先照後台「章節外觀 → 系列順序」排（沒排過的系列在後面），同
+  // 系列照資料先後，章節內照關卡編號小到大。正在看過往關卡時，額外在最
+  // 後放這一關所在章節的過往關卡（標「過往」），其他過往章節不放。
+  function groupStages(list) {
+    const order = [];
+    const map = new Map();
+    for (const s of list) {
+      if (!map.has(s.chapter)) { map.set(s.chapter, []); order.push(s.chapter); }
+      map.get(s.chapter).push(s);
+    }
+    for (const arr of map.values()) arr.sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+    return { order, map };
   }
-  for (const list of byChapter.values()) {
-    list.sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
-  }
-  const optionsHtml = chapterOrder.map((chapter) => `
+  const seriesOrder = (siteSettings && siteSettings.seriesOrder) || [];
+  const seriesRank = new Map(seriesOrder.map((s, i) => [s, i]));
+  const seriesOfChapter = (chapter) => {
+    const idx = (chapter || '').indexOf(' ');
+    return idx === -1 ? (chapter || '') : chapter.slice(0, idx);
+  };
+  const rankOf = (chapter) => (seriesRank.has(seriesOfChapter(chapter)) ? seriesRank.get(seriesOfChapter(chapter)) : Infinity);
+  const active = groupStages(stages.filter((s) => !s.hidden && !s.archived));
+  // 穩定排序：同系列的章節維持原本的先後
+  const chapterOrder = active.order.map((c, i) => ({ c, i }))
+    .sort((a, b) => (rankOf(a.c) - rankOf(b.c)) || (a.i - b.i))
+    .map((x) => x.c);
+  const optionHtml = (s) => `<option value="${s.id}" ${s.id === stage.id ? 'selected' : ''}>${s.order}</option>`;
+  let optionsHtml = chapterOrder.map((chapter) => `
     <optgroup label="${chapter}">
-      ${byChapter.get(chapter).map((s) => `<option value="${s.id}" ${s.id === stage.id ? 'selected' : ''}>${s.order}</option>`).join('')}
+      ${active.map.get(chapter).map(optionHtml).join('')}
     </optgroup>
   `).join('');
+  if (stage.archived) {
+    const pastOfChapter = groupStages(stages.filter((s) => !s.hidden && s.archived && s.chapter === stage.chapter));
+    optionsHtml += `
+    <optgroup label="過往・${stage.chapter}">
+      ${(pastOfChapter.map.get(stage.chapter) || []).map(optionHtml).join('')}
+    </optgroup>
+  `;
+  }
 
   document.getElementById('stage-header').innerHTML = `
     <div class="page-eyebrow">${stage.chapter}</div>

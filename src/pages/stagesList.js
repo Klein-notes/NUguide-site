@@ -209,8 +209,11 @@ function renderChapterGroup(group, titleColorOverride, seriesNoteHtml) {
 // 系列篩選 chips (2026-09-07) — reused identically on 我的隊伍總覽/隊伍
 // 筆記 (each file keeps its own small copy, same as hexToRgba/seriesOf
 // already are, rather than a shared cross-page module).
-function renderSeriesFilter(container, allSeries, selected, onSelect) {
-  if (allSeries.length < 2) return; // nothing meaningful to filter
+// 「過往」頁籤 (2026-11-04) — 只放過往關卡，固定排在最後；hasPast 為
+// false（目前沒有任何過往關卡）時不顯示。
+const PAST_TAB = '__past__';
+function renderSeriesFilter(container, allSeries, selected, onSelect, hasPast) {
+  if (allSeries.length + (hasPast ? 1 : 0) < 2) return; // nothing meaningful to filter
   const bar = document.createElement('div');
   bar.className = 'series-filter';
   const allBtn = document.createElement('button');
@@ -226,6 +229,14 @@ function renderSeriesFilter(container, allSeries, selected, onSelect) {
     btn.textContent = s;
     btn.addEventListener('click', () => onSelect(s));
     bar.appendChild(btn);
+  }
+  if (hasPast) {
+    const pastBtn = document.createElement('button');
+    pastBtn.type = 'button';
+    pastBtn.className = 'series-filter-btn' + (selected === PAST_TAB ? ' active' : '');
+    pastBtn.textContent = '過往';
+    pastBtn.addEventListener('click', () => onSelect(PAST_TAB));
+    bar.appendChild(pastBtn);
   }
   container.appendChild(bar);
 }
@@ -246,12 +257,21 @@ async function init() {
   }
 
   const filterHost = document.getElementById('stage-list-filter');
-  const allSeries = [...new Set(stages.filter((s) => !s.hidden).map((s) => seriesOf(s.chapter)))];
+  // 分類頁籤 (2026-11-04) — 只列目前還有當季（非隱藏、非過往）關卡的系列，
+  // 全部變成過往的系列自動消失；順序照後台「章節外觀 → 系列順序」，沒排過
+  // 的系列接在後面、維持原本出現的順序。過往關卡集中到最後的「過往」頁籤。
+  const seriesOrder = (siteSettings && siteSettings.seriesOrder) || [];
+  const allSeries = sortBySeriesOrder(
+    [...new Set(stages.filter((s) => !s.hidden && !s.archived).map((s) => seriesOf(s.chapter)))],
+    seriesOrder,
+    (series) => series
+  );
+  const hasPast = stages.some((s) => !s.hidden && s.archived);
 
   function render() {
     if (filterHost) {
       filterHost.innerHTML = '';
-      renderSeriesFilter(filterHost, allSeries, selectedSeries, (s) => { selectedSeries = s; render(); });
+      renderSeriesFilter(filterHost, allSeries, selectedSeries, (s) => { selectedSeries = s; render(); }, hasPast);
     }
 
     // Hidden stages don't show up here at all, same as before. Among the
@@ -259,16 +279,20 @@ async function init() {
     // further down the page (2026-09-06) instead of sitting mixed in with
     // their chapter's other stages — see stageAdmin.js's 過往關卡
     // checkbox. 系列篩選 (2026-09-07) narrows both groups the same way.
+    // 2026-11-04 起：「全部」和各系列只顯示當季，過往關卡只在「過往」頁籤。
+    const showPast = selectedSeries === PAST_TAB;
     const bySeries = (s) => !selectedSeries || seriesOf(s.chapter) === selectedSeries;
-    const activeStages = stages.filter((s) => !s.hidden && !s.archived && bySeries(s));
-    const pastStages = stages.filter((s) => !s.hidden && s.archived && bySeries(s));
+    const activeStages = showPast ? [] : stages.filter((s) => !s.hidden && !s.archived && bySeries(s));
+    const pastStages = showPast ? stages.filter((s) => !s.hidden && s.archived) : [];
 
     const root = document.getElementById('stage-list-root');
     root.innerHTML = '';
     root.className = 'so-wrap';
 
     if (activeStages.length === 0 && pastStages.length === 0) {
-      root.innerHTML = '<div class="empty-state"><h3>目前還沒有關卡資料</h3><p>請由站主於後台新增關卡。</p></div>';
+      root.innerHTML = (!showPast && hasPast)
+        ? '<div class="empty-state"><h3>目前沒有當季關卡</h3><p>可以到「過往」查看過往關卡。</p></div>'
+        : '<div class="empty-state"><h3>目前還沒有關卡資料</h3><p>請由站主於後台新增關卡。</p></div>';
       return;
     }
 
@@ -278,7 +302,6 @@ async function init() {
     // just falls back to .chapter-group's own plain default (box) /
     // applyButtonStyle's own {} default (buttons).
     const chapterStyles = (siteSettings && siteSettings.chapterStyles) || {};
-    const seriesOrder = (siteSettings && siteSettings.seriesOrder) || [];
     for (const group of sortBySeriesOrder(groupByChapter(activeStages), seriesOrder, (g) => g.chapter)) {
       const seriesNotes = (siteSettings && siteSettings.seriesNotes) || {};
       const groupEl = renderChapterGroup(group, null, seriesNotes[seriesOf(group.chapter)]);
@@ -298,12 +321,8 @@ async function init() {
       // matched DevTools evidence, inline style removes components.css
       // as a dependency entirely: inline style always wins regardless of
       // what is or isn't loaded/matching in any external stylesheet.
-      const divider = document.createElement('div');
-      divider.style.height = `${pastStyle.dividerWidth ?? 1}px`;
-      divider.style.backgroundColor = pastStyle.dividerColor || '#c9a45c';
-      divider.style.margin = '30px 0';
-      divider.style.maxWidth = '640px';
-      root.appendChild(divider);
+      // 「過往」頁籤裡過往區就在最上面，上面沒有當季區了，所以不再畫
+      // 分隔線（分隔線是用來隔開當季區跟過往區的）。
 
       const heading = document.createElement('div');
       heading.className = 'stage-past-heading';
