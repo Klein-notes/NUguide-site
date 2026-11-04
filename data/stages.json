@@ -227,7 +227,7 @@
     ],
     "rowBreak": false,
     "sortOrder": 40,
-    "archived": false
+    "archived": true
   },
   {
     "id": "stage_7_1_2",
@@ -286,7 +286,7 @@
     "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3ira0vwdik\" rel=\"noopener noreferrer\" target=\"_blank\">魔法檢定所 第二十五季 爬塔記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【組隊事項】</span></p><ul><li>這關必須帶<span style=\"color: rgb(79, 200, 176);\">輔助、補師、坦角</span></li><li>第二階段環，減CD機制無效化（魔伊、星布無法減CD）</li><li>推薦帶較高<span style=\"color: rgb(79, 200, 176);\">緩補</span>能力的補師，以及可以<span style=\"color: rgb(79, 200, 176);\">少回合打破護盾</span>的角色（檢定60的護盾是237,648）</li></ul><hr class=\"ql-divider\"><p>環弟身上有個「忌妒與憤怒」的機制</p><p>如果環沒有特別說話／動作，「忌妒與憤怒」會疊加1層，疊到4層環弟焦躁了，我方全體會出現狀態：</p><p>．攻擊時，攻擊力減少10%（可疊加）</p><p>．防禦時，受到治療量減少30%（可疊加）</p><p>然後「忌妒與憤怒」歸零從新倒數</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(226, 96, 79);\">補充，如果帶純毒隊（例如火狐）</span></p><p><span style=\"color: rgb(226, 96, 79);\">即使把【動搖】的護盾和血條都毒掉了，我方不直接攻擊掉1%是不會中斷【動搖】階段的</span></p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "<span style=\"color: rgb(201, 164, 92);\">第一階段：入夢儀</span>",
@@ -338,8 +338,8 @@
   },
   {
     "id": "stage_50_2",
-    "chapter": "魔法檢定所 第 26 季",
-    "order": "50",
+    "chapter": "魔法檢定所 第 27 季",
+    "order": "35",
     "title": "",
     "enemies": [
       {
@@ -371,7 +371,7 @@
       }
     ],
     "rowBreak": true,
-    "sortOrder": 50
+    "sortOrder": 35
   },
   {
     "id": "stage_7_2",
@@ -488,8 +488,8 @@
   },
   {
     "id": "stage_55_2",
-    "chapter": "魔法檢定所 第 26 季",
-    "order": "55",
+    "chapter": "魔法檢定所 第 27 季",
+    "order": "40",
     "title": "（複製）",
     "enemies": [
       {
@@ -521,12 +521,12 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 55
+    "sortOrder": 40
   },
   {
     "id": "stage_55_3",
-    "chapter": "魔法檢定所 第 26 季",
-    "order": "60",
+    "chapter": "魔法檢定所 第 27 季",
+    "order": "45",
     "title": "（複製）（複製）",
     "enemies": [
       {
@@ -566,7 +566,7 @@
       }
     ],
     "rowBreak": false,
-    "sortOrder": 60
+    "sortOrder": 45
   },
   {
     "id": "stage__01",
@@ -744,7 +744,7 @@
     "guide": "<p>本篇攻略內容全文轉載、整理自噗浪『小爛．日常』&nbsp;的攻略噗！</p><p><a href=\"https://www.plurk.com/p/3ira0vwdik\" rel=\"noopener noreferrer\" target=\"_blank\">魔法檢定所 第二十五季 爬塔記錄</a></p><p>🌹感謝小爛授權轉載</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">【概要】</span></p><p>開局機制：</p><p>．星布受到持續傷害減少60%</p><p><br></p><p>星布有【星隕強襲】（攻擊強化）和【星隕守護】（防禦強化）兩種形態</p><p>【星隕守護】：星布受到傷害減少70%</p><p>【星隕強襲】：星布造成傷害增加50%</p><p><br></p><p>平常星布是【星隕強襲】，一旦我方有人必殺就會立即切換成【星隕守護】狀態</p><p>所以這關對必殺隊不利，毒隊必須帶蝶奧才能有效抵消持續傷害減少buff</p><p>推薦帶高易傷角，普攻隊或觸發隊</p><p><br></p><p>另外這關有個【星隕胎動】的機制，每回合加1層，疊到4層就會引爆，只要有一個人開必殺就會清零</p><p>只要不要帶純大炮隊或瘋狂憋大招，這個機制基本可以無視</p>",
     "recommendedTags": [],
     "hidden": false,
-    "archived": false,
+    "archived": true,
     "roundTable": [
       {
         "col1": "T6、11、16",
