@@ -138,7 +138,13 @@ async function init() {
     const filterHost = document.getElementById('overview-filter');
     if (filterHost) {
       filterHost.innerHTML = '';
-      const allSeries = [...new Set(stages.filter((s) => !s.hidden).map((s) => seriesOf(s.chapter)))];
+      // 只列還有當季關卡的系列（過往的在隊伍筆記），順序照「章節外觀 →
+      // 系列順序」，跟關卡攻略的頁籤一致 (2026-11-08)
+      const allSeries = sortBySeriesOrder(
+        [...new Set(stages.filter((s) => !s.hidden && !s.archived).map((s) => seriesOf(s.chapter)))],
+        (siteSettings && siteSettings.seriesOrder) || [],
+        (series) => series
+      );
       renderSeriesFilter(filterHost, allSeries, selectedSeries, (s) => { selectedSeries = s; refresh(); });
     }
 
