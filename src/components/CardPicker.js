@@ -9,6 +9,42 @@ import { loadJSON, DataSources, toMap } from '../core/dataLoader.js';
 import { filterCards } from '../modules/cardFilter.js';
 import { sortCardsByOrder } from '../modules/cardSort.js';
 
+// 常用卡片／我的最愛置頂 (後台 2026-11-05、前台 2026-11-08)：favoriteIds 裡的卡
+// 排在卡片區最上面（照卡片原本的順序，一樣跟著篩選），不放標題，下面一條
+// 「其他卡片」分隔線。前台傳玩家的常用卡片，後台「版主的隊伍」傳我的最愛；
+// 沒傳或空的＝跟以前完全一樣。
+function renderPinnedGrid(favHost, gridHost, list, favoriteIds, cardMaps, gridOpts) {
+  if (!favoriteIds || !favoriteIds.size) {
+    favHost.hidden = true;
+    favHost.innerHTML = '';
+    renderCardGrid(gridHost, list, cardMaps, gridOpts);
+    return;
+  }
+  const favs = list.filter((c) => favoriteIds.has(c.id));
+  const rest = list.filter((c) => !favoriteIds.has(c.id));
+  favHost.innerHTML = '';
+  favHost.hidden = favs.length === 0;
+  if (favs.length) {
+    const favGrid = document.createElement('div');
+    renderCardGrid(favGrid, favs, cardMaps, gridOpts);
+    favHost.append(favGrid);
+    if (rest.length) {
+      const divider = document.createElement('div');
+      divider.className = 'fav-section-divider';
+      divider.textContent = '其他卡片';
+      favHost.appendChild(divider);
+    }
+  }
+  if (favs.length && !rest.length) gridHost.innerHTML = '';
+  else renderCardGrid(gridHost, rest, cardMaps, gridOpts);
+}
+function makeFavHost() {
+  const favHost = document.createElement('div');
+  favHost.className = 'fav-section';
+  favHost.hidden = true;
+  return favHost;
+}
+
 // 同章鎖卡 (2026-09-27)：忘卻遺跡同一章其他關卡的第 1 組隊伍用過的卡。
 //   lockedCards：Map，cardId → 關卡編號（例如「7-1」）——這些卡不放進卡池。
 //   usedGroups：同章其他每一關的第 1 組，[{ label, members:[5 格], origMembers? }]
@@ -115,6 +151,7 @@ export function openCardPicker(opts = {}) {
   const excludeIds = new Set(opts.excludeIds || []);
   const lockedCards = opts.lockedCards || null;
   const usedGroups = opts.usedGroups || null;
+  const favoriteIds = new Set(opts.favoriteIds || []);
   return new Promise(async (resolve) => {
     const [cardsRaw, rarities, classes, elements, characters, tags] = await Promise.all([
       loadJSON(DataSources.cards),
@@ -145,7 +182,8 @@ export function openCardPicker(opts = {}) {
       gridCol.appendChild(usedStrip);
       if (window.ResizeObserver) new ResizeObserver(() => sizeUsedStrip(usedStrip)).observe(gridCol);
     }
-    gridCol.appendChild(gridHost);
+    const favHost = makeFavHost();
+    gridCol.append(favHost, gridHost);
     layout.append(filterHost, gridCol);
     // 觸控裝置的收合式篩選列 (FilterBar.js)，固定在視窗內容最上方；
     // 電腦上不顯示
@@ -179,11 +217,11 @@ export function openCardPicker(opts = {}) {
 
     const panel = await mountFilterPanel(filterHost, (state) => {
       const filtered = filterCards(cards, state, panel.schema, panel.cdRanges);
-      renderCardGrid(gridHost, withoutLocked(filtered, lockedCards), cardMaps, gridOpts);
+      renderPinnedGrid(favHost, gridHost, withoutLocked(filtered, lockedCards), favoriteIds, cardMaps, gridOpts);
       bar.update(panel);
     });
 
-    renderCardGrid(gridHost, withoutLocked(cards, lockedCards), cardMaps, gridOpts);
+    renderPinnedGrid(favHost, gridHost, withoutLocked(cards, lockedCards), favoriteIds, cardMaps, gridOpts);
     bar.update(panel);
   });
 }
@@ -224,6 +262,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
   // 後台不傳 editableGroups，行為跟以前完全一樣。
   const editable = !!(opts.editableGroups && usedGroups);
   const fixedLocked = opts.lockedCards || null;
+  const favoriteIds = new Set(opts.favoriteIds || []);
   function currentLocked() {
     if (!editable) return fixedLocked;
     const m = new Map();
@@ -286,7 +325,8 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     filterHost.className = 'fg-sidebar';
     const gridCol = document.createElement('div');
     const gridHost = document.createElement('div');
-    gridCol.appendChild(gridHost);
+    const favHost = makeFavHost();
+    gridCol.append(favHost, gridHost);
     layout.append(filterHost, gridCol);
     layout.classList.add('tp-layout');
     body.appendChild(layout);
@@ -296,7 +336,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
     bar.el.classList.add('fbar--in-row');
 
     const { close, box } = openModal({
-      title: '選擇隊伍（點卡片依序加入，關閉視窗即完成）',
+      title: '編輯整隊（點卡片依序加入，關閉視窗即完成）',
       body,
       wide: true,
       onClose: () => resolve(members),
@@ -415,7 +455,7 @@ export function openTeamPicker(initialMembers = [], opts = {}) {
 
     let lastFiltered = cards;
     function renderGrid() {
-      renderCardGrid(gridHost, withoutLocked(lastFiltered, currentLocked()), cardMaps, {
+      renderPinnedGrid(favHost, gridHost, withoutLocked(lastFiltered, currentLocked()), favoriteIds, cardMaps, {
         onCardClick: pickCard,
         onInfoClick: (card) => showCardInfoModal(card, infoMaps),
         isDisabled: (card) => members.includes(card.id),

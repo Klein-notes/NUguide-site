@@ -1,6 +1,7 @@
 // src/modules/teamBackup.js
 import { exportTeams, importTeams } from '../core/store.js';
 import { showToast } from '../core/toast.js';
+import { openFavoriteCardsOverflow } from '../components/FavoriteCardsImportDialog.js';
 
 export async function downloadTeamsBackup(stageId = null) {
   const payload = await exportTeams(stageId);
@@ -32,8 +33,9 @@ export function promptImportTeamsBackup(mode = 'merge') {
       try {
         const text = await file.text();
         const payload = JSON.parse(text);
-        await importTeams(payload, mode);
+        await importTeams(payload, mode, { resolveFavoriteCards: openFavoriteCardsOverflow });
         showToast('隊伍資料已匯入');
+        window.dispatchEvent(new Event('nuguide:favorites-changed')); // 常用卡片頁籤重畫
         resolve(true);
       } catch (err) {
         showToast(err.message || '匯入失敗，檔案格式可能不正確。', { type: 'error' });

@@ -7,10 +7,14 @@ import { renderTagList } from './TagPicker.js';
  * Builds a filter panel bound to filter-schema.json.
  * @param {HTMLElement} container
  * @param {(state: Object) => void} onChange - called with the new filter state whenever it changes
+ * @param {Object} [opts]
+ * @param {string[]} [opts.fields] - 只顯示這幾類篩選（filter-schema.json 的 field）。
+ *   不傳＝全部顯示，跟以前一樣 (2026-11-05，後台「我的最愛」選取卡片用)。
  * @returns {Promise<{ getState: () => Object, reset: () => void, schema: Array, cdRanges: Array }>}
  */
-export async function mountFilterPanel(container, onChange) {
-  const schema = await loadJSON('data/filter-schema.json');
+export async function mountFilterPanel(container, onChange, opts = {}) {
+  const fullSchema = await loadJSON('data/filter-schema.json');
+  const schema = opts.fields ? fullSchema.filter((g) => opts.fields.includes(g.field)) : fullSchema;
   const sourcesCache = {};
   for (const group of schema) {
     // enemyOnly entries (e.g. 屬性 的「無屬性」— only meaningful when

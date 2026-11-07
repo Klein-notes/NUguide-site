@@ -17,6 +17,11 @@ export function confirmExportDialog() {
     const msg = document.createElement('p');
     msg.textContent = '確定匯出？';
     body.appendChild(msg);
+    // 常用卡片也在備份裡 (2026-11-08)
+    const note = document.createElement('p');
+    note.className = 'backup-modal-note';
+    note.textContent = '備份檔會包含所有隊伍和常用卡片。';
+    body.appendChild(note);
 
     const footer = document.createElement('div');
     footer.className = 'modal-footer';
@@ -32,11 +37,12 @@ export function confirmExportDialog() {
     body.appendChild(footer);
 
     let settled = false;
-    const { close } = openModal({
+    const { close, box } = openModal({
       title: '匯出隊伍紀錄',
       body,
       onClose: () => { if (!settled) resolve(false); },
     });
+    box.classList.add('modal-backup'); // 窄視窗，電腦跟手機一樣寬
     cancelBtn.addEventListener('click', () => { settled = true; close(); resolve(false); });
     confirmBtn.addEventListener('click', () => { settled = true; close(); resolve(true); });
   });
@@ -80,6 +86,15 @@ export function confirmImportModeDialog() {
     replaceNote.textContent = '（如果A、B兩邊瀏覽器記錄的關卡不一樣時，在A瀏覽器中，匯入B瀏覽器的檔案，則A的紀錄會被清空，只剩下Ｂ瀏覽器的紀錄。）';
     body.appendChild(replaceNote);
 
+    // 常用卡片不管選哪一種都只合併 (2026-11-08)
+    const favTitle = document.createElement('h3');
+    favTitle.className = 'backup-modal-title';
+    favTitle.textContent = '【常用卡片】';
+    body.appendChild(favTitle);
+    const favDesc = document.createElement('p');
+    favDesc.textContent = '不管選哪一種，都只會補上這個瀏覽器還沒有的卡，不會刪掉原本的；合併後超過 20 張時，會讓你選要刪掉哪幾張。';
+    body.appendChild(favDesc);
+
     const footer = document.createElement('div');
     footer.className = 'modal-footer';
     const cancelBtn = document.createElement('button');
@@ -98,11 +113,12 @@ export function confirmImportModeDialog() {
     body.appendChild(footer);
 
     let settled = false;
-    const { close } = openModal({
+    const { close, box } = openModal({
       title: '匯入備份',
       body,
       onClose: () => { if (!settled) resolve(null); },
     });
+    box.classList.add('modal-backup'); // 窄視窗，電腦跟手機一樣寬
     cancelBtn.addEventListener('click', () => { settled = true; close(); resolve(null); });
     replaceBtn.addEventListener('click', () => { settled = true; close(); resolve('replace'); });
     mergeBtn.addEventListener('click', () => { settled = true; close(); resolve('merge'); });

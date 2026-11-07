@@ -102,6 +102,8 @@ export async function exportTeams(stageId = null) {
     exportedAt: new Date().toISOString(),
     scope: stageId || 'all',
     data: payload,
+    // 常用卡片 (2026-11-08)：只有整份備份才帶
+    ...(stageId ? {} : { favoriteCards: readFavoriteCards() }),
   };
 }
 
@@ -110,11 +112,31 @@ export async function exportTeams(stageId = null) {
  * mode: 'merge' (add/overwrite matching localIds, keep the rest) or
  *       'replace' (wipe target scope then write the imported data).
  */
-export async function importTeams(payload, mode = 'merge') {
+export async function importTeams(payload, mode = 'merge', { resolveFavoriteCards } = {}) {
   if (!payload || typeof payload !== 'object' || !payload.data) {
     throw new Error('檔案格式不正確，無法匯入。');
   }
-  const all = readAll();
+  // 常用卡片 (2026-11-08)：不管「加入」或「覆蓋」都只合併——本瀏覽器原本的
+  // 在前，檔案裡本瀏覽器沒有的接在後面，不會刪掉也不會清空。合併後超過上限
+  // 就先問玩家（resolveFavoriteCards 回傳留下的 id；回傳 null＝「不匯入最愛」，
+  // 常用卡片維持原本的）。舊備份檔沒有 favoriteCards＝常用卡片不動。
+  // 先問完才開始寫入，視窗開著時關掉分頁，什麼都不會寫進去。
+  let nextFavorites = null;
+  if (Array.isArray(payload.favoriteCards)) {
+    const local = readFavoriteCards();
+    const localSet = new Set(local);
+    const fileIds = [...new Set(payload.favoriteCards.filter((id) => typeof id === 'string'))];
+    const merged = [...local, ...fileIds.filter((id) => !localSet.has(id))];
+    if (merged.length > MAX_FAVORITE_CARDS && resolveFavoriteCards) {
+      const kept = await resolveFavoriteCards({ localIds: local, fileIds, max: MAX_FAVORITE_CARDS });
+      nextFavorites = kept ? kept.slice(0, MAX_FAVORITE_CARDS) : null;
+    } else {
+      nextFavorites = merged.slice(0, MAX_FAVORITE_CARDS);
+    }
+  }
+  // 覆蓋檔案 (2026-11-08)：照匯入視窗的說明，原本的隊伍紀錄全部清空，
+  // 只留下檔案裡的內容（以前只換掉檔案裡有的關卡，其他關卡會留著）
+  const all = mode === 'replace' ? {} : readAll();
   for (const [stageId, teams] of Object.entries(payload.data)) {
     if (!Array.isArray(teams)) continue;
     if (mode === 'replace') {
@@ -132,6 +154,38 @@ export async function importTeams(payload, mode = 'merge') {
   }
   const ok = writeAll(all);
   if (!ok) throw new Error('匯入失敗，請確認瀏覽器儲存空間是否已滿。');
+  if (nextFavorites) writeFavoriteCards(nextFavorites);
+  return true;
+}
+
+// ---- 常用卡片 (2026-11-08) ----
+// 玩家自己挑的卡（卡片 id，照挑選時的卡片順序），「編輯整隊」「選擇卡片」
+// 視窗會把這些卡排在最上面。跟隊伍一樣只存在這個瀏覽器。
+const FAV_KEY = 'favoriteCards';
+export const MAX_FAVORITE_CARDS = 20;
+
+function readFavoriteCards() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(FAV_KEY));
+    return Array.isArray(raw) ? raw.filter((id) => typeof id === 'string') : [];
+  } catch {
+    return [];
+  }
+}
+function writeFavoriteCards(ids) {
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify(ids.slice(0, MAX_FAVORITE_CARDS)));
+    return true;
+  } catch (err) {
+    console.error('寫入常用卡片失敗（可能是瀏覽器儲存空間已滿）。', err);
+    return false;
+  }
+}
+export async function getFavoriteCards() {
+  return readFavoriteCards();
+}
+export async function setFavoriteCards(ids) {
+  if (!writeFavoriteCards(ids)) throw new Error('儲存失敗，請確認瀏覽器儲存空間是否已滿。');
   return true;
 }
 

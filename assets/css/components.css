@@ -1387,6 +1387,8 @@ hr.ql-divider {
 
 .team-slots { display: flex; gap: 12px; margin: 6px 0 4px; flex-wrap: wrap; }
 .team-slot-btn { width: 88px; }
+/* 「編輯整隊」按鈕跟卡片一樣寬 (2026-11-08) */
+.team-tool-btn { width: 88px; padding-left: 0; padding-right: 0; }
 .team-slot-move-row { display: flex; gap: 4px; margin-top: 4px; }
 .team-slot-move-row .btn { flex: 1; padding: 4px 0; font-size: 0.9rem; line-height: 1; }
 .team-slot-move-row .btn:disabled { opacity: 0.3; cursor: default; }
@@ -1660,3 +1662,94 @@ hr.ql-divider {
 @media (pointer: coarse) and (max-width: 480px) {
   .fg-page .card-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
 }
+
+/* =========================================================
+   常用卡片匯入超過上限 (2026-11-08, FavoriteCardsImportDialog.js)
+   電腦：視窗固定 716×600；卡片一排 6 張（104px、間距 10px）。捲軸放在右側
+   內距的位置（右內距 10px＋捲軸 10px＝左內距 20px），出現捲軸時卡片欄位、
+   視窗大小都不變。手機：視窗照螢幕大小，一排 4 張。
+   ========================================================= */
+.modal-fci { width: 716px; max-width: calc(100vw - 40px); height: 600px; }
+.modal-fci .modal-header { padding: 12px 20px; }
+.modal-fci .modal-close { display: none; }
+.modal-fci .modal-body { padding: 0; flex: 1; min-height: 0; overflow: hidden; display: flex; }
+.fci-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.fci-head { padding: 12px 20px 10px; }
+.fci-status { margin: 0 0 4px; font-weight: 700; color: var(--accent-gold); }
+.fci-status.is-over { color: var(--danger); }
+.fci-legend { margin: 0; font-size: 0.8rem; display: flex; gap: 16px; flex-wrap: wrap; }
+.fci-legend-local { color: #4fc3f7; }
+.fci-legend-file { color: #ffb74d; }
+.fci-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.fci-legend span::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: currentColor; flex: none; }
+/* 張數：電腦版在標題列最右邊，手機版在標題下面 */
+.fci-status--header { margin: 0 0 0 auto; }
+.fci-status--body { display: none; }
+.fci-scroll { flex: 1; min-height: 0; overflow-y: auto; scrollbar-gutter: stable; padding: 6px 10px 14px 20px; }
+.fci-grid { display: grid; grid-template-columns: repeat(6, 104px); gap: 10px; }
+.fci-footer { padding: 12px 20px; }
+.fci-card { width: 100%; }
+.fci-tint { position: absolute; inset: 0; border-radius: calc(var(--radius-md) - 2px); pointer-events: none; }
+.fci-card.is-local .fci-tint { background: rgba(79, 195, 247, 0.4); }
+.fci-card.is-file .fci-tint { background: rgba(255, 183, 77, 0.4); }
+.fci-card.is-removed .fci-tint { box-shadow: inset 0 0 0 200px rgba(8, 7, 13, 0.68); }
+.fci-del-mark { position: absolute; top: -7px; right: -7px; width: 24px; height: 24px; display: none; pointer-events: none; z-index: 2; }
+.fci-card.is-removed .fci-del-mark { display: block; }
+.fci-del-mark svg { width: 100%; height: 100%; display: block; }
+.fci-del-mark circle { fill: var(--danger); stroke: var(--bg-elevated); stroke-width: 1.5; }
+.fci-del-mark path { stroke: #fff; stroke-width: 2.4; stroke-linecap: round; fill: none; }
+@media (max-width: 480px) {
+  .modal-fci { width: 100%; height: calc(100dvh - 80px); }
+  .fci-head { padding: 10px 14px 8px; }
+  .fci-status--header { display: none; }
+  .fci-status--body { display: block; }
+  .modal-fci .modal-header { padding: 10px 14px; }
+  .fci-scroll { padding: 6px 4px 12px 14px; }
+  .fci-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .fci-footer { padding: 10px 14px; }
+}
+
+/* =========================================================
+   常用卡片 (2026-11-08, favoriteCardsTab.js / CardPicker.js)
+   ========================================================= */
+/* 「我的隊伍｜常用卡片」：連在一起的選單列，選到的那格換底色；
+   每格固定寬度，切換時字變粗也不會跑位 */
+.mt-view-tabs {
+  display: inline-flex; margin-bottom: 16px;
+  border: 1px solid var(--border); border-radius: 999px; overflow: hidden;
+}
+.mt-view-tab {
+  width: 104px; padding: 7px 0; border: none; background: none;
+  color: var(--text-dim); font-size: 0.85rem; cursor: pointer;
+}
+.mt-view-tab + .mt-view-tab { border-left: 1px solid var(--border); }
+.mt-view-tab:hover { color: var(--text); }
+.mt-view-tab.active { background: var(--accent-gold); color: #201e2f; font-weight: 700; }
+/* 常用卡片頁的卡片：電腦一排 5 張（每張 120px），手機照原本的密度 */
+.fc-list .card-grid { grid-template-columns: repeat(5, 120px); gap: 12px; }
+@media (max-width: 480px) {
+  .fc-list .card-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
+}
+.fc-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.fc-hint { margin: 0; color: var(--text-dim); font-size: 0.9rem; }
+.fc-empty {
+  border: 1px dashed var(--border-soft); border-radius: var(--radius-md);
+  padding: 48px 20px; text-align: center; color: var(--text-faint);
+}
+/* 選取卡片視窗：高度固定在視窗上限、預留捲軸；右上角「已選 N / 20」＋取消／確定 */
+.modal-box.fc-picker-box { height: 88vh; }
+.fc-picker-box .modal-body { scrollbar-gutter: stable; }
+.fc-picker-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 6px; }
+.fc-picker-actions > * { white-space: nowrap; }
+.fc-picker-count { font-size: 0.8rem; color: var(--text-dim); margin-right: 4px; }
+.fc-picker-count b { color: var(--accent-gold); }
+/* 「編輯整隊」「選擇卡片」最上面的常用卡片區＋「其他卡片」分隔線 */
+.fav-section { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.fav-section[hidden] { display: none; }
+.fav-section-divider {
+  display: flex; align-items: center; gap: 10px; margin-top: 4px;
+  color: var(--text-faint); font-size: 0.78rem;
+}
+.fav-section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-soft); }
+/* 匯出／匯入備份視窗：電腦也用跟手機一樣的窄寬度 (2026-11-08) */
+.modal-box.modal-backup { max-width: 350px; }

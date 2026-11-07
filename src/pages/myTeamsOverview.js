@@ -15,6 +15,7 @@ import { confirmDialog } from '../components/Modal.js';
 import { showToast } from '../core/toast.js';
 import { downloadTeamsBackup, promptImportTeamsBackup } from '../modules/teamBackup.js';
 import { confirmExportDialog, confirmImportModeDialog } from '../components/backupModals.js';
+import { mountFavoriteCardsTab } from '../modules/favoriteCardsTab.js';
 
 // Same conversion as stagesList.js's own hexToRgba — kept as a small
 // local copy rather than a shared import, since this is the only place
@@ -97,6 +98,7 @@ let selectedSeries = null;
 async function init() {
   mountNavbar('my-teams.html');
   mountFooter();
+  mountFavoriteCardsTab(); // 「我的隊伍｜常用卡片」頁籤 (2026-11-08)
 
   const [stages, cards, rarities, classes, elements, siteSettings] = await Promise.all([
     loadJSON(DataSources.stages),

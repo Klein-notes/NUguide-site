@@ -3,7 +3,7 @@ import { openModal, confirmDialog } from './Modal.js';
 import { openCardPicker, openTeamPicker } from './CardPicker.js';
 import { renderCardButton } from './CardButton.js';
 import { loadJSON, DataSources } from '../core/dataLoader.js';
-import { saveTeam, getTeams, getAllTeamsGrouped, TEAM_MEMBER_SLOTS } from '../core/store.js';
+import { saveTeam, getTeams, getAllTeamsGrouped, getFavoriteCards, TEAM_MEMBER_SLOTS } from '../core/store.js';
 import { computeChapterLock } from '../modules/chapterLock.js';
 import { showToast } from '../core/toast.js';
 import { sanitizeNoteHtml } from '../core/sanitizeNote.js';
@@ -22,19 +22,20 @@ const NOTE_COLOR_SWATCHES = ['#c9a45c', '#4fc8b0', '#e2604f'];
  */
 export function openTeamEditor(stageId, existingTeam = null) {
   return new Promise(async (resolve) => {
-    const [cards, rarities, elements, classes, stages, grouped] = await Promise.all([
+    const [cards, rarities, elements, classes, stages, grouped, favoriteIds] = await Promise.all([
       loadJSON(DataSources.cards),
       loadJSON(DataSources.rarities),
       loadJSON(DataSources.elements),
       loadJSON(DataSources.classes),
       loadJSON(DataSources.stages),
       getAllTeamsGrouped(),
+      getFavoriteCards(), // 常用卡片：選卡視窗排最上面
     ]);
     // 同章鎖卡 (2026-09-27, 見 chapterLock.js)：同一章其他關卡第 1 組用過
     // 的卡。選卡時不放進卡池、另外縮小顯示；這一隊裡如果已經有這種卡
     // （功能上線前記的），那一格標上關卡編號提醒，不自動拿掉。
     //
-    // 可在「選擇隊伍」裡直接改同章其他關卡的第 1 組 (2026-09-27)：改的是
+    // 可在「編輯整隊」裡直接改同章其他關卡的第 1 組 (2026-09-27)：改的是
     // 這份草稿（draftGroups），按「儲存」時才跟這一組一起寫進去，「取消」
     // 就全部不算。鎖卡清單每次都從草稿重算，從別關拿下來的卡馬上能選。
     const { groups: usedGroups } = computeChapterLock(stageId, stages, grouped);
@@ -155,11 +156,12 @@ export function openTeamEditor(stageId, existingTeam = null) {
     // 開視窗；下面單獨重選/左右移動某一格的功能還在，兩種都可以用。
     const bulkPickBtn = document.createElement('button');
     bulkPickBtn.type = 'button';
-    bulkPickBtn.className = 'btn btn-sm btn-secondary';
+    // 按鈕寬度跟下面的卡片一樣（88px，見 components.css .team-tool-btn）
+    bulkPickBtn.className = 'btn btn-sm btn-secondary team-tool-btn';
     bulkPickBtn.style.marginBottom = '8px';
-    bulkPickBtn.textContent = '選擇隊伍';
+    bulkPickBtn.textContent = '編輯整隊';
     bulkPickBtn.addEventListener('click', async () => {
-      const result = await openTeamPicker(members, { usedGroups: draftGroups, editableGroups: true });
+      const result = await openTeamPicker(members, { usedGroups: draftGroups, editableGroups: true, favoriteIds });
       members = result;
       renderSlots();
     });
@@ -189,7 +191,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
             thumbnail: true,
             tag: lockedNow().get(card.id) || null,
             onClick: async () => {
-              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index), lockedCards: lockedNow(), usedGroups: draftGroups });
+              const chosen = await openCardPicker({ excludeIds: members.filter((id, i) => id && i !== index), lockedCards: lockedNow(), usedGroups: draftGroups, favoriteIds });
               if (chosen) {
                 members[index] = chosen.id;
                 renderSlots();
@@ -239,7 +241,7 @@ export function openTeamEditor(stageId, existingTeam = null) {
           btn.setAttribute('aria-label', `選擇第 ${index + 1} 位隊員`);
           btn.textContent = '+';
           btn.addEventListener('click', async () => {
-            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean), lockedCards: lockedNow(), usedGroups: draftGroups });
+            const chosen = await openCardPicker({ excludeIds: members.filter(Boolean), lockedCards: lockedNow(), usedGroups: draftGroups, favoriteIds });
             if (chosen) {
               members[index] = chosen.id;
               renderSlots();
