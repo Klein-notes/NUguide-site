@@ -118,7 +118,7 @@ export function confirmImportModeDialog() {
       body,
       onClose: () => { if (!settled) resolve(null); },
     });
-    box.classList.add('modal-backup'); // 窄視窗，電腦跟手機一樣寬
+    box.classList.add('modal-backup-import'); // 電腦 500px 寬；按鈕不換行
     cancelBtn.addEventListener('click', () => { settled = true; close(); resolve(null); });
     replaceBtn.addEventListener('click', () => { settled = true; close(); resolve('replace'); });
     mergeBtn.addEventListener('click', () => { settled = true; close(); resolve('merge'); });
