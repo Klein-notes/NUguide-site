@@ -114,6 +114,18 @@ function applyButtonStyle(el, style) {
 // Groups a flat stage list by chapter (preserving first-appearance
 // order), sorted by 排序編號 within each — shared by both the main
 // section and 過往關卡.
+// 過往活動 (2026-11-08)：章節名稱有「高難」就算活動（例如「虛擬性悖論 高難」）
+function isEventChapter(chapter) {
+  return (chapter || '').includes('高難');
+}
+// 照後台排的順序；還沒排過的章節放最上面（維持原本出現的順序）
+function orderPastEvents(groups, savedOrder) {
+  const rank = new Map(savedOrder.map((c, i) => [c, i]));
+  const fresh = groups.filter((g) => !rank.has(g.chapter));
+  const known = groups.filter((g) => rank.has(g.chapter)).sort((a, b) => rank.get(a.chapter) - rank.get(b.chapter));
+  return [...fresh, ...known];
+}
+
 function groupByChapter(stageList) {
   const chapters = [];
   const chapterIndex = new Map();
@@ -212,6 +224,11 @@ function renderChapterGroup(group, titleColorOverride, seriesNoteHtml) {
 // 「過往」頁籤 (2026-11-04) — 只放過往關卡，固定排在最後；hasPast 為
 // false（目前沒有任何過往關卡）時不顯示。
 const PAST_TAB = '__past__';
+// 「過往」裡的子頁籤 (2026-11-08)：'season'＝過往關卡、'events'＝過往活動；
+// 每次點「過往」都先開過往關卡
+let pastSubTab = 'season';
+// 過往區（過往關卡、過往活動）最後一排按鈕下方的格子間距：原本 28px
+const PAST_LAST_GRID_GAP = '4px';
 function renderSeriesFilter(container, allSeries, selected, onSelect, hasPast) {
   if (allSeries.length + (hasPast ? 1 : 0) < 2) return; // nothing meaningful to filter
   const bar = document.createElement('div');
@@ -271,7 +288,7 @@ async function init() {
   function render() {
     if (filterHost) {
       filterHost.innerHTML = '';
-      renderSeriesFilter(filterHost, allSeries, selectedSeries, (s) => { selectedSeries = s; render(); }, hasPast);
+      renderSeriesFilter(filterHost, allSeries, selectedSeries, (s) => { selectedSeries = s; pastSubTab = 'season'; render(); }, hasPast);
     }
 
     // Hidden stages don't show up here at all, same as before. Among the
@@ -311,8 +328,41 @@ async function init() {
       root.appendChild(groupEl);
     }
 
-    if (pastStages.length) {
-      const pastStyle = (siteSettings && siteSettings.pastSectionStyle) || {};
+    // 過往活動 (2026-11-08)：章節名稱有「高難」的過往章節，從「過往關卡」
+    // 大框分出來，放在下面的「過往活動」。每個章節沿用自己在「章節外觀」
+    // 的設定（跟當季時一樣），整塊降低透明度（後台「過往活動」頁籤設定，
+    // 預設 60%），滑鼠移上去／點的時候恢復原本的顏色。順序照後台排的
+    // pastEventOrder；還沒排過的（剛變成過往的）放在最上面。
+    const pastEventStages = pastStages.filter((s) => isEventChapter(s.chapter));
+    const pastSeasonStages = pastStages.filter((s) => !isEventChapter(s.chapter));
+    const pastStyle = (siteSettings && siteSettings.pastSectionStyle) || {};
+    // 兩種都有才分「過往關卡｜過往活動」子頁籤；只有一種就直接顯示（附標題）
+    const pastTabbed = pastSeasonStages.length > 0 && pastEventStages.length > 0;
+    const showSeason = pastSeasonStages.length > 0 && (!pastTabbed || pastSubTab === 'season');
+    const showEvents = pastEventStages.length > 0 && (!pastTabbed || pastSubTab === 'events');
+    if (pastTabbed) {
+      // 選到的字色＝過往關卡裡「魔法檢定所」章節標題的顏色；沒選到的＝上面
+      // 系列按鈕的字色。顏色用 inline 設定（理由同下面過往區的註解）。
+      const seriesColors = pastStyle.seriesTitleColors || {};
+      const activeColor = seriesColors['魔法檢定所'] || pastStyle.chapterTitleColor || '#8b87a3';
+      const bar = document.createElement('div');
+      bar.className = 'past-subtabs';
+      bar.setAttribute('role', 'tablist');
+      for (const [key, label] of [['season', '過往關卡'], ['events', '過往活動']]) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'past-subtab' + (pastSubTab === key ? ' active' : '');
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', String(pastSubTab === key));
+        b.textContent = label;
+        if (pastSubTab === key) b.style.color = activeColor;
+        b.addEventListener('click', () => { if (pastSubTab !== key) { pastSubTab = key; render(); } });
+        bar.appendChild(b);
+      }
+      root.appendChild(bar);
+    }
+
+    if (showSeason) {
 
       // Every visual property set directly as inline style here, not via
       // a CSS class + custom property (2026-09-07) — after this element
@@ -324,10 +374,12 @@ async function init() {
       // 「過往」頁籤裡過往區就在最上面，上面沒有當季區了，所以不再畫
       // 分隔線（分隔線是用來隔開當季區跟過往區的）。
 
-      const heading = document.createElement('div');
-      heading.className = 'stage-past-heading';
-      heading.textContent = '過往關卡';
-      root.appendChild(heading);
+      if (!pastTabbed) {
+        const heading = document.createElement('div');
+        heading.className = 'stage-past-heading';
+        heading.textContent = '過往關卡';
+        root.appendChild(heading);
+      }
 
       const pastSection = document.createElement('div');
       pastSection.className = 'stage-past-section';
@@ -341,12 +393,40 @@ async function init() {
       // page root like the main section above) is enough on its own.
       applyButtonStyle(pastSection, pastStyle.buttonStyle);
 
-      for (const group of sortBySeriesOrder(groupByChapter(pastStages), seriesOrder, (g) => g.chapter)) {
+      for (const group of sortBySeriesOrder(groupByChapter(pastSeasonStages), seriesOrder, (g) => g.chapter)) {
         const seriesColors = pastStyle.seriesTitleColors || {};
         const titleColorOverride = seriesColors[seriesOf(group.chapter)];
         pastSection.appendChild(renderChapterGroup(group, titleColorOverride));
       }
+      // 過往區最後一排按鈕到外框下緣的空白砍一半 (2026-11-08)：原本＝格子
+      // 下方 28px＋外框內距 20px；最後一個章節的格子改成 4px（inline，理由同上）
+      const grids = pastSection.querySelectorAll('.so-grid');
+      if (grids.length) grids[grids.length - 1].style.marginBottom = PAST_LAST_GRID_GAP;
       root.appendChild(pastSection);
+    }
+
+    if (showEvents) {
+      if (!pastTabbed) {
+        const heading = document.createElement('div');
+        heading.className = 'stage-past-heading stage-past-event-heading';
+        heading.textContent = '過往活動';
+        root.appendChild(heading);
+      }
+      const opacity = Number.isFinite(siteSettings && siteSettings.pastEventOpacity)
+        ? Math.max(10, Math.min(100, siteSettings.pastEventOpacity)) : 60;
+      const savedOrder = (siteSettings && siteSettings.pastEventOrder) || [];
+      for (const group of orderPastEvents(groupByChapter(pastEventStages), savedOrder)) {
+        const groupEl = renderChapterGroup(group, null);
+        const cs = chapterStyles[group.chapter];
+        if (cs) applyChapterStyle(groupEl, cs);
+        applyButtonStyle(groupEl, (cs && cs.buttonStyle) || DEFAULT_BUTTON_STYLE);
+        groupEl.classList.add('past-event-group');
+        groupEl.style.setProperty('--past-event-opacity', String(opacity / 100));
+        // 按鈕到外框下緣的空白砍一半，同過往關卡
+        const evGrids = groupEl.querySelectorAll('.so-grid');
+        if (evGrids.length) evGrids[evGrids.length - 1].style.marginBottom = PAST_LAST_GRID_GAP;
+        root.appendChild(groupEl);
+      }
     }
   }
 

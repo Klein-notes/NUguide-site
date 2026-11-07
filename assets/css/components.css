@@ -1761,3 +1761,31 @@ hr.ql-divider {
   .modal-backup-import .modal-footer { gap: 8px; padding-left: 16px; padding-right: 16px; }
   .modal-backup-import .modal-footer .btn { padding-left: 0.9em; padding-right: 0.9em; }
 }
+
+/* 過往活動 (2026-11-08, stagesList.js)：高難的過往章節沿用自己的章節外觀，
+   整塊降低透明度（後台設定，預設 60%）；滑鼠移上去、點的時候恢復原本顏色 */
+.stage-past-section + .stage-past-event-heading { margin-top: 36px; }
+.past-event-group { opacity: var(--past-event-opacity, 0.6); transition: opacity 0.15s; }
+.past-event-group:hover,
+.past-event-group:focus-within,
+.past-event-group:active { opacity: 1; }
+
+/* 「過往」裡的「過往關卡｜過往活動」子頁籤 (2026-11-08, stagesList.js)：
+   外框一條、中間一條短分隔線；選到的字色在程式裡設（＝魔法檢定所章節標題色），
+   沒選到的跟上面系列按鈕同色。兩格固定等寬，切換不跑位 */
+.past-subtabs {
+  /* 尺寸照站主的設計圖量（2026-11-08）：寬 344px、高 34px（跟上面系列按鈕一樣高）、
+     字 14px、圓角 6px、中間分隔線上下到底 */
+  display: flex; width: 344px; max-width: 100%; margin: 32px 0 12px;
+  border: 1px solid var(--border); border-radius: 6px;
+}
+.past-subtab {
+  position: relative; flex: 1 1 0; padding: 6px 0; line-height: 20px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-dim); font-size: 0.875rem;
+}
+.past-subtab:hover { color: var(--text); }
+.past-subtab + .past-subtab::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
