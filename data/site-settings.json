@@ -448,6 +448,7 @@
       "borderColor": "#544861",
       "borderOpacity": 89,
       "borderWidth": 1,
+      "textColor": "#d4d4d4",
       "dividerWidth": 1,
       "dividerGradientEnabled": false,
       "dividerColors": [
