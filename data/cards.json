@@ -169,9 +169,9 @@
     ],
     "ultimateSkill": "<p>使自身受到傷害增加 10%（1回合）</p><p>並使自身造成傷害增加 25%（2回合）</p><p>並以攻擊力 316% 目標造成傷害</p><p><br></p><p>［冷卻時間：3 回合］</p>",
     "image": "assets/img/cards/card_009.webp",
-    "imageZoom": 1.67,
-    "imageOffsetX": 0.5265183315970626,
-    "imageOffsetY": 0.3865980584447897,
+    "imageZoom": 1.68,
+    "imageOffsetX": 0.5399910026576725,
+    "imageOffsetY": 0.3300623917644049,
     "sortOrder": 9
   },
   {
