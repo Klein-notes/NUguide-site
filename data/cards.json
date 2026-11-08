@@ -3240,5 +3240,26 @@
     "imageOffsetX": 0.5025958771686582,
     "imageOffsetY": 0.3401522177209438,
     "sortOrder": 127
+  },
+  {
+    "id": "card_158",
+    "name": "潛心鑽研之冠",
+    "characterId": "char_12",
+    "rarityId": "ssr",
+    "classId": "atk",
+    "elementId": "water",
+    "cd": 3,
+    "tags": [
+      "normal_atk",
+      "enemy_normal_dmg_up",
+      "followup_atk",
+      "immune_silence"
+    ],
+    "ultimateSkill": "<p>使目標受到普攻傷害增加 34%（最多1層）</p><p>使我方全體 <span style=\"color: rgb(226, 96, 79);\">定位攻擊與妨礙</span> 的角色獲得「普攻時，追加『以攻擊力 15% 對目標造成傷害』（3 回合）」</p><p>以攻擊力 100% 對目標造成傷害</p><p>再使自身獲得「普攻時，追加『以攻擊力 87% 對目標進行追擊』（3 回合）」</p><p><br></p><p>［冷卻時間：3 回合］</p>",
+    "image": "assets/img/cards/card_158.webp",
+    "imageZoom": 1.34,
+    "imageOffsetX": 0.5228697775425124,
+    "imageOffsetY": 0.29163595816035026,
+    "sortOrder": 128
   }
 ]
