@@ -3261,5 +3261,25 @@
     "imageOffsetX": 0.5228697775425124,
     "imageOffsetY": 0.29163595816035026,
     "sortOrder": 128
+  },
+  {
+    "id": "card_159",
+    "name": "奏響心聲之鞭",
+    "characterId": "char_10",
+    "rarityId": "sr",
+    "classId": "debuf",
+    "elementId": "wood",
+    "cd": 3,
+    "tags": [
+      "atk_buff_enemy",
+      "heal_down",
+      "immune_sleep"
+    ],
+    "ultimateSkill": "<p>使目標受到傷害增加 16%（2回合）</p><p>再以攻擊力 264% 對目標造成傷害</p><p>並使目標受到回復量減少 100%（3回合）</p><p><br></p><p>［冷卻時間：3 回合］</p>",
+    "image": "assets/img/cards/card_159.webp",
+    "imageZoom": 1.45,
+    "imageOffsetX": 0.5381085941374417,
+    "imageOffsetY": 0.4523572734757966,
+    "sortOrder": 129
   }
 ]
