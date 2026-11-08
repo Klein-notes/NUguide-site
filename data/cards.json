@@ -2793,9 +2793,9 @@
     ],
     "ultimateSkill": "<p>以攻擊力 273% 對目標造成傷害</p><p>以 50% 機率造成目標睡眠 2 回合</p><p><br></p><p>［冷卻時間：3 回合］</p>",
     "image": "assets/img/cards/card_135.webp",
-    "imageZoom": 1.48,
-    "imageOffsetX": 0.620796427862409,
-    "imageOffsetY": 0.2586255499480337,
+    "imageZoom": 1.59,
+    "imageOffsetX": 0.5827745633414978,
+    "imageOffsetY": 0.37464529814568537,
     "sortOrder": 0.81
   },
   {
