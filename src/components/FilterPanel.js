@@ -3,6 +3,18 @@ import { loadJSON, resolveAsset } from '../core/dataLoader.js';
 import { createEmptyFilterState, toggleFilterOption, countActiveFilters } from '../modules/cardFilter.js';
 import { renderTagList } from './TagPicker.js';
 
+// 篩選裡的技能分類 (2026-11-12)：這幾個 Tag 在篩選裡改放到別的分類，
+// 跟後台卡片管理的 Tag 分頁一致。只影響篩選的顯示，tags.json 的 group
+// 和其他地方都不變。
+const FILTER_TAG_GROUP_MOVE = {
+  followup_atk: 'damage',  // 普攻追擊：我方增傷 → 傷害類型
+  proc_followup: 'damage', // 觸發追擊：我方增傷 → 傷害類型
+  heal_down: 'control',    // 減療：生存/治療 → 異常/控制
+};
+function withFilterTagGroups(options) {
+  return options.map((o) => (FILTER_TAG_GROUP_MOVE[o.id] ? { ...o, group: FILTER_TAG_GROUP_MOVE[o.id] } : o));
+}
+
 /**
  * Builds a filter panel bound to filter-schema.json.
  * @param {HTMLElement} container
@@ -58,7 +70,7 @@ export async function mountFilterPanel(container, onChange, opts = {}) {
       // exactly the whole-list churn this was meant to avoid. Toggling
       // here only needs to update state/footer/results; the tag button
       // that was actually clicked repaints itself.
-      renderTagList(optionsWrap, options, {
+      renderTagList(optionsWrap, withFilterTagGroups(options), {
         isActive: (option) => (state[group.field] || []).includes(option.id),
         onToggle: (option) => {
           state = toggleFilterOption(state, group.field, option.id);
