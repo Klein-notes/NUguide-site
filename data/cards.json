@@ -3147,7 +3147,8 @@
     "cd": 3,
     "tags": [
       "atk_buff_enemy",
-      "immune_sleep"
+      "immune_sleep",
+      "break_shield"
     ],
     "ultimateSkill": "<p>使目標受到傷害增加 12%（2回合）</p><p>再以攻擊力 273% 對目標造成傷害</p><p>［冷卻時間：3 回合］</p>",
     "image": "assets/img/cards/card_153.webp",
