@@ -417,6 +417,61 @@
           "#94703d"
         ]
       }
+    },
+    "靈魂狂宴 高難": {
+      "bgColor": "#2c220c",
+      "bgOpacity": 54,
+      "borderColor": "#95815b",
+      "borderOpacity": 100,
+      "borderWidth": 1,
+      "bgGradientEnabled": true,
+      "bgGradientAngle": 17,
+      "bgGradientColors": [
+        "#565348",
+        "#684a18"
+      ],
+      "bgGradientPositions": [
+        0,
+        100
+      ],
+      "borderGradientEnabled": false,
+      "borderGradientAngle": 180,
+      "borderGradientColors": [
+        "#817046",
+        "#e8d9a0",
+        "#807046"
+      ],
+      "borderGradientPositions": [
+        0,
+        50,
+        100
+      ],
+      "numberColor": "#e2d5bb",
+      "numberColorDisabled": "#866e3c",
+      "buttonStyle": {
+        "fontFamily": "display",
+        "fontSize": 15,
+        "paddingY": 3,
+        "paddingX": 6,
+        "borderRadius": 4,
+        "gradientEnabled": true,
+        "gradientAngle": 17,
+        "gradientColors": [
+          "#37332e",
+          "#3f2f1c"
+        ],
+        "bgColor": "#211f30",
+        "borderColor": "#c9a45c",
+        "borderOpacity": 62,
+        "borderWidth": 1,
+        "textColor": "#d9b76d",
+        "dividerWidth": 1,
+        "dividerGradientEnabled": true,
+        "dividerColors": [
+          "#c9a45c",
+          "#94703d"
+        ]
+      }
     }
   },
   "pastSectionStyle": {
