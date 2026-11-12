@@ -705,5 +705,10 @@
     "極速追風 高難",
     "舞動☆心願 高難"
   ],
-  "pastEventOpacity": 60
+  "pastEventOpacity": 60,
+  "stageFlagsChapterOrder": [
+    "靈魂狂宴 高難",
+    "忘卻遺跡 第 23 季",
+    "魔法檢定所 第 27 季"
+  ]
 }
