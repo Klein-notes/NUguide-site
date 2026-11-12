@@ -2057,5 +2057,60 @@
     ],
     "rowBreak": false,
     "sortOrder": 8.3
+  },
+  {
+    "id": "stage__01_4",
+    "chapter": "靈魂狂宴 高難",
+    "order": "狂熱-01",
+    "title": "靈魂狂宴 高難 狂熱-01",
+    "enemies": [
+      {
+        "name": "艾德蒙特",
+        "note": "不會受到傷害",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__01_4_0_艾德蒙特.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.5142874541106047,
+        "imageOffsetY": 0.515009774102105
+      },
+      {
+        "name": "歛",
+        "note": "不會受到傷害",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__01_4_1_歛.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.47196903935185186,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "布儡",
+        "note": "不會受到傷害",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__01_4_2_布儡.webp",
+        "imageZoom": 1.17,
+        "imageOffsetX": 0.5292265078975446,
+        "imageOffsetY": 0.5463373520795037
+      }
+    ],
+    "guide": "<p><span style=\"color: rgb(226, 96, 79);\">★必須攜帶 </span><span style=\"color: rgb(79, 200, 176);\">五種不同定位</span><span style=\"color: rgb(226, 96, 79);\"> 的角色。（不然會直接被全滅）</span></p><p>機制關卡，不需要攻擊。</p><hr class=\"ql-divider\"><p>副團：<span style=\"color: rgb(79, 200, 176);\">【低吟】1、2、3 普攻，4、5 防禦</span></p><p>　　　<span style=\"color: rgb(201, 164, 92);\">【高歌】1、2 防禦，3、4、5 普攻</span></p><p><br></p><p>歛     ：【獨奏】全防</p><p><br></p><p>布儡：【悲鳴】1、5 必殺，2、4 普攻，3 攻擊。（獲得護盾）</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T2、8、14",
+        "col2": "<span style=\"color: rgb(79, 200, 176);\">【低吟】1、2、3 普攻，4、5 防禦</span><br><span style=\"color: rgb(201, 164, 92);\">【高歌】1、2 防禦，3、4、5 普攻</span>"
+      },
+      {
+        "col1": "T3、9、15",
+        "col2": "全防<br>"
+      },
+      {
+        "col1": "T4、10、16",
+        "col2": "1、5 必殺，2、4 普攻，3 攻擊"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 1
   }
 ]
