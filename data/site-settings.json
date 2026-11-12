@@ -421,14 +421,14 @@
     "靈魂狂宴 高難": {
       "bgColor": "#181611",
       "bgOpacity": 55,
-      "borderColor": "#b3bfff",
+      "borderColor": "#8599ff",
       "borderOpacity": 100,
       "borderWidth": 1,
       "bgGradientEnabled": true,
       "bgGradientAngle": 70,
       "bgGradientColors": [
-        "#835fb9",
-        "#d699ff"
+        "#805bb9",
+        "#ba82f2"
       ],
       "bgGradientPositions": [
         0,
@@ -457,19 +457,19 @@
         "gradientEnabled": true,
         "gradientAngle": 29,
         "gradientColors": [
-          "#614e83",
+          "#6c5298",
           "#a179c8"
         ],
         "bgColor": "#211f30",
-        "borderColor": "#a8c2ff",
+        "borderColor": "#7abfff",
         "borderOpacity": 77,
         "borderWidth": 1,
-        "textColor": "#cce6ff",
+        "textColor": "#9ed0ff",
         "dividerWidth": 1,
         "dividerGradientEnabled": true,
         "dividerColors": [
-          "#deadff",
-          "#a87bd5"
+          "#d494ff",
+          "#b17ee7"
         ]
       }
     }
