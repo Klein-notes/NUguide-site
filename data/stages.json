@@ -2112,5 +2112,106 @@
     ],
     "rowBreak": false,
     "sortOrder": 1
+  },
+  {
+    "id": "stage__02_4",
+    "chapter": "靈魂狂宴 高難",
+    "order": "狂熱-02",
+    "title": "靈魂狂宴 高難 狂熱-02",
+    "enemies": [
+      {
+        "name": "狂燄吟詠者",
+        "note": "",
+        "elementId": "fire",
+        "image": "assets/img/enemies/stage__02_4_0_狂燄吟詠者.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.5571462843153212,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "蝕木吟詠者",
+        "note": "",
+        "elementId": "wood",
+        "image": "assets/img/enemies/stage__02_4_1_蝕木吟詠者.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.5439467253508392,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "溟滅呤詠者",
+        "note": "會治療全體",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__02_4_2_溟滅呤詠者.webp",
+        "imageZoom": 1.17,
+        "imageOffsetX": 0.5,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "噬光吟詠者",
+        "note": "",
+        "elementId": "light",
+        "image": "assets/img/enemies/stage__02_4_3_噬光吟詠者.webp",
+        "imageZoom": 1.16,
+        "imageOffsetX": 0.5646988550821941,
+        "imageOffsetY": 0.4747869252594932
+      },
+      {
+        "name": "深淵貴公子",
+        "note": "最後才能打",
+        "elementId": "dark",
+        "image": "assets/img/enemies/stage__02_4_4_深淵貴公子.webp",
+        "imageZoom": 1.19,
+        "imageOffsetX": 0.5,
+        "imageOffsetY": 0.5
+      }
+    ],
+    "guide": "<p><span style=\"color: rgb(79, 200, 176);\">不建議群攻/多站位攻擊</span>，要 先打完其他吟詠者，才可以打深淵貴公子。</p><p><span style=\"color: rgb(79, 200, 176);\">不推薦光屬性放 3 號位</span>，推薦持續治療放 4 號位。</p><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">—— 深淵貴公子 行動</span></p><p>【舉手】全普攻</p><p>【施捨】被印記的防禦</p><p>【大聲】全必殺</p><p><br></p><p><span style=\"color: rgb(201, 164, 92);\">—— 深淵貴公子 血量 30% 鎖血後</span></p><p>【華麗！腐爛！】<span style=\"color: rgb(226, 96, 79);\">要在 5 回合內結束</span></p><p><br></p><p>T2、8  全普攻</p><p>T5、11 被印記的防禦</p><p>T6、12 全必殺</p><p><br></p><p>30%後</p><p>↳ 【 華麗 腐爛】全防。</p><p>↳ 【 左邊 腐爛】1、2、3 防禦（看狀態），其他可攻擊。</p><p>↳ 【 右邊 腐爛 】3、4、5 防禦（看狀態），其他可攻擊。</p><p>↳ 【 怒濤 腐爛】1、3、5 防禦（看狀態），其他可攻擊。</p><p>↳  無狀態，全必殺。（這回合一定要打完）</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "<br>",
+        "col2": "<span style=\"color: rgb(201, 164, 92);\">—— 要先打完其他 吟詠者，才能攻擊 深淵貴公子。</span><br>"
+      },
+      {
+        "col1": "T2、8、14",
+        "col2": "全普攻"
+      },
+      {
+        "col1": "T5、11、17",
+        "col2": "被印記的防禦"
+      },
+      {
+        "col1": "T6、12、18",
+        "col2": "全必殺"
+      },
+      {
+        "col1": "<br>",
+        "col2": "<span style=\"color: rgb(201, 164, 92);\">—— 深淵貴公子 血量 30% 鎖血後（固定順序）</span>"
+      },
+      {
+        "col1": "T1 華麗 腐爛",
+        "col2": "全防"
+      },
+      {
+        "col1": "T2 左邊 腐爛",
+        "col2": "1、2、3 防禦，其他可攻擊"
+      },
+      {
+        "col1": "T3 右邊 腐爛",
+        "col2": "3、4、5 防禦，其他可攻擊"
+      },
+      {
+        "col1": "T4 怒濤 腐爛",
+        "col2": "1、3、5 防禦，其他可攻擊"
+      },
+      {
+        "col1": "T5 最後一回",
+        "col2": "全必殺/攻擊（ 這回合一定要打完 ）"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 2
   }
 ]
