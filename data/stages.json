@@ -2213,5 +2213,43 @@
     ],
     "rowBreak": false,
     "sortOrder": 2
+  },
+  {
+    "id": "stage__03_4",
+    "chapter": "靈魂狂宴 高難",
+    "order": "狂熱-03",
+    "title": "靈魂狂宴 高難 狂熱-03",
+    "enemies": [
+      {
+        "name": "魔力裝置",
+        "note": "主要敵人",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__03_4_0_魔力裝置.webp",
+        "imageZoom": 1,
+        "imageOffsetX": 0.5,
+        "imageOffsetY": 0.5
+      },
+      {
+        "name": "歛",
+        "note": "不會受到傷害",
+        "elementId": "water",
+        "image": "assets/img/enemies/stage__01_4_1_歛.webp",
+        "imageZoom": 1.18,
+        "imageOffsetX": 0.47196903935185186,
+        "imageOffsetY": 0.5
+      }
+    ],
+    "guide": "<p>《實驗成功》要４層（ 魔力量達標 3次 ＝ 1層 ）</p><p><br></p><ul><li><span style=\"color: rgb(201, 164, 92);\">必須有１名 CD3的成員</span>，推薦 <span style=\"color: rgb(79, 200, 176);\">持續治療、普攻、水屬性 </span>成員。</li><li>施放必殺時，當回合使全隊攻擊力減少 </li></ul><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">—— 歛 行動</span></p><p><br></p><ul><li>《嘗試改良》：4 名普攻，1 名必殺</li><li>《調整覆蓋範圍》後對 [魔力裝置]  每回合造成傷害：</li></ul><p>　　　　大於 15% 傷害 →&nbsp;可加速獲得 1層《實驗成功》</p><p>　　　　少於 15% 傷害 →&nbsp;會被全體反傷</p><p><br></p><p>補充：還是可以帶強力必殺隊員，但必須其他四人普攻、一人必殺，以免傷害不夠。</p>",
+    "recommendedTags": [],
+    "hidden": false,
+    "archived": false,
+    "roundTable": [
+      {
+        "col1": "T4、8、12、16",
+        "col2": "4 名普攻，1 名必殺"
+      }
+    ],
+    "rowBreak": false,
+    "sortOrder": 3
   }
 ]
