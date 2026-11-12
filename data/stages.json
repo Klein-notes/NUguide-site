@@ -2223,11 +2223,11 @@
       {
         "name": "魔力裝置",
         "note": "主要敵人",
-        "elementId": "water",
+        "elementId": "fire",
         "image": "assets/img/enemies/stage__03_4_0_魔力裝置.webp",
-        "imageZoom": 1,
+        "imageZoom": 1.17,
         "imageOffsetX": 0.5,
-        "imageOffsetY": 0.5
+        "imageOffsetY": 0.5110260074596324
       },
       {
         "name": "歛",
