@@ -419,16 +419,16 @@
       }
     },
     "靈魂狂宴 高難": {
-      "bgColor": "#2c220c",
-      "bgOpacity": 54,
-      "borderColor": "#95815b",
+      "bgColor": "#181611",
+      "bgOpacity": 55,
+      "borderColor": "#b3bfff",
       "borderOpacity": 100,
       "borderWidth": 1,
       "bgGradientEnabled": true,
-      "bgGradientAngle": 17,
+      "bgGradientAngle": 70,
       "bgGradientColors": [
-        "#565348",
-        "#684a18"
+        "#835fb9",
+        "#d699ff"
       ],
       "bgGradientPositions": [
         0,
@@ -446,8 +446,8 @@
         50,
         100
       ],
-      "numberColor": "#e2d5bb",
-      "numberColorDisabled": "#866e3c",
+      "numberColor": "#b3bbff",
+      "numberColorDisabled": "#a07bbc",
       "buttonStyle": {
         "fontFamily": "display",
         "fontSize": 15,
@@ -455,21 +455,21 @@
         "paddingX": 6,
         "borderRadius": 4,
         "gradientEnabled": true,
-        "gradientAngle": 17,
+        "gradientAngle": 29,
         "gradientColors": [
-          "#37332e",
-          "#3f2f1c"
+          "#614e83",
+          "#a179c8"
         ],
         "bgColor": "#211f30",
-        "borderColor": "#c9a45c",
-        "borderOpacity": 62,
+        "borderColor": "#a8c2ff",
+        "borderOpacity": 77,
         "borderWidth": 1,
-        "textColor": "#d9b76d",
+        "textColor": "#cce6ff",
         "dividerWidth": 1,
         "dividerGradientEnabled": true,
         "dividerColors": [
-          "#c9a45c",
-          "#94703d"
+          "#deadff",
+          "#a87bd5"
         ]
       }
     }
