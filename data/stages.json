@@ -2239,7 +2239,7 @@
         "imageOffsetY": 0.5
       }
     ],
-    "guide": "<p>《實驗成功》要４層（ 魔力量達標 3次 ＝ 1層 ）</p><ul><li><span style=\"color: rgb(201, 164, 92);\">必須有１名 CD3的成員</span>，推薦 <span style=\"color: rgb(79, 200, 176);\">持續治療、普攻、水屬性 </span>成員。</li><li>施放必殺時，當回合使全隊攻擊力減少 </li></ul><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">—— 歛 行動</span></p><ul><li>《嘗試改良》：4 名普攻，1 名必殺</li><li>《調整覆蓋範圍》後對 [魔力裝置]  每回合造成傷害：</li></ul><p>　　　　大於 15% 傷害 →&nbsp;可加速獲得 1層《實驗成功》</p><p>　　　　少於 15% 傷害 →&nbsp;會被全體反傷</p><p><br></p><p>補充：還是可以帶強力必殺隊員，但必須其他四人普攻、一人必殺，以免傷害不夠。</p>",
+    "guide": "<p>《實驗成功》要４層（ 魔力量達標 3次 ＝ 1層 ）</p><ul><li><span style=\"color: rgb(201, 164, 92);\">必須有１名 CD3的成員</span>，推薦 <span style=\"color: rgb(79, 200, 176);\">持續治療、普攻、水屬性 </span>成員。</li><li>施放必殺時，當回合使全隊攻擊力減少 </li></ul><hr class=\"ql-divider\"><p><span style=\"color: rgb(201, 164, 92);\">—— 魔力裝置</span></p><ul><li>每回合自行補滿血</li><li>需要 <span style=\"color: rgb(79, 200, 176);\">將其血量降至 90%以下</span>，才會算一次〈魔力達標〉。</li></ul><p><br></p><p><span style=\"color: rgb(201, 164, 92);\">—— 歛 行動</span></p><ul><li>《嘗試改良》：4 名普攻，1 名必殺</li><li>《調整覆蓋範圍》後對 [魔力裝置]  每回合造成傷害：</li></ul><p>　　　　大於 15% 傷害 →&nbsp;可加速獲得 1層《實驗成功》</p><p>　　　　少於 15% 傷害 →&nbsp;會被全體反傷</p><p><br></p><p>補充：還是可以帶強力必殺隊員，但必須其他四人普攻、一人必殺，以免傷害不夠。</p>",
     "recommendedTags": [],
     "hidden": false,
     "archived": false,
